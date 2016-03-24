@@ -1,0 +1,52 @@
+<div>
+    <h1>New Personal Training Session</h1>
+    <h2>Exercises: </h2>
+    <table>
+        <tr>
+            <th>Name:</th>
+            <th>Sets:</th>
+            <th>Reps:</th>
+            <th>Intensity:</th>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <form>
+        <label for="name">Exercise Name:</label>
+        <input type="text" name="name" id="name"/>
+        <label for="sets">Sets:</label>
+        <select name="sets" id="sets">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+        <label for="measurement">Rep Units:</label>
+        <select name="measurement" id="measurement">
+            <option value="#">Number</option>
+            <option value="time">Time</option>
+            <option value="distance">Distance</option>
+        </select>
+        <label for="number">Number of Reps:</label>
+        <input type="number" name="number" id="number"/>
+        <label>Time per Rep:</label>
+        <label for="minutes">M</label>
+        <input type="number" name="minutes" id="minutes"/>
+        <label for="seconds">S</label>
+        <input name="seconds" id="seconds" type="number"/>
+        <label for="distance">Distance per rep (in meters):</label>
+        <input type="number" name="distance" id="distance"/>
+        <input type="submit"/>
+    </form>
+    <button>Finished with Exercises</button>
+</div>
