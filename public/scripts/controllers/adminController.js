@@ -1,0 +1,1 @@
+//myApp.controller('AdminController', ['$scope', '$http', function($scope, $http) {

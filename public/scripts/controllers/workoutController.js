@@ -1,0 +1,1 @@
+//myApp.controller('WorkoutController', ['$scope', '$http', function($scope, $http) {
