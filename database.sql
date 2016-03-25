@@ -18,6 +18,26 @@ id serial PRIMARY KEY,
 name varchar(100) NOT NULL,
 category varchar(100)
 );
+INSERT INTO exercise (name)
+VALUES ('Single Leg Deadlift');
+INSERT INTO exercise (name)
+VALUES ('Bag Toss');
+INSERT INTO exercise (name)
+VALUES ('Bag Clean');
+INSERT INTO exercise (name)
+VALUES ('Bent Row');
+INSERT INTO exercise (name)
+VALUES ('Bent Press');
+INSERT INTO exercise (name)
+VALUES ('Jump Rope');
+INSERT INTO exercise (name)
+VALUES ('Step Up');
+INSERT INTO exercise (name)
+VALUES ('Racked Step Up');
+INSERT INTO exercise (name)
+VALUES ('Plank Knee to Elbow');
+INSERT INTO exercise (name)
+VALUES ('Lizard Crawl');
 
 CREATE TABLE medical_conditions (
 id SERIAL PRIMARY KEY,
