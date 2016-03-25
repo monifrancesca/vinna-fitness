@@ -1,1 +1,0 @@
-//myApp.controller('TrainerController', ['$scope', '$http', function($scope, $http) {

@@ -15,6 +15,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 app.use(express.static('public/views'));
 app.use(express.static('public/scripts'));
+app.use(express.static('public/scripts/controllers'));
+app.use(express.static('public/scripts/factories'));
 app.use(express.static('public/styles'));
 app.use(express.static('public/vendors'));
 
