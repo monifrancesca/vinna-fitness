@@ -1,7 +1,7 @@
 CREATE TABLE location (
 id serial PRIMARY KEY,
 name varchar(100) NOT NULL
-)
+);
 
 CREATE TABLE users (
 id serial PRIMARY KEY,
@@ -11,18 +11,18 @@ email varchar(100),
 admin boolean,
 google_id varchar(100) NOT NULL,
 google_token varchar(100) NOT NULL
-)
+);
 
 CREATE TABLE exercise (
 id serial PRIMARY KEY,
 name varchar(100) NOT NULL,
 category varchar(100)
-)
+);
 
 CREATE TABLE medical_conditions (
 id SERIAL PRIMARY KEY,
 condition VARCHAR(100)
-)
+);
 INSERT INTO medical_conditions (condition)
 VALUES ('dislocations');
 INSERT INTO medical_conditions (condition)
@@ -69,12 +69,12 @@ location_id INTEGER REFERENCES location(id),
 signature varchar(100),
 signature_date timestamp,
 active_status boolean
-)
+);
 
 CREATE TABLE class (
 id SERIAL PRIMARY KEY,
 class_type VARCHAR(100)
-)
+);
 INSERT INTO class (class_type)
 VALUES ('movement/mobility');
 INSERT INTO class (class_type)
@@ -105,7 +105,7 @@ notes varchar(500),
 stretching varchar(500),
 warmup_notes varchar(500),
 class_type INTEGER REFERENCES class(id)
-)
+);
 
 CREATE TABLE workout_line_items (
 id serial PRIMARY KEY,
@@ -118,7 +118,7 @@ body_weight boolean,
 intensity_lbs INTEGER,
 intensity_kgs INTEGER,
 warmup boolean
-)
+);
 
 CREATE TABLE fms (
 id SERIAL PRIMARY KEY,
@@ -163,4 +163,4 @@ right_shin_length INTEGER,
 left_shin_length INTEGER,
 left_hand_length INTEGER,
 right_hand_length INTEGER
-)
+);
