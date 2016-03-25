@@ -1,1 +1,5 @@
-//myApp.controller('ClientController', ['$scope', '$http', function($scope, $http) {
+myApp.controller('ClientController', ['$scope', '$http', 'DataFactory', function($scope, $http, DataFactory) {
+
+  $scope.dataFactory = DataFactory;
+
+}]);
