@@ -1,7 +1,6 @@
 {
   "name": "vinna-fitness",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,5 +16,14 @@
     "express-session": "^1.13.0",
     "grunt": "^0.4.5",
     "pg": "^4.5.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monifrancesca/vinna-fitness.git"
+  },
+  "bugs": {
+    "url": "https://github.com/monifrancesca/vinna-fitness/issues"
+  },
+  "homepage": "https://github.com/monifrancesca/vinna-fitness#readme",
+  "description": ""
 }
