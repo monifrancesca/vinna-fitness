@@ -5,8 +5,8 @@ myApp.factory('DataFactory', ['$http', function($http) {
 
   var saveNewWorkout = function(workout) {
     console.log('This is the workout we are sending to the server:', workout);
-    //$http.post('/workout', workout).then(function(response) {
-    //});
+    $http.post('/workout', workout).then(function(response) {
+    });
   };
 
 
