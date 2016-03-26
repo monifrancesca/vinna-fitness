@@ -12,14 +12,19 @@ app.use(bodyParser.urlencoded({extended: true}));
 router.post('/:fakeIdentifier', function(req, res) {
     //console.log('in the module', req.body);
     var addMedical = {
+        first_name: req.params.fakeIdentifier,
         intakeDate: req.body.intakeDate,
         currentInjuries: req.body.currentInjuries,
-        first_name: req.params.fakeIdentifier
+        previousHistory: req.body.previousHistory,
+        otherMeds: req.body.otherMeds
     };
-    console.log('add medical var', addMedical);
+    //console.log('add medical var', addMedical);
     pg.connect(connection, function (err, client, done) {
-        client.query('UPDATE client SET last_medical = $1, current_injuries = $2 WHERE first_name = $3',
-            [addMedical.intakeDate, addMedical.currentInjuries, addMedical.first_name],
+        client.query('UPDATE client SET last_medical = $1, current_injuries = $2,' +
+            'previous_medical_hist = $3, medications = $4' +
+            'WHERE first_name = $5',
+            [addMedical.intakeDate, addMedical.currentInjuries, addMedical.previousHistory,
+                addMedical.otherMeds, addMedical.first_name],
             function (err, result) {
                 done();
 
@@ -54,7 +59,5 @@ router.get('/:fakeIdentifier', function(req, res) {
         }
     });
 });
-
-
 
 module.exports = router;
