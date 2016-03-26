@@ -9,8 +9,10 @@ var connection = require('../modules/connection');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+router.post('/', function(req, res) {
+    console.log('in the module', req.body);
 
-
+});
 
 
 

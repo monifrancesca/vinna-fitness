@@ -1,10 +1,11 @@
 <h1>Personal Info</h1>
 <!--Intake date: text field-->
 <label for="intakeDate">Intake Date</label>
-<input type="textarea" id="intakeDate" placeholder="Intake Date" />
+<input type="date" id="intakeDate" ng-model="intakeDate"/>
+
 <!--Current injuries: text field-->
 <label for="currentInjuries">Current Injuries</label>
-<input type="textarea" id="currentInjuries" placeholder="Current Injuries" />
+<input type="textarea" id="currentInjuries" ng-model="currentInjuries" placeholder="Current Injuries" />
 <!--Previous medical history/surgery history: text field-->
 <label for="previousHistory">Previous medical history/surgery history</label>
 <input type="textarea" id="previousHistory" placeholder="Previous medical history/surgery history" />
@@ -13,7 +14,7 @@
 <input type="textarea" id="otherMeds" placeholder="List any medicines or supplements" />
 
 <h1>Check any that apply in the last 24 hours:</h1>
-<select>
+<form>
     <!--checkbox Infection-->
     <label for="infection">Infection</label>
     <input type="checkbox" id="infection" />
@@ -29,10 +30,10 @@
     <!--checkbox Cold-->
     <label for="cold">Cold</label>
     <input type="checkbox" id="cold" />
-</select>
+</form>
 
 <h1>Check any of the following that you currently or have ever had</h1>
-<select>
+<form>
     <!--checkbox Dislocations-->
     <label for="dislocations">Dislocations</label>
     <input type="checkbox" id="dislocations" />
@@ -57,7 +58,7 @@
     <!--checkbox Numbness/tingling/nerve conditions-->
     <label for="nerves">Numbness/tingling/nerve conditions</label>
     <input type="checkbox" id="nerves" />
-</select>
+</form>
 
 <!--Physicians Name & Phone Number: text field-->
 <h1>Physicians Name</h1>
@@ -78,7 +79,7 @@
 <h1>Today's Date</h1>
 <label for="signatureDate">Date</label>
 <input type="date" id="signatureDate" />
-<!--Signature of Parent or Guardian f under 18: text field-->
+<!--Signature of Parent or Guardian if under 18: text field-->
 <h1>Signature of Parent or Guardian if under 18</h1>
 <label for="signatureUnderAge">Signature</label>
 <input type="text" id="signatureUnderAge" />
@@ -89,4 +90,4 @@
 
 <!--Today's Date:-->
 
-<button type="button">Submit</button>
+<button id="med_submit" ng-click="saveMedical()" type="button">Submit</button>
