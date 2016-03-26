@@ -184,3 +184,6 @@ left_shin_length INTEGER,
 left_hand_length INTEGER,
 right_hand_length INTEGER
 );
+
+ALTER TABLE workout_line_items ADD COLUMN reps INTEGER;
+ALTER TABLE workout_line_items RENAME COLUMN worout_id TO workout_id;
