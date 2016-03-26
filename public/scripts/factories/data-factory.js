@@ -1,7 +1,7 @@
 myApp.factory('DataFactory', ['$http', function($http) {
 
     var fakeIdentifier = 'a';
-    var clientMedical;
+    var clientMedical = undefined;
 
     var postMedical = function(data) {
         console.log('factory data', data);
@@ -11,10 +11,11 @@ myApp.factory('DataFactory', ['$http', function($http) {
 
     var getMedical = function() {
         console.log('getMedical in factory fired');
-        $http.get('/medical/' + fakeIdentifier).then(function(response) {
+        var promise = $http.get('/medical/' + fakeIdentifier).then(function(response) {
             clientMedical = response.data;
             console.log('clientMedical', clientMedical);
         });
+        return promise;
     };
 
 
@@ -24,7 +25,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
             postMedical(history);
         },
         retrieveMedical: function() {
-            getMedical();
+            return getMedical();
         },
         clientInfo: function() {
             return clientMedical;

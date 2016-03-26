@@ -2,12 +2,15 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
 
     $scope.dataFactory = DataFactory;
 
-  $scope.dataFactory.retrieveMedical();
-    //  .then(function() {
-    //$scope.clientMedical = $scope.dataFactory.clientInfo();
-  //});
+  $scope.dataFactory.retrieveMedical().then(function() {
+    $scope.clientMedical = $scope.dataFactory.clientInfo();
+    console.log($scope.clientMedical);
 
+    $scope.history = $scope.clientMedical[0];
+    console.log($scope.history);
 
+    $scope.currentInjuries = $scope.history.current_injuries;
+  });
 
     $scope.saveMedical = function() {
       console.log($scope.intakeDate);
