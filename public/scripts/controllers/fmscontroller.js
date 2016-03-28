@@ -33,8 +33,8 @@ myApp.controller('FMSController', ['$scope', '$http', 'DataFactory', function($s
     rotaryRightUp: null,
     rotaryDF: null,
     total: null,
-    client_id: null,
-    user_id: null,
+    client_id: 1,
+    user_id: 1,
     date: null,
     handDominance: null,
     swingDominance: null,
@@ -102,4 +102,15 @@ myApp.controller('FMSController', ['$scope', '$http', 'DataFactory', function($s
     if($scope.rotaryStabilityStatus == false)
     {$scope.rotaryStabilityHeader = "Edit Rotary Stability Quadruped";} else {$scope.rotaryStabilityHeader = 'Rotary Stability Quadruped';}
   };
+  $scope.totalFmsHeader = 'Total Score';
+  $scope.totalFmsStatus = true;
+  $scope.showHideTotalFms = function(){
+    $scope.totalFmsStatus ^= true;
+    if($scope.totalFmsStatus == false)
+    {$scope.totalFmsHeader = "Edit Total Score";} else {$scope.totalFmsHeader = 'Total Score';}
+  };
+  $scope.sendData = function(){
+    $scope.dataFactory.postFmsData($scope.fmsData)
+  };
+
 }]);

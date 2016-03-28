@@ -1,6 +1,11 @@
 <!--fms intake info-->
 <h1>Today's date:</h1>
 <form>
+  <div class="date">
+    <label>Date: </label>
+    <input type="date" ng-model="fmsData.date"/>
+  </div>
+
   <div id="dominance">
     <h2 ng-click="showHideDominance()">{{dominanceHeader}}</h2>
     <div class="wrapper" ng-show="dominanceStatus">
@@ -309,5 +314,15 @@
   {{fmsData.rotaryStability}}
   {{fmsData.rotaryDF}}
 
+  <div id="total-fms">
+    <h2 ng-click="showHideTotalFms()">{{totalFmsHeader}}</h2>
+    <div class="wrapper" ng-show="totalFmsStatus">
 
+      <label>Total Score: </label>
+      <input type="text" ng-model="fmsData.total">
+
+    </div>
+  </div>
+
+  <button ng-click="sendData()">Submit</button>
 </form>
