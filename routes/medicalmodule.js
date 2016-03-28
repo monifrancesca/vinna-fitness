@@ -53,12 +53,12 @@ router.post('/:fakeIdentifier', function(req, res) {
                 addMedical.first_name],
             function (err, result) {
                 done();
-
                 if (err) {
                     console.log("Error inserting data: ", err);
                     res.send(false);
                 } else {
                     res.send(result);
+                //    add second post for medical conditions
                 }
             });
     });
