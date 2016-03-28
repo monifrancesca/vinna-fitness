@@ -26,36 +26,37 @@ router.post('/', function(req, res) {
 
   var exercises = req.body.exercises;
 
-  function Inserts(template, data) {
-    if (!(this instanceof Inserts)) {
-      return new Inserts(template, data);
-    }
-    this._rawDBType = true;
-    this.formatDBType = function () {
-      return data.map(d=>'(' + pgp.as.format(template, d) + ')').join(',');
-    };
-  }
+  //First query adds a new workout to the database. On success, the second query loops through the array of exercises
+  //and adds the relevant exercises from that workout to the workout_line_items table.
 
-  var values = new Inserts('${exercisename}, ${sets}, ${minutes}', exercises);
-
-  console.log('These are the values', values);
-
-  //pg.connect(connection, function(err, client, done) {
-  //  client.query("WITH new_workout AS (INSERT INTO workout (user_id, client_id, date, location_id, flag, notes, stretching, " +
-  //    "warmup_notes, class_type) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) returning * ) INSERT INTO " +
-  //    "workout_line_items(workout_id, exercise_id, sets, time) select new_workout.id, $10 from new_workout;",
-  //    [newWorkout.user_id, newWorkout.client_id, newWorkout.date, newWorkout.location_id, newWorkout.flag,
-  //      newWorkout.notes, newWorkout.stretches, newWorkout.warm_up, newWorkout.class_type, values],
-  //    function (err, result) {
-  //      if(err) {
-  //        console.log("Error inserting data: ", err);
-  //        res.send(false);
-  //      } else {
-  //        res.send(result);
-  //      }
-  //    });
-  //  done();
-  //});
+  pg.connect(connection, function(err, client, done) {
+    client.query("INSERT INTO workout (user_id, client_id, date, location_id, flag, notes, stretching, " +
+      "warmup_notes, class_type) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) returning id",
+      [newWorkout.user_id, newWorkout.client_id, newWorkout.date, newWorkout.location_id, newWorkout.flag,
+        newWorkout.notes, newWorkout.stretches, newWorkout.warm_up, newWorkout.class_type],
+      function (err, result) {
+        if(err) {
+          console.log("Error inserting data: ", err);
+          res.send(false);
+        } else {
+          res.send(result);
+          var workout_id = result.rows[0].id;
+          for (var i = 0; i < exercises.length; i++) {
+            client.query("INSERT INTO workout_line_items(workout_id, exercise_id, sets, time) VALUES " +
+              "($1, $2, $3, $4)", [workout_id, exercises[i].exercisename, exercises[i].sets, exercises[i].minutes],
+              function (err, result) {
+                if (err) {
+                  console.log("Error inserting data: ", err);
+                  res.send(false);
+                } else {
+                }
+              }
+            );
+          }
+        }
+      });
+    done();
+  });
 });
 
 

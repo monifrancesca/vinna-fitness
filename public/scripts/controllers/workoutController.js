@@ -8,6 +8,7 @@ myApp.controller('WorkoutController', ['$scope', '$http', 'DataFactory', functio
 
   $scope.addExercise = function () {
     $scope.formData.exercises.push($scope.newExercise);
+    $scope.newExercise = {};
     console.log('These are the exercises', $scope.formData.exercises);
   };
 
