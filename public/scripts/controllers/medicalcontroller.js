@@ -7,11 +7,23 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
     //console.log($scope.clientMedical);
 
     $scope.history = $scope.clientMedical[0];
-    //console.log($scope.history);
+    console.log($scope.history);
 
     $scope.currentInjuries = $scope.history.current_injuries;
     $scope.previousHistory = $scope.history.previous_medical_hist;
     $scope.otherMeds = $scope.history.medications;
+    $scope.infection = $scope.history.infection;
+    $scope.inflammation = $scope.history.inflammation;
+    $scope.flu = $scope.history.flu;
+    $scope.fever = $scope.history.fever;
+    $scope.cold = $scope.history.cold;
+    $scope.physiciansName = $scope.history.physician_name;
+    $scope.physiciansPhone = parseInt($scope.history.physician_phone);
+    $scope.lastMedical = $scope.history.last_medical;
+    $scope.lastSig = $scope.history.signature;
+    $scope.lastSigDate = $scope.history.signature_date;
+    $scope.lastSigUnderAge = $scope.history.signature_under_age;
+    $scope.lastSigDateUnderAge = $scope.history.signature_date_under_age;
   });
 
     $scope.saveMedical = function() {
@@ -40,7 +52,7 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
           signatureUnderAge: $scope.signatureUnderAge,
           signatureDateUnderAge: $scope.signatureDateUnderAge
         };
-      console.log('history in controller', history);
+      //console.log('history in controller', history);
         $scope.dataFactory.sendMedical(history);
      }
 

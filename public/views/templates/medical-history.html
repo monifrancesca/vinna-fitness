@@ -1,7 +1,8 @@
 <h1>Personal Info</h1>
+<h3>Last medical screening: {{lastMedical | date}}</h3>
 <!--Intake date: text field-->
 <label for="intakeDate">Intake Date</label>
-<input type="date" id="intakeDate" ng-model="intakeDate"/>
+<input type="date" id="intakeDate"/>
 
 <!--Current injuries: text field-->
 <label for="currentInjuries">Current Injuries</label>
@@ -73,6 +74,8 @@
 
 <!--Signature: text field-->
 <h1>Signature</h1>
+<h3>Last signature: {{lastSig}}</h3>
+<h3>Date: {{lastSigDate | date}}</h3>
 <label for="signature">Signature</label>
 <input type="text" ng-model="signature" id="signature" />
 <!--Today's Date:-->
@@ -81,6 +84,8 @@
 <input type="date" ng-model="signatureDate" id="signatureDate" />
 <!--Signature of Parent or Guardian if under 18: text field-->
 <h1>Signature of Parent or Guardian if under 18</h1>
+<h3>Last signature: {{lastSigUnderAge}}</h3>
+<h3>Date: {{lastSigDateUnderAge | date}}</h3>
 <label for="signatureUnderAge">Signature</label>
 <input type="text" ng-model="signatureUnderAge" id="signatureUnderAge" />
 <!--Today's Date:-->
