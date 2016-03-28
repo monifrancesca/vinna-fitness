@@ -38,7 +38,7 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
           signature: $scope.signature,
           signatureDate: $scope.signatureDate,
           signatureUnderAge: $scope.signatureUnderAge,
-          signatureDate: $scope.signatureDate
+          signatureDateUnderAge: $scope.signatureDateUnderAge
         };
       console.log('history in controller', history);
         $scope.dataFactory.sendMedical(history);

@@ -35,15 +35,22 @@ router.post('/:fakeIdentifier', function(req, res) {
         signature: req.body.signature,
         signatureDate: req.body.signatureDate,
         signatureUnderAge: req.body.signatureUnderAge,
-        signatureDate: req.body.signatureDate
+        signatureDateUnderAge: req.body.signatureDateUnderAge
     };
     //console.log('add medical var', addMedical);
     pg.connect(connection, function (err, client, done) {
         client.query('UPDATE client SET last_medical = $1, current_injuries = $2,' +
-            'previous_medical_hist = $3, medications = $4' +
-            'WHERE first_name = $5',
+            'previous_medical_hist = $3, medications = $4, infection = $5,' +
+            'inflammation = $6, flu = $7, fever = $8, cold = $9,' +
+            'physician_name = $10, physician_phone = $11, signature = $12,' +
+            'signature_date = $13, signature_under_age = $14, signature_date_under_age = $15' +
+            'WHERE first_name = $16',
             [addMedical.intakeDate, addMedical.currentInjuries, addMedical.previousHistory,
-                addMedical.otherMeds, addMedical.first_name],
+                addMedical.otherMeds, addMedical.infection, addMedical.inflammation,
+                addMedical.flu, addMedical.fever, addMedical.cold, addMedical.physiciansName,
+                addMedical.physiciansPhone, addMedical.signature, addMedical.signatureDate,
+                addMedical.signatureUnderAge, addMedical.signatureDateUnderAge,
+                addMedical.first_name],
             function (err, result) {
                 done();
 
