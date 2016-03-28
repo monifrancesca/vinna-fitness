@@ -14,7 +14,7 @@ router.post('/', function(req, res) {
 
   var newWorkout = {
     user_id: 2,
-    client_id: 2,
+    client_id: req.body.client_id,
     date: req.body.date,
     location_id: 2,
     flag: req.body.flag,
@@ -59,6 +59,34 @@ router.post('/', function(req, res) {
   });
 });
 
+router.get('/searchname/:query', function(req, res) {
+  var results = [];
+
+  var mySearch = {
+    search: req.params.query + '%'
+  };
+
+  console.log('This is the query', mySearch.search);
+
+  pg.connect(connection, function (err, client, done) {
+    var query = client.query("SELECT first_name, last_name, id FROM client WHERE first_name ILIKE $1 OR last_name ILIKE $1;" ,
+      [mySearch.search]);
+
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    query.on('end', function() {
+      client.end();
+      return res.json(results);
+    });
+
+    if(err) {
+      done();
+      console.log(err);
+    }
+  });
+});
 
 
 

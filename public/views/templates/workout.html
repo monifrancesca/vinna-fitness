@@ -3,8 +3,15 @@
     <h1>New Personal Training Session</h1>
     <form>
         <label>Client Name: </label>
-        <input type="text" name="clientName" ng-model="formData.name"/>
-
+        <input type="text" name="clientName" ng-model="searchName" ng-change="change(text)" placeholder=""/>
+        <div class="resultsBox" ng-hide="searchName.length < 1 || searchName.length == undefined">
+            <ul ng-show="names.length >= 1" class="searchResults">
+                <li ng-repeat="name in names"><a class="result" ng-click="selectResult(name.id, name.first_name, name.last_name)">{{name.first_name}} {{name.last_name}}</a></li>
+            </ul>
+            <!--<ul ng-show="searchName.length > 1 && names.length < 1" class="searchResults">-->
+                <!--<li>No Results</li>-->
+            <!--</ul>-->
+        </div>
         <label>Location: </label>
         <label>
         <input type="radio" name="location" value="minneapolis" ng-model="formData.location"/>Minneapolis
