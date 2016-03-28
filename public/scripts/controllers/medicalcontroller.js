@@ -19,9 +19,28 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
           intakeDate: $scope.intakeDate,
           currentInjuries: $scope.currentInjuries,
           previousHistory: $scope.previousHistory,
-          otherMeds: $scope.otherMeds
+          otherMeds: $scope.otherMeds,
+          infection: $scope.infection,
+          inflammation: $scope.inflammation,
+          flu: $scope.flu,
+          fever: $scope.fever,
+          cold: $scope.cold,
+          dislocations: $scope.dislocations,
+          neckInjuries: $scope.neckInjuries,
+          bloodPressure: $scope.bloodPressure,
+          heartProblems: $scope.heartProblems,
+          headaches: $scope.headaches,
+          fainting: $scope.fainting,
+          phlebitis: $scope.phlebitis,
+          nerves: $scope.nerves,
+          physiciansName: $scope.physiciansName,
+          physiciansPhone: $scope.physiciansPhone,
+          signature: $scope.signature,
+          signatureDate: $scope.signatureDate,
+          signatureUnderAge: $scope.signatureUnderAge,
+          signatureDate: $scope.signatureDate
         };
-      //console.log('history in controller', history);
+      console.log('history in controller', history);
         $scope.dataFactory.sendMedical(history);
      }
 

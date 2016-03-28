@@ -10,13 +10,32 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 router.post('/:fakeIdentifier', function(req, res) {
-    //console.log('in the module', req.body);
+    console.log('in the module', req.body);
     var addMedical = {
         first_name: req.params.fakeIdentifier,
         intakeDate: req.body.intakeDate,
         currentInjuries: req.body.currentInjuries,
         previousHistory: req.body.previousHistory,
-        otherMeds: req.body.otherMeds
+        otherMeds: req.body.otherMeds,
+        infection: req.body.infection,
+        inflammation: req.body.inflammation,
+        flu: req.body.flu,
+        fever: req.body.fever,
+        cold: req.body.cold,
+        dislocations: req.body.dislocations,
+        neckInjuries: req.body.neckInjuries,
+        bloodPressure: req.body.bloodPressure,
+        heartProblems: req.body.heartProblems,
+        headaches: req.body.headaches,
+        fainting: req.body.fainting,
+        phlebitis: req.body.phlebitis,
+        nerves: req.body.nerves,
+        physiciansName: req.body.physiciansName,
+        physiciansPhone: req.body.physiciansPhone,
+        signature: req.body.signature,
+        signatureDate: req.body.signatureDate,
+        signatureUnderAge: req.body.signatureUnderAge,
+        signatureDate: req.body.signatureDate
     };
     //console.log('add medical var', addMedical);
     pg.connect(connection, function (err, client, done) {
