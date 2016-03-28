@@ -8,8 +8,9 @@ myApp.controller('WorkoutController', ['$scope', '$http', 'DataFactory', functio
 
   $scope.searchName = undefined;
   $scope.names = [];
+  $scope.exerciseResults = [];
 
-  $scope.change = function() {
+  $scope.nameQuery = function() {
     var query = $scope.searchName;
     if (query.length >= 1) {
       console.log('This is the query', query);
@@ -23,10 +24,30 @@ myApp.controller('WorkoutController', ['$scope', '$http', 'DataFactory', functio
     }
   };
 
-  $scope.selectResult = function(id, firstName, lastName){
+  $scope.selectName = function(id, firstName, lastName){
     $scope.searchName = firstName + ' ' + lastName;
     $scope.names = [];
     $scope.formData.client_id = $scope.dataFactory.factoryGetClientId(id);
+  };
+
+  $scope.exerciseQuery = function() {
+    var query = $scope.newExercise.exercisename;
+    if (query.length >= 1) {
+      console.log('This is the query', query);
+      $scope.dataFactory.factorySearchExercise(query).then(function() {
+        $scope.exerciseResults = $scope.dataFactory.factoryExerciseQuery();
+        console.log('These are the results', $scope.exerciseResults);
+      });
+    }
+    else {
+      $scope.exercises = [];
+    }
+  };
+
+  $scope.selectExercise = function(id, name){
+    $scope.newExercise.exercisename = name;
+    $scope.exerciseResults = [];
+    $scope.newExercise.exercise_id = $scope.dataFactory.factoryGetExerciseId(id);
   };
 
   $scope.addExercise = function () {

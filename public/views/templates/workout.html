@@ -3,14 +3,11 @@
     <h1>New Personal Training Session</h1>
     <form>
         <label>Client Name: </label>
-        <input type="text" name="clientName" ng-model="searchName" ng-change="change(text)" placeholder=""/>
+        <input type="text" name="clientName" ng-model="searchName" ng-change="nameQuery(text)" placeholder=""/>
         <div class="resultsBox" ng-hide="searchName.length < 1 || searchName.length == undefined">
             <ul ng-show="names.length >= 1" class="searchResults">
-                <li ng-repeat="name in names"><a class="result" ng-click="selectResult(name.id, name.first_name, name.last_name)">{{name.first_name}} {{name.last_name}}</a></li>
+                <li ng-repeat="name in names"><a class="result" ng-click="selectName(name.id, name.first_name, name.last_name)">{{name.first_name}} {{name.last_name}}</a></li>
             </ul>
-            <!--<ul ng-show="searchName.length > 1 && names.length < 1" class="searchResults">-->
-                <!--<li>No Results</li>-->
-            <!--</ul>-->
         </div>
         <label>Location: </label>
         <label>
@@ -54,7 +51,12 @@
     </table>
     <form>
         <label>Exercise Name:</label>
-        <input type="number" name="exercisename" ng-model="newExercise.exercisename"/>
+        <input type="text" name="exercisename" ng-model="newExercise.exercisename" ng-change="exerciseQuery(text)" placeholder=""/>
+        <div class="resultsBox" ng-hide="newExercise.exercisename.length < 1 || newExercise.exercisename.length == undefined">
+            <ul ng-show="newExercise.exercisename.length >= 1" class="searchResults">
+                <li ng-repeat="exercise in exerciseResults"><a class="result" ng-click="selectExercise(exercise.id, exercise.name)">{{exercise.name}}</a></li>
+            </ul>
+        </div>
         <label>Sets:</label>
         <select name="sets" ng-model="newExercise.sets">
             <option value="1">1</option>

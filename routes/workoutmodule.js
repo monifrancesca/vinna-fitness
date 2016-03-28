@@ -88,6 +88,35 @@ router.get('/searchname/:query', function(req, res) {
   });
 });
 
+router.get('/searchexercise/:query', function(req, res) {
+  var results = [];
+
+  var mySearch = {
+    search: '% ' + req.params.query + '%'
+  };
+
+  console.log('This is the query', mySearch.search);
+
+  pg.connect(connection, function (err, client, done) {
+    var query = client.query("SELECT name, id FROM exercise WHERE name ILIKE $1;" ,
+      [mySearch.search]);
+
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    query.on('end', function() {
+      client.end();
+      return res.json(results);
+    });
+
+    if(err) {
+      done();
+      console.log(err);
+    }
+  });
+});
+
 
 
 module.exports = router;
