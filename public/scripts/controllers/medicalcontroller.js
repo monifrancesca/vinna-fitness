@@ -27,6 +27,18 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
   });
 
     $scope.saveMedical = function() {
+        //set up array for conditions
+        var checkConditions = [$scope.dislocations, $scope.neckInjuries,
+          $scope.bloodPressure, $scope.heartProblems, $scope.headaches,
+          $scope.fainting, $scope.phlebitis, $scope.nerves];
+        //loop over this, if != undefined, associate it with a # and push into conditionsArray
+
+        console.log(checkConditions);
+
+        var conditionsArray = [];
+        //need to test this logic, but plan to put this array into the history object
+
+
         var history = {
           intakeDate: $scope.intakeDate,
           currentInjuries: $scope.currentInjuries,
@@ -37,14 +49,14 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
           flu: $scope.flu,
           fever: $scope.fever,
           cold: $scope.cold,
-          dislocations: $scope.dislocations,
-          neckInjuries: $scope.neckInjuries,
-          bloodPressure: $scope.bloodPressure,
-          heartProblems: $scope.heartProblems,
-          headaches: $scope.headaches,
-          fainting: $scope.fainting,
-          phlebitis: $scope.phlebitis,
-          nerves: $scope.nerves,
+          //dislocations: $scope.dislocations,
+          //neckInjuries: $scope.neckInjuries,
+          //bloodPressure: $scope.bloodPressure,
+          //heartProblems: $scope.heartProblems,
+          //headaches: $scope.headaches,
+          //fainting: $scope.fainting,
+          //phlebitis: $scope.phlebitis,
+          //nerves: $scope.nerves,
           physiciansName: $scope.physiciansName,
           physiciansPhone: $scope.physiciansPhone,
           signature: $scope.signature,
