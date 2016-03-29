@@ -163,6 +163,7 @@ weight integer,
 emergency_name varchar(100),
 emergency_phone varchar(100),
 current_injuries varchar(500),
+previous_medical_hist varchar(500),
 medications varchar(500),
 infection boolean,
 inflammation boolean,
@@ -174,8 +175,17 @@ physician_phone varchar(100),
 location_id INTEGER REFERENCES location(id),
 signature varchar(100),
 signature_date timestamp,
+signature_date_under_age varchar(100),
+signature_date_under_age timestamp,
 active_status boolean
 );
+
+CREATE TABLE client_conditions (
+id SERIAL PRIMARY KEY,
+client_id INTEGER REFERENCES client(id),
+condition_id INTEGER REFERENCES medical_conditions(id)
+);
+
 
 CREATE TABLE class (
 id SERIAL PRIMARY KEY,

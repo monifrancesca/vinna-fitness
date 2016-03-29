@@ -4,6 +4,8 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var selectedName;
   var exerciseQuery = [];
   var selectedExercise;
+  var fakeIdentifier = 'a';
+  var clientMedical = undefined;
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
 //the workout table and workout_line_items table.
@@ -30,9 +32,20 @@ myApp.factory('DataFactory', ['$http', function($http) {
     return promise;
   };
 
+  var postMedical = function(data) {
+    //console.log('factory data', data);
+    $http.post('/medical/' + fakeIdentifier, data).then(function(response) {
+    });
+  };
 
-
-
+  var getMedical = function() {
+    //console.log('getMedical in factory fired');
+    var promise = $http.get('/medical/' + fakeIdentifier).then(function(response) {
+      clientMedical = response.data;
+      //console.log('clientMedical', clientMedical);
+    });
+    return promise;
+  };
 
   var dataFactoryOutput = {
     factorySaveNewWorkout: function(workout) {
@@ -57,6 +70,15 @@ myApp.factory('DataFactory', ['$http', function($http) {
     factoryGetExerciseId: function(id){
       selectedExercise = id;
       return selectedExercise;
+    }, sendMedical: function(history) {
+      //console.log('in the factory', history)
+      postMedical(history);
+    },
+    retrieveMedical: function() {
+      return getMedical();
+    },
+    clientInfo: function() {
+      return clientMedical;
     }
   };
 
