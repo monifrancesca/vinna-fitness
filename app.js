@@ -4,13 +4,13 @@ var bodyParser = require('body-parser');
 var path = require('path');
 
 //route modules
-var admin = require('./routes/adminmodule')
-var client = require('./routes/clientmodule')
-var fms = require('./routes/fmsmodule')
-var login = require('./routes/loginmodule')
-var medical = require('./routes/medicalmodule')
-var personal = require('./routes/personalmodule')
-var workout = require('./routes/workoutmodule')
+var admin = require('./routes/adminmodule');
+var client = require('./routes/clientmodule');
+var fms = require('./routes/fmsmodule');
+var login = require('./routes/loginmodule');
+var medical = require('./routes/medicalmodule');
+var personal = require('./routes/personalmodule');
+var workout = require('./routes/workoutmodule');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
