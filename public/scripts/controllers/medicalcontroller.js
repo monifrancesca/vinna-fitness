@@ -32,6 +32,7 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
           $scope.bloodPressure, $scope.heartProblems, $scope.headaches,
           $scope.fainting, $scope.phlebitis, $scope.nerves];
         //loop over this, if != undefined, associate it with a # and push into conditionsArray
+        //angular.forEach()
 
         console.log(checkConditions);
 
