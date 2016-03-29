@@ -125,4 +125,35 @@ myApp.controller('FMSController', ['$scope', '$http', 'DataFactory', function($s
     $scope.dataFactory.getFmsData()
   };
 
+  $scope.hurdleTotal = function(){
+    if($scope.fmsData.leftLegUp <= $scope.fmsData.rightLegUp){$scope.fmsData.hurdleStep = $scope.fmsData.leftLegUp}
+    else{$scope.fmsData.hurdleStep = $scope.fmsData.rightLegUp}
+  };
+  $scope.lungeTotal = function(){
+    if($scope.fmsData.leftLegForward <= $scope.fmsData.rightLegForward){$scope.fmsData.inLineLunge = $scope.fmsData.leftLegForward}
+    else{$scope.fmsData.inLineLunge = $scope.fmsData.rightLegForward}
+  };
+  $scope.shoulderTotal = function(){
+    if($scope.fmsData.leftTop <= $scope.fmsData.rightTop){$scope.fmsData.shoulderMobility = $scope.fmsData.leftTop}
+    else{$scope.fmsData.shoulderMobility = $scope.fmsData.rightTop}
+  };
+  $scope.legRaiseTotal = function(){
+    if($scope.fmsData.leftLegRaise <= $scope.fmsData.rightLegRaise){$scope.fmsData.activeStraightLeg = $scope.fmsData.leftLegRaise}
+    else{$scope.fmsData.activeStraightLeg = $scope.fmsData.rightLegRaise}
+  };
+  $scope.rotaryTotal = function(){
+    if($scope.fmsData.rotaryLeftUp <= $scope.fmsData.rotaryRightUp){$scope.fmsData.rotaryStability = $scope.fmsData.rotaryLeftUp}
+    else{$scope.fmsData.rotaryStability = $scope.fmsData.rotaryRightUp}
+  };
+
+  $scope.totaller = function(){
+    $scope.fmsData.total = $scope.fmsData.deepSquat + $scope.fmsData.hurdleStep + $scope.fmsData.inLineLunge + $scope.fmsData.shoulderMobility
+      + $scope.fmsData.activeStraightLeg + $scope.fmsData.trunkPushUp + $scope.fmsData.rotaryStability;
+  };
+
+  $scope.$watchCollection('fmsData', function(){
+    $scope.fmsData.total = parseInt($scope.fmsData.deepSquat) + parseInt($scope.fmsData.hurdleStep) + parseInt($scope.fmsData.inLineLunge) + parseInt($scope.fmsData.shoulderMobility)
+      + parseInt($scope.fmsData.activeStraightLeg) + parseInt($scope.fmsData.trunkPushUp) + parseInt($scope.fmsData.rotaryStability);
+  });
+
 }]);

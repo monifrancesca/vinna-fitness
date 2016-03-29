@@ -79,22 +79,22 @@
       <p>Inches: {{Placeholder}}</p>
 
       <label>Left Leg Up: </label>
-      <input type="radio" ng-model="fmsData.leftLegUp" value="3"/>3
-      <input type="radio" ng-model="fmsData.leftLegUp" value="2"/>2
-      <input type="radio" ng-model="fmsData.leftLegUp" value="1"/>1
-      <input type="radio" ng-model="fmsData.leftLegUp" value="0"/>0<br>
+      <input type="radio" ng-change="hurdleTotal()" ng-model="fmsData.leftLegUp" value="3"/>3
+      <input type="radio" ng-change="hurdleTotal()" ng-model="fmsData.leftLegUp" value="2"/>2
+      <input type="radio" ng-change="hurdleTotal()" ng-model="fmsData.leftLegUp" value="1"/>1
+      <input type="radio" ng-change="hurdleTotal()" ng-model="fmsData.leftLegUp" value="0"/>0<br>
 
       <label>Right Leg Up: </label>
-      <input type="radio" ng-model="fmsData.rightLegUp" value="3"/>3
-      <input type="radio" ng-model="fmsData.rightLegUp" value="2"/>2
-      <input type="radio" ng-model="fmsData.rightLegUp" value="1"/>1
-      <input type="radio" ng-model="fmsData.rightLegUp" value="0"/>0<br>
+      <input type="radio" ng-change="hurdleTotal()" ng-model="fmsData.rightLegUp" value="3"/>3
+      <input type="radio" ng-change="hurdleTotal()" ng-model="fmsData.rightLegUp" value="2"/>2
+      <input type="radio" ng-change="hurdleTotal()" ng-model="fmsData.rightLegUp" value="1"/>1
+      <input type="radio" ng-change="hurdleTotal()" ng-model="fmsData.rightLegUp" value="0"/>0<br>
 
-      <label>Hurdle Step: </label>
-      <input type="radio" ng-model="fmsData.hurdleStep" value="3"/>3
-      <input type="radio" ng-model="fmsData.hurdleStep" value="2"/>2
-      <input type="radio" ng-model="fmsData.hurdleStep" value="1"/>1
-      <input type="radio" ng-model="fmsData.hurdleStep" value="0"/>0<br>
+      <label>Hurdle Step: {{fmsData.hurdleStep}}</label><br>
+      <!--<input type="radio" ng-model="fmsData.hurdleStep" value="3"/>3-->
+      <!--<input type="radio" ng-model="fmsData.hurdleStep" value="2"/>2-->
+      <!--<input type="radio" ng-model="fmsData.hurdleStep" value="1"/>1-->
+      <!--<input type="radio" ng-model="fmsData.hurdleStep" value="0"/>0<br>-->
 
       <label>Dysfunction: </label>
       <input type="text" ng-model="fmsData.hurdleDF">
@@ -126,22 +126,22 @@
       <p>Inches: {{Placeholder}}</p>
 
       <label>Left Leg Forward: </label>
-      <input type="radio" ng-model="fmsData.leftLegForward" value="3"/>3
-      <input type="radio" ng-model="fmsData.leftLegForward" value="2"/>2
-      <input type="radio" ng-model="fmsData.leftLegForward" value="1"/>1
-      <input type="radio" ng-model="fmsData.leftLegForward" value="0"/>0<br>
+      <input type="radio" ng-change="lungeTotal()" ng-model="fmsData.leftLegForward" value="3"/>3
+      <input type="radio" ng-change="lungeTotal()" ng-model="fmsData.leftLegForward" value="2"/>2
+      <input type="radio" ng-change="lungeTotal()" ng-model="fmsData.leftLegForward" value="1"/>1
+      <input type="radio" ng-change="lungeTotal()" ng-model="fmsData.leftLegForward" value="0"/>0<br>
 
       <label>Right Leg Forward: </label>
-      <input type="radio" ng-model="fmsData.rightLegForward" value="3"/>3
-      <input type="radio" ng-model="fmsData.rightLegForward" value="2"/>2
-      <input type="radio" ng-model="fmsData.rightLegForward" value="1"/>1
-      <input type="radio" ng-model="fmsData.rightLegForward" value="0"/>0<br>
+      <input type="radio" ng-change="lungeTotal()" ng-model="fmsData.rightLegForward" value="3"/>3
+      <input type="radio" ng-change="lungeTotal()" ng-model="fmsData.rightLegForward" value="2"/>2
+      <input type="radio" ng-change="lungeTotal()" ng-model="fmsData.rightLegForward" value="1"/>1
+      <input type="radio" ng-change="lungeTotal()" ng-model="fmsData.rightLegForward" value="0"/>0<br>
 
-      <label>In-line Lunge: </label>
-      <input type="radio" ng-model="fmsData.inLineLunge" value="3"/>3
-      <input type="radio" ng-model="fmsData.inLineLunge" value="2"/>2
-      <input type="radio" ng-model="fmsData.inLineLunge" value="1"/>1
-      <input type="radio" ng-model="fmsData.inLineLunge" value="0"/>0<br>
+      <label>In-line Lunge: {{fmsData.inLineLunge}}</label><br>
+      <!--<input type="radio" ng-model="fmsData.inLineLunge" value="3"/>3-->
+      <!--<input type="radio" ng-model="fmsData.inLineLunge" value="2"/>2-->
+      <!--<input type="radio" ng-model="fmsData.inLineLunge" value="1"/>1-->
+      <!--<input type="radio" ng-model="fmsData.inLineLunge" value="0"/>0<br>-->
 
       <label>Dysfunction: </label>
       <input type="text" ng-model="fmsData.lungeDF">
@@ -170,26 +170,32 @@
     <h2 ng-click="showHideShoulderMobility()">{{shoulderMobilityHeader}}</h2>
     <div class="wrapper" ng-hide="shoulderMobilityStatus">
       <p>Distance (tip of middle finger to distal crease): {{Placeholder}}</p>
-      <p>Left Top: {{Placeholder}}</p>
-      <p>Right Top: {{Placeholder}}</p>
 
-      <label>Impingement Test Left: </label>
-      <input type="radio" ng-model="fmsData.leftImpingement" value="3"/>3
-      <input type="radio" ng-model="fmsData.leftImpingement" value="2"/>2
-      <input type="radio" ng-model="fmsData.leftImpingement" value="1"/>1
-      <input type="radio" ng-model="fmsData.leftImpingement" value="0"/>0<br>
+      <label>Left Top: </label>
+      <input type="radio" ng-change="shoulderTotal()" ng-model="fmsData.leftTop" value="3"/>3
+      <input type="radio" ng-change="shoulderTotal()" ng-model="fmsData.leftTop" value="2"/>2
+      <input type="radio" ng-change="shoulderTotal()" ng-model="fmsData.leftTop" value="1"/>1
+      <input type="radio" ng-change="shoulderTotal()" ng-model="fmsData.leftTop" value="0"/>0<br>
 
-      <label>Impingement Test Right: </label>
-      <input type="radio" ng-model="fmsData.rightImpingement" value="3"/>3
-      <input type="radio" ng-model="fmsData.rightImpingement" value="2"/>2
-      <input type="radio" ng-model="fmsData.rightImpingement" value="1"/>1
-      <input type="radio" ng-model="fmsData.rightImpingement" value="0"/>0<br>
+      <label>Right Top: </label>
+      <input type="radio" ng-change="shoulderTotal()" ng-model="fmsData.rightTop" value="3"/>3
+      <input type="radio" ng-change="shoulderTotal()" ng-model="fmsData.rightTop" value="2"/>2
+      <input type="radio" ng-change="shoulderTotal()" ng-model="fmsData.rightTop" value="1"/>1
+      <input type="radio" ng-change="shoulderTotal()" ng-model="fmsData.rightTop" value="0"/>0<br>
 
-      <label>Shoulder Mobility: </label>
-      <input type="radio" ng-model="fmsData.shoulderMobility" value="3"/>3
-      <input type="radio" ng-model="fmsData.shoulderMobility" value="2"/>2
-      <input type="radio" ng-model="fmsData.shoulderMobility" value="1"/>1
-      <input type="radio" ng-model="fmsData.shoulderMobility" value="0"/>0<br>
+      <label>Shoulder Mobility: {{fmsData.shoulderMobility}}</label><br>
+      <!--<input type="radio" ng-model="fmsData.shoulderMobility" value="3"/>3-->
+      <!--<input type="radio" ng-model="fmsData.shoulderMobility" value="2"/>2-->
+      <!--<input type="radio" ng-model="fmsData.shoulderMobility" value="1"/>1-->
+      <!--<input type="radio" ng-model="fmsData.shoulderMobility" value="0"/>0<br>-->
+
+      <label>Left Impingement Test: </label>:
+      <input type="radio" ng-model="fmsData.leftImpingement" value="true"/>Positive
+      <input type="radio" ng-model="fmsData.leftImpingement" value="false"/>Negative<br>
+
+      <label>Right Impingement Test: </label>:
+      <input type="radio" ng-model="fmsData.rightImpingement" value="true"/>Positive
+      <input type="radio" ng-model="fmsData.rightImpingement" value="false"/>Negative<br>
 
       <label>Dysfunction: </label>
       <input type="text" ng-model="fmsData.shoulderDF">
@@ -213,14 +219,23 @@
   <div id="act-str-leg-raise">
     <h2 ng-click="showHideActiveStraightLeg()">{{activeStraightLegHeader}}</h2>
     <div class="wrapper" ng-hide="activeStraightLegStatus">
-      <p>L: {{Placeholder}}</p>
-      <p>R: {{Placeholder}}</p>
+      <label>Left Up: </label>
+      <input type="radio" ng-change="legRaiseTotal()" ng-model="fmsData.leftLegRaise" value="3"/>3
+      <input type="radio" ng-change="legRaiseTotal()" ng-model="fmsData.leftLegRaise" value="2"/>2
+      <input type="radio" ng-change="legRaiseTotal()" ng-model="fmsData.leftLegRaise" value="1"/>1
+      <input type="radio" ng-change="legRaiseTotal()" ng-model="fmsData.leftLegRaise" value="0"/>0<br>
 
-      <label>Active Straight Leg Raise: </label>
-      <input type="radio" ng-model="fmsData.activeStraightLeg" value="3"/>3
-      <input type="radio" ng-model="fmsData.activeStraightLeg" value="2"/>2
-      <input type="radio" ng-model="fmsData.activeStraightLeg" value="1"/>1
-      <input type="radio" ng-model="fmsData.activeStraightLeg" value="0"/>0<br>
+      <label>Right Up: </label>
+      <input type="radio" ng-change="legRaiseTotal()" ng-model="fmsData.rightLegRaise" value="3"/>3
+      <input type="radio" ng-change="legRaiseTotal()" ng-model="fmsData.rightLegRaise" value="2"/>2
+      <input type="radio" ng-change="legRaiseTotal()" ng-model="fmsData.rightLegRaise" value="1"/>1
+      <input type="radio" ng-change="legRaiseTotal()" ng-model="fmsData.rightLegRaise" value="0"/>0<br>
+
+      <label>Active Straight Leg Raise: {{fmsData.activeStraightLeg}}</label><br>
+      <!--<input type="radio" ng-model="fmsData.activeStraightLeg" value="3"/>3-->
+      <!--<input type="radio" ng-model="fmsData.activeStraightLeg" value="2"/>2-->
+      <!--<input type="radio" ng-model="fmsData.activeStraightLeg" value="1"/>1-->
+      <!--<input type="radio" ng-model="fmsData.activeStraightLeg" value="0"/>0<br>-->
 
       <label>Dysfunction: </label>
       <input type="text" ng-model="fmsData.legRaiseDF">
@@ -236,19 +251,23 @@
     </div>
   </div>
 
+  {{fmsData.leftLegRaise}}
+  {{fmsData.rightLegRaise}}
   {{fmsData.activeStraightLeg}}
   {{fmsData.legRaiseDF}}
 
   <div id="trunk-push-up">
     <h2 ng-click="showHideTrunkPushUp()">{{trunkPushUpHeader}}</h2>
     <div class="wrapper" ng-hide="trunkPushUpStatus">
-      <p>Prone Press Up Test: {{Placeholder}}</p>
-
       <label>Trunk Stability Push Up: </label>
       <input type="radio" ng-model="fmsData.trunkPushUp" value="3"/>3
       <input type="radio" ng-model="fmsData.trunkPushUp" value="2"/>2
       <input type="radio" ng-model="fmsData.trunkPushUp" value="1"/>1
       <input type="radio" ng-model="fmsData.trunkPushUp" value="0"/>0<br>
+
+      <label>Prone Press Up Test: </label>
+      <input type="radio" ng-model="fmsData.pronePressUpTest" value="true"/>Positive
+      <input type="radio" ng-model="fmsData.pronePressUpTest" value="false"/>Negative<br>
 
       <label>Dysfunction: </label>
       <input type="text" ng-model="fmsData.trunkDF">
@@ -273,25 +292,27 @@
   <div id="rotary-stability">
     <h2 ng-click="showHideRotaryStability()">{{rotaryStabilityHeader}}</h2>
     <div class="wrapper" ng-hide="rotaryStabilityStatus">
-      <p>Kneeling Lumbar Flexion Test: {{Placeholder}}</p>
-
       <label>Left Up: </label>
-      <input type="radio" ng-model="fmsData.rotaryLeftUp" value="3"/>3
-      <input type="radio" ng-model="fmsData.rotaryLeftUp" value="2"/>2
-      <input type="radio" ng-model="fmsData.rotaryLeftUp" value="1"/>1
-      <input type="radio" ng-model="fmsData.rotaryLeftUp" value="0"/>0<br>
+      <input type="radio" ng-change="rotaryTotal()" ng-model="fmsData.rotaryLeftUp" value="3"/>3
+      <input type="radio" ng-change="rotaryTotal()" ng-model="fmsData.rotaryLeftUp" value="2"/>2
+      <input type="radio" ng-change="rotaryTotal()" ng-model="fmsData.rotaryLeftUp" value="1"/>1
+      <input type="radio" ng-change="rotaryTotal()" ng-model="fmsData.rotaryLeftUp" value="0"/>0<br>
 
       <label>Right Up: </label>
-      <input type="radio" ng-model="fmsData.rotaryRightUp" value="3"/>3
-      <input type="radio" ng-model="fmsData.rotaryRightUp" value="2"/>2
-      <input type="radio" ng-model="fmsData.rotaryRightUp" value="1"/>1
-      <input type="radio" ng-model="fmsData.rotaryRightUp" value="0"/>0<br>
+      <input type="radio" ng-change="rotaryTotal()" ng-model="fmsData.rotaryRightUp" value="3"/>3
+      <input type="radio" ng-change="rotaryTotal()" ng-model="fmsData.rotaryRightUp" value="2"/>2
+      <input type="radio" ng-change="rotaryTotal()" ng-model="fmsData.rotaryRightUp" value="1"/>1
+      <input type="radio" ng-change="rotaryTotal()" ng-model="fmsData.rotaryRightUp" value="0"/>0<br>
 
-      <label>Rotary Stability Quadruped: </label>
-      <input type="radio" ng-model="fmsData.rotaryStability" value="3"/>3
-      <input type="radio" ng-model="fmsData.rotaryStability" value="2"/>2
-      <input type="radio" ng-model="fmsData.rotaryStability" value="1"/>1
-      <input type="radio" ng-model="fmsData.rotaryStability" value="0"/>0<br>
+      <label>Rotary Stability Quadruped: {{fmsData.rotaryStability}}</label><br>
+      <!--<input type="radio" ng-model="fmsData.rotaryStability" value="3"/>3-->
+      <!--<input type="radio" ng-model="fmsData.rotaryStability" value="2"/>2-->
+      <!--<input type="radio" ng-model="fmsData.rotaryStability" value="1"/>1-->
+      <!--<input type="radio" ng-model="fmsData.rotaryStability" value="0"/>0<br>-->
+
+      <label>Kneeling Lumbar Flexion Test: </label>
+      <input type="radio" ng-model="fmsData.kneelingLumbar" value="true"/>Positive
+      <input type="radio" ng-model="fmsData.kneelingLumbar" value="false"/>Negative<br>
 
       <label>Dysfunction: </label>
       <input type="text" ng-model="fmsData.rotaryDF">
@@ -317,13 +338,12 @@
   <div id="total-fms">
     <h2 ng-click="showHideTotalFms()">{{totalFmsHeader}}</h2>
     <div class="wrapper" ng-hide="totalFmsStatus">
-
-      <label>Total Score: </label>
-      <input type="text" ng-model="fmsData.total">
-
+      <label id="fms-total">Total Score: {{fmsData.total}}</label>
+      <!--<input type="text" ng-model="fmsData.total">-->
+      <button ng-click="sendData()">Submit</button>
     </div>
   </div>
 
-  <button ng-click="sendData()">Submit</button>
+
   <button ng-click="getData()">Get</button>
 </form>
