@@ -3,9 +3,10 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
   $scope.dataFactory = DataFactory;
 
   var conditionsArray = [];
+  //var checkConditions = [];
 
   $scope.dataFactory.retrieveMedical().then(function() {
-    $scope.clientMedical = $scope.dataFactory.clientInfo();
+    $scope.clientMedical = $scope.dataFactory.clientMedicalInfo();
     //console.log($scope.clientMedical);
 
     $scope.history = $scope.clientMedical[0];
@@ -30,24 +31,25 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
 
     $scope.saveMedical = function() {
         //set up array for conditions
-        var checkConditions = [$scope.dislocations, $scope.neckInjuries,
-          $scope.bloodPressure, $scope.heartProblems, $scope.headaches,
-          $scope.fainting, $scope.phlebitis, $scope.nerves];
+        //var checkConditions = [$scope.dislocations, $scope.neckInjuries,
+        //  $scope.bloodPressure, $scope.heartProblems, $scope.headaches,
+        //  $scope.fainting, $scope.phlebitis, $scope.nerves];
         //loop over this, if != undefined, associate it with a # and push into conditionsArray
-        angular.forEach(checkConditions, function(key, value){
-          if() {
+
+          if($scope.dislocations != undefined) {
             $scope.dislocations = 1;
             conditionsArray[0] = $scope.dislocations;
-
+          }
+          if ($scope.neckInjuries != undefined) {
             $scope.neckInjuries = 2;
             conditionsArray[1] = $scope.neckInjuries;
-
+          }
+          if ($scope.bloodPressure != undefined) {
             $scope.bloodPressure = 3;
             conditionsArray[2] = $scope.bloodPressure;
+          }
             //if($scope.neckInjuries) {
             //  conditionsArray.push(2);
-          }
-        });
 
         console.log(checkConditions);
 
