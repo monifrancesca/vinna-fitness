@@ -14,10 +14,12 @@
     <script type="text/javascript" src="../scripts/controllers/medicalcontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/personalcontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/workoutcontroller.js"></script>
+    <script type="text/javascript" src="../scripts/controllers/maincontroller.js"></script>
 
 </head>
 <body ng-app="myApp">
-    <div>
+    <div ng-controller="MainController">
+        {{$route.current.scope.name}}
         <main ng-view></main>
     </div>
 
