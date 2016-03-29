@@ -41,7 +41,38 @@ router.post('/', function(req, res) {
   });
 });
 
+router.get('/:id', function(req, res) {
+  var results = [];
 
+  console.log('get id:', req.params.id);
+
+  pg.connect(connection, function(err, client, done) {
+    var query = client.query('SELECT fms.deep_squat, fms.toe_touch, fms.deep_squat_df, fms.hurdle_step, fms.left_leg_up, fms.right_leg_up, fms.hurdle_df, fms.in_line_lunge, fms.left_leg_forward, ' +
+      'fms.right_leg_forward, fms.lunge_df, fms.shoulder_mobility, fms.left_top, fms.right_top, fms.left_impingement, fms.right_impingement, fms.shoulder_df, ' +
+      'fms.active_straight_leg, fms.left_leg_raise, fms.right_leg_raise, fms.leg_raise_df, fms.trunk_pushup, fms.prone_press_up_test, fms.trunk_df, fms.rotary_stability, ' +
+      'fms.kneeling_lumbar, fms.rotary_left_up, fms.rotary_right_up, fms.rotary_df, fms.total, fms.date, fms.hand_dominance, fms.swing_dominance, fms.throw_dominance, ' +
+      'fms.leg_dominance, fms.right_shin_length, fms.left_shin_length, fms.left_hand_length, fms.right_hand_length, users.first_name AS user_first_name, users.last_name AS user_last_name '+
+      'FROM fms ' +
+      'LEFT JOIN users ON fms.user_id = users.id '+
+      'WHERE user_id = $1 '+
+      'ORDER BY fms.date DESC;', [req.params.id]);
+
+    // Stream results back one row at a time
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    // close connection
+    query.on('end', function() {
+      done();
+      return res.json(results);
+    });
+
+    if(err) {
+      console.log('select error: ', err);
+    }
+  });
+});
 
 
 module.exports = router;

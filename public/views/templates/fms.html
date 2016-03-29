@@ -35,7 +35,7 @@
 
   <div id="deep-squat">
     <h2 ng-click="showHideDeepSquat()">{{deepSquatHeader}}</h2>
-    <div class="wrapper" ng-show="deepSquatStatus">
+    <div class="wrapper" ng-hide="deepSquatStatus">
       <label>Toe Touch Test: </label>
       <input type="radio" ng-model="fmsData.toeTouch" value="true"/>Able
       <input type="radio" ng-model="fmsData.toeTouch" value="false"/>Not Able<br>
@@ -75,7 +75,7 @@
 
   <div id="hurdle-step">
     <h2 ng-click="showHideHurdleStep()">{{hurdleStepHeader}}</h2>
-    <div class="wrapper" ng-show="hurdleStepStatus">
+    <div class="wrapper" ng-hide="hurdleStepStatus">
       <p>Inches: {{Placeholder}}</p>
 
       <label>Left Leg Up: </label>
@@ -122,7 +122,7 @@
 
   <div id="in-line-lunge">
     <h2 ng-click="showHideInLineLunge()">{{inLineLungeHeader}}</h2>
-    <div class="wrapper" ng-show="inLineLungeStatus">
+    <div class="wrapper" ng-hide="inLineLungeStatus">
       <p>Inches: {{Placeholder}}</p>
 
       <label>Left Leg Forward: </label>
@@ -168,7 +168,7 @@
 
   <div id="shoulder-mobility">
     <h2 ng-click="showHideShoulderMobility()">{{shoulderMobilityHeader}}</h2>
-    <div class="wrapper" ng-show="shoulderMobilityStatus">
+    <div class="wrapper" ng-hide="shoulderMobilityStatus">
       <p>Distance (tip of middle finger to distal crease): {{Placeholder}}</p>
       <p>Left Top: {{Placeholder}}</p>
       <p>Right Top: {{Placeholder}}</p>
@@ -212,7 +212,7 @@
 
   <div id="act-str-leg-raise">
     <h2 ng-click="showHideActiveStraightLeg()">{{activeStraightLegHeader}}</h2>
-    <div class="wrapper" ng-show="activeStraightLegStatus">
+    <div class="wrapper" ng-hide="activeStraightLegStatus">
       <p>L: {{Placeholder}}</p>
       <p>R: {{Placeholder}}</p>
 
@@ -241,7 +241,7 @@
 
   <div id="trunk-push-up">
     <h2 ng-click="showHideTrunkPushUp()">{{trunkPushUpHeader}}</h2>
-    <div class="wrapper" ng-show="trunkPushUpStatus">
+    <div class="wrapper" ng-hide="trunkPushUpStatus">
       <p>Prone Press Up Test: {{Placeholder}}</p>
 
       <label>Trunk Stability Push Up: </label>
@@ -272,7 +272,7 @@
 
   <div id="rotary-stability">
     <h2 ng-click="showHideRotaryStability()">{{rotaryStabilityHeader}}</h2>
-    <div class="wrapper" ng-show="rotaryStabilityStatus">
+    <div class="wrapper" ng-hide="rotaryStabilityStatus">
       <p>Kneeling Lumbar Flexion Test: {{Placeholder}}</p>
 
       <label>Left Up: </label>
@@ -316,7 +316,7 @@
 
   <div id="total-fms">
     <h2 ng-click="showHideTotalFms()">{{totalFmsHeader}}</h2>
-    <div class="wrapper" ng-show="totalFmsStatus">
+    <div class="wrapper" ng-hide="totalFmsStatus">
 
       <label>Total Score: </label>
       <input type="text" ng-model="fmsData.total">
@@ -325,4 +325,5 @@
   </div>
 
   <button ng-click="sendData()">Submit</button>
+  <button ng-click="getData()">Get</button>
 </form>
