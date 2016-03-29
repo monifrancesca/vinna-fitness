@@ -1,5 +1,7 @@
 myApp.factory('DataFactory', ['$http', function($http) {
 
+  //PRIVATE
+
   var nameQuery = [];
   var selectedName;
   var exerciseQuery = [];
@@ -8,6 +10,8 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var clientMedical = undefined;
   var facUserIdNumber = '1';
   var facFmsData = null;
+  //var fakeIdentifier = 'a';
+  var clientPersonal = undefined;
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
 //the workout table and workout_line_items table.
@@ -17,6 +21,22 @@ myApp.factory('DataFactory', ['$http', function($http) {
     $http.post('/workout', workout).then(function(response) {
     });
   };
+
+  // working on this
+  var postPersonal = function(data) {
+    console.log('factory data', data);
+    $http.post('/personal/', data).then(function(response) {
+    });
+  };
+
+  //var getPersonal = function() {
+  //  console.log('getPersonal in factory fired');
+  //  var promise = $http.get('/personal/' + fakeIdentifier).then(function(response) {
+  //    clientPersonal = response.data;
+  //    console.log('clientPersonal', clientPersonal);
+  //  });
+  //  return promise;
+  //};
 
   //Route to find client names in database that match query.
   var searchClient = function(query) {
@@ -64,6 +84,8 @@ myApp.factory('DataFactory', ['$http', function($http) {
     });
   };
 
+  //PUBLIC
+
   var dataFactoryOutput = {
     factorySaveNewWorkout: function(workout) {
       return saveNewWorkout(workout);
@@ -102,6 +124,16 @@ myApp.factory('DataFactory', ['$http', function($http) {
     },
     getFmsData: function() {
       return facGetFmsData();
+    },
+    sendPersonal: function(info) {
+      console.log('in the factory', info);
+      postPersonal(info);
+    },
+    //retrievePersonal: function() {
+    //  return getPersonal();
+    //},
+    clientInfo: function() {
+      return clientPersonal;
     }
   };
 
