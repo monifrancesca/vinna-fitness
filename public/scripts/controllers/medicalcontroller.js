@@ -1,6 +1,8 @@
 myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', function($scope, $http, DataFactory) {
 
-    $scope.dataFactory = DataFactory;
+  $scope.dataFactory = DataFactory;
+
+  var conditionsArray = [];
 
   $scope.dataFactory.retrieveMedical().then(function() {
     $scope.clientMedical = $scope.dataFactory.clientInfo();
@@ -32,13 +34,26 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
           $scope.bloodPressure, $scope.heartProblems, $scope.headaches,
           $scope.fainting, $scope.phlebitis, $scope.nerves];
         //loop over this, if != undefined, associate it with a # and push into conditionsArray
-        //angular.forEach()
+        angular.forEach(checkConditions, function(key, value){
+          if() {
+            $scope.dislocations = 1;
+            conditionsArray[0] = $scope.dislocations;
+
+            $scope.neckInjuries = 2;
+            conditionsArray[1] = $scope.neckInjuries;
+
+            $scope.bloodPressure = 3;
+            conditionsArray[2] = $scope.bloodPressure;
+            //if($scope.neckInjuries) {
+            //  conditionsArray.push(2);
+          }
+        });
 
         console.log(checkConditions);
 
-        var conditionsArray = [];
-        //need to test this logic, but plan to put this array into the history object
 
+        //need to test this logic, but plan to put this array into the history object
+        console.log(conditionsArray);
 
         var history = {
           intakeDate: $scope.intakeDate,
