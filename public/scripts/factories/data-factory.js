@@ -10,8 +10,8 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var clientMedical = undefined;
   var facUserIdNumber = '1';
   var facFmsData = null;
-  //var fakeIdentifier = 'a';
   var clientPersonal = undefined;
+  var personalInfoId;
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
 //the workout table and workout_line_items table.
@@ -22,21 +22,23 @@ myApp.factory('DataFactory', ['$http', function($http) {
     });
   };
 
-  // working on this
+// post personal info data into the database
   var postPersonal = function(data) {
-    console.log('factory data', data);
+    //console.log('factory data', data);
     $http.post('/personal/', data).then(function(response) {
+      console.log(response.data.rows[0]);
+      personalInfoId = response.data.rows[0];
     });
   };
 
-  //var getPersonal = function() {
-  //  console.log('getPersonal in factory fired');
-  //  var promise = $http.get('/personal/' + fakeIdentifier).then(function(response) {
-  //    clientPersonal = response.data;
-  //    console.log('clientPersonal', clientPersonal);
-  //  });
-  //  return promise;
-  //};
+  var getPersonal = function() {
+    console.log('getPersonal in factory fired');
+    var promise = $http.get('/personal/'+ personalInfoId).then(function(response) {
+      clientPersonal = response.data;
+      console.log('clientPersonal', clientPersonal);
+    });
+    return promise;
+  };
 
   //Route to find client names in database that match query.
   var searchClient = function(query) {
@@ -126,12 +128,12 @@ myApp.factory('DataFactory', ['$http', function($http) {
       return facGetFmsData();
     },
     sendPersonal: function(info) {
-      console.log('in the factory', info);
+      //console.log('in the factory', info);
       postPersonal(info);
     },
-    //retrievePersonal: function() {
-    //  return getPersonal();
-    //},
+    retrievePersonal: function() {
+      return getPersonal();
+    },
     clientInfo: function() {
       return clientPersonal;
     }
