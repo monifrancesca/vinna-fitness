@@ -9,6 +9,12 @@ myApp.controller('WorkoutController', ['$scope', '$http', 'DataFactory', functio
   $scope.searchName = undefined;
   $scope.names = [];
   $scope.exerciseResults = [];
+  $scope.showBasic = true;
+  $scope.showReps = false;
+  $scope.showTime = false;
+  $scope.showDistance = false;
+
+  console.log('This is the value of the newExercise.measurement', $scope.newExercise.measurement)
 
   $scope.nameQuery = function() {
     var query = $scope.searchName;
@@ -40,7 +46,7 @@ myApp.controller('WorkoutController', ['$scope', '$http', 'DataFactory', functio
       });
     }
     else {
-      $scope.exercises = [];
+      $scope.exerciseResults = [];
     }
   };
 
@@ -61,6 +67,53 @@ myApp.controller('WorkoutController', ['$scope', '$http', 'DataFactory', functio
     $scope.dataFactory.factorySaveNewWorkout($scope.formData);
   };
 
+  $scope.makeBasicInfoActive = function() {
+    $scope.showBasic = true;
+    $scope.showWarmUp = false;
+    $scope.showExercises = false;
+    $scope.showWrapUp = false;
+    $scope.section = 0;
+  };
 
+  $scope.makeWarmUpActive = function() {
+    $scope.showBasic = false;
+    $scope.showWarmUp = true;
+    $scope.showExercises = false;
+    $scope.showWrapUp = false;
+    $scope.section = 1;
+  };
+
+  $scope.makeExercisesActive = function() {
+    $scope.showBasic = false;
+    $scope.showWarmUp = false;
+    $scope.showExercises = true;
+    $scope.showWrapUp = false;
+    $scope.section = 2;
+  };
+
+  $scope.makeWrapUpActive = function() {
+    $scope.showBasic = false;
+    $scope.showWarmUp = false;
+    $scope.showExercises = false;
+    $scope.showWrapUp = true;
+    $scope.section = 3;
+  };
+
+  $scope.showUnits = function() {
+    console.log('This is the measurement', $scope.newExercise.measurement);
+    if ($scope.newExercise.measurement == '#') {
+      $scope.showReps = true;
+      $scope.showTime = false;
+      $scope.showDistance = false;
+    } else if ($scope.newExercise.measurement == 'time') {
+      $scope.showReps = false;
+      $scope.showTime = true;
+      $scope.showDistance = false;
+    } else if ($scope.newExercise.measurement == 'distance') {
+      $scope.showReps = false;
+      $scope.showTime = false;
+      $scope.showDistance = true;
+    }
+  };
 
 }]);

@@ -16,7 +16,7 @@ router.post('/', function(req, res) {
     user_id: 2,
     client_id: req.body.client_id,
     date: req.body.date,
-    location_id: 2,
+    location_id: req.body.location,
     flag: req.body.flag,
     notes: req.body.notes,
     stretches: req.body.stretches,
@@ -43,7 +43,7 @@ router.post('/', function(req, res) {
           var workout_id = result.rows[0].id;
           for (var i = 0; i < exercises.length; i++) {
             client.query("INSERT INTO workout_line_items(workout_id, exercise_id, sets, time) VALUES " +
-              "($1, $2, $3, $4)", [workout_id, exercises[i].exercisename, exercises[i].sets, exercises[i].minutes],
+              "($1, $2, $3, $4)", [workout_id, exercises[i].exercise_id, exercises[i].sets, exercises[i].minutes],
               function (err, result) {
                 if (err) {
                   console.log("Error inserting data: ", err);
@@ -92,14 +92,13 @@ router.get('/searchexercise/:query', function(req, res) {
   var results = [];
 
   var mySearch = {
-    search: '% ' + req.params.query + '%'
+    searchOne: '% ' + req.params.query + '%',
+    searchTwo: req.params.query + '%'
   };
 
-  console.log('This is the query', mySearch.search);
-
   pg.connect(connection, function (err, client, done) {
-    var query = client.query("SELECT name, id FROM exercise WHERE name ILIKE $1;" ,
-      [mySearch.search]);
+    var query = client.query("SELECT name, id FROM exercise WHERE name ILIKE $1 OR name ILIKE $2;" ,
+      [mySearch.searchOne, mySearch.searchTwo]);
 
     query.on('row', function(row) {
       results.push(row);
