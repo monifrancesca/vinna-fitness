@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Vinna Fitness</title>
     <script type="text/javascript" src="../vendors/angular.min.js"></script>
     <script type="text/javascript" src="../vendors/angular-route.min.js"></script>
     <script type="text/javascript" src="../scripts/app.js"></script>
@@ -18,8 +18,10 @@
 
 </head>
 <body ng-app="myApp">
+    <!-- For injecting specific client IDs into medical history/FMS/workout history views, we may need to use -->
+    <!-- $location. Caitlin implemented this in her solo project. -->
     <div ng-controller="MainController">
-        {{$route.current.scope.name}}
+        {{$route.current.scope.name}} <!-- This & MainController may be helpful for implementing sidebar nav. -->
         <main ng-view></main>
     </div>
 
