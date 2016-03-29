@@ -39,6 +39,92 @@ VALUES ('Plank Knee to Elbow');
 INSERT INTO exercise (name)
 VALUES ('Lizard Crawl');
 
+
+INSERT INTO exercise (name)
+VALUES ('Walkout');
+INSERT INTO exercise (name)
+VALUES ('Lunge Twist');
+INSERT INTO exercise (name)
+VALUES ('Marching');
+INSERT INTO exercise (name)
+VALUES ('Jump and land');
+INSERT INTO exercise (name)
+VALUES ('Ice Skater');
+INSERT INTO exercise (name)
+VALUES ('Pull Up');
+INSERT INTO exercise (name)
+VALUES ('Leg Lowering');
+INSERT INTO exercise (name)
+VALUES ('Hip Raises');
+INSERT INTO exercise (name)
+VALUES ('Quad Reach Back');
+INSERT INTO exercise (name)
+VALUES ('Russian Twist');
+INSERT INTO exercise (name)
+VALUES ('Toe Touch');
+INSERT INTO exercise (name)
+VALUES ('Quad Twist');
+INSERT INTO exercise (name)
+VALUES ('Sitout');
+INSERT INTO exercise (name)
+VALUES ('Shoulder Taps');
+INSERT INTO exercise (name)
+VALUES ('Mountain Climber');
+INSERT INTO exercise (name)
+VALUES ('Foam Rolling');
+INSERT INTO exercise (name)
+VALUES ('Thruster');
+INSERT INTO exercise (name)
+VALUES ('Curl to Press');
+INSERT INTO exercise (name)
+VALUES ('Burpee');
+INSERT INTO exercise (name)
+VALUES ('Jumping Jacks');
+INSERT INTO exercise (name)
+VALUES ('Row 1000m, rest 1 min (actively on rower)');
+INSERT INTO exercise (name)
+VALUES ('TRX single leg squat');
+INSERT INTO exercise (name)
+VALUES ('TRX W Fly');
+INSERT INTO exercise (name)
+VALUES ('TRX plank');
+INSERT INTO exercise (name)
+VALUES ('TRX Y fly');
+INSERT INTO exercise (name)
+VALUES ('Racked walk');
+INSERT INTO exercise (name)
+VALUES ('Full TGU');
+INSERT INTO exercise (name)
+VALUES ('Deadlift');
+INSERT INTO exercise (name)
+VALUES ('Chops/lifts');
+INSERT INTO exercise (name)
+VALUES ('Slams');
+INSERT INTO exercise (name)
+VALUES ('Farmer Carry');
+INSERT INTO exercise (name)
+VALUES ('½ TGU');
+INSERT INTO exercise (name)
+VALUES ('Squats');
+INSERT INTO exercise (name)
+VALUES ('Bent over row');
+INSERT INTO exercise (name)
+VALUES ('Russian Twist');
+INSERT INTO exercise (name)
+VALUES ('TRX Inverted Row');
+INSERT INTO exercise (name)
+VALUES ('TRX Assisted Squat');
+INSERT INTO exercise (name)
+VALUES ('Push-up');
+INSERT INTO exercise (name)
+VALUES ('TRX Single leg reach');
+INSERT INTO exercise (name)
+VALUES ('TRX Bicep curls');
+INSERT INTO exercise (name)
+VALUES ('TRX Tricep Extensions');
+
+
+
 CREATE TABLE medical_conditions (
 id SERIAL PRIMARY KEY,
 condition VARCHAR(100)
@@ -194,3 +280,6 @@ left_shin_length INTEGER,
 left_hand_length INTEGER,
 right_hand_length INTEGER
 );
+
+ALTER TABLE workout_line_items ADD COLUMN reps INTEGER;
+ALTER TABLE workout_line_items RENAME COLUMN worout_id TO workout_id;
