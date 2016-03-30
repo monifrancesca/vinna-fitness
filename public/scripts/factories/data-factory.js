@@ -57,6 +57,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var postMedical = function(data) {
     //console.log('factory data', data);
     $http.post('/medical/' + fakeIdentifier, data).then(function(response) {
+        console.log(response);
     });
   };
 

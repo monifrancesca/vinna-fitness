@@ -10,7 +10,7 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
     //console.log($scope.clientMedical);
 
     $scope.history = $scope.clientMedical[0];
-    console.log($scope.history);
+    //console.log($scope.history);
 
     $scope.currentInjuries = $scope.history.current_injuries;
     $scope.previousHistory = $scope.history.previous_medical_hist;
@@ -31,31 +31,49 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
 
     $scope.saveMedical = function() {
         //set up array for conditions
-        //var checkConditions = [$scope.dislocations, $scope.neckInjuries,
-        //  $scope.bloodPressure, $scope.heartProblems, $scope.headaches,
-        //  $scope.fainting, $scope.phlebitis, $scope.nerves];
-        //loop over this, if != undefined, associate it with a # and push into conditionsArray
 
           if($scope.dislocations != undefined) {
             $scope.dislocations = 1;
-            conditionsArray[0] = $scope.dislocations;
+            conditionsArray.push($scope.dislocations);
+          }
+          if ($scope.phlebitis != undefined) {
+            $scope.phlebitis = 2;
+            conditionsArray.push($scope.phlebitis);
           }
           if ($scope.neckInjuries != undefined) {
-            $scope.neckInjuries = 2;
-            conditionsArray[1] = $scope.neckInjuries;
+            $scope.neckInjuries = 3;
+            conditionsArray.push($scope.neckInjuries);
+          }
+          if ($scope.lowBackPain != undefined) {
+            $scope.lowBackPain = 4;
+            conditionsArray.push($scope.lowBackPain);
           }
           if ($scope.bloodPressure != undefined) {
-            $scope.bloodPressure = 3;
-            conditionsArray[2] = $scope.bloodPressure;
+            $scope.bloodPressure = 5;
+            conditionsArray.push($scope.bloodPressure);
           }
-            //if($scope.neckInjuries) {
-            //  conditionsArray.push(2);
+          if ($scope.heartProblems != undefined) {
+            $scope.heartProblems = 6;
+            conditionsArray.push($scope.heartProblems);
+          }
+          if ($scope.headaches != undefined) {
+            $scope.headaches = 7;
+            conditionsArray.push($scope.headaches);
+          }
+          if ($scope.arthritis != undefined) {
+            $scope.arthritis = 8;
+            conditionsArray.push($scope.arthritis);
+          }
+          if ($scope.nerves != undefined) {
+            $scope.nerves = 9;
+            conditionsArray.push($scope.nerves);
+          }
+          if ($scope.fainting != undefined) {
+            $scope.fainting = 10;
+            conditionsArray.push($scope.fainting);
+          }
 
-        console.log(checkConditions);
-
-
-        //need to test this logic, but plan to put this array into the history object
-        console.log(conditionsArray);
+        //console.log(conditionsArray);
 
         var history = {
           intakeDate: $scope.intakeDate,
@@ -67,14 +85,7 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
           flu: $scope.flu,
           fever: $scope.fever,
           cold: $scope.cold,
-          //dislocations: $scope.dislocations,
-          //neckInjuries: $scope.neckInjuries,
-          //bloodPressure: $scope.bloodPressure,
-          //heartProblems: $scope.heartProblems,
-          //headaches: $scope.headaches,
-          //fainting: $scope.fainting,
-          //phlebitis: $scope.phlebitis,
-          //nerves: $scope.nerves,
+          conditions: conditionsArray,
           physiciansName: $scope.physiciansName,
           physiciansPhone: $scope.physiciansPhone,
           signature: $scope.signature,
@@ -82,7 +93,7 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
           signatureUnderAge: $scope.signatureUnderAge,
           signatureDateUnderAge: $scope.signatureDateUnderAge
         };
-      //console.log('history in controller', history);
+      console.log('history in controller', history);
         $scope.dataFactory.sendMedical(history);
      }
 

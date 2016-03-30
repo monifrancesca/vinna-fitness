@@ -10,7 +10,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 router.post('/:fakeIdentifier', function(req, res) {
-    console.log('in the module', req.body);
+    //console.log('in the module', req.body);
+    var conditions = req.body.conditions;
+
     var addMedical = {
         first_name: req.params.fakeIdentifier,
         intakeDate: req.body.intakeDate,
@@ -44,7 +46,7 @@ router.post('/:fakeIdentifier', function(req, res) {
             'inflammation = $6, flu = $7, fever = $8, cold = $9,' +
             'physician_name = $10, physician_phone = $11, signature = $12,' +
             'signature_date = $13, signature_under_age = $14, signature_date_under_age = $15' +
-            'WHERE first_name = $16',
+            'WHERE first_name = $16 returning id',
             [addMedical.intakeDate, addMedical.currentInjuries, addMedical.previousHistory,
                 addMedical.otherMeds, addMedical.infection, addMedical.inflammation,
                 addMedical.flu, addMedical.fever, addMedical.cold, addMedical.physiciansName,
@@ -52,13 +54,24 @@ router.post('/:fakeIdentifier', function(req, res) {
                 addMedical.signatureUnderAge, addMedical.signatureDateUnderAge,
                 addMedical.first_name],
             function (err, result) {
-                done();
                 if (err) {
                     console.log("Error inserting data: ", err);
                     res.send(false);
                 } else {
                     res.send(result);
-                //    add second post for medical conditions
+                    //console.log('result', result);
+                    var id = result.rows[0].id;
+                    //console.log(conditions);
+                    for(var i = 0; i < conditions.length; i++) {
+                        client.query("INSERT INTO client_conditions (client_id, condition_id) " +
+                            "VALUES ($1, $2)", [id, conditions[i]], function (err, result) {
+                            if (err) {
+                                console.log("Error inserting data: ", err);
+                                res.send(false);
+                            } else {
+                            }
+                        });
+                    }
                 }
             });
     });
