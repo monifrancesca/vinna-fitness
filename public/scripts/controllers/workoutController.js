@@ -13,8 +13,8 @@ myApp.controller('WorkoutController', ['$scope', '$http', 'DataFactory', functio
   $scope.showReps = false;
   $scope.showTime = false;
   $scope.showDistance = false;
-
-  console.log('This is the value of the newExercise.measurement', $scope.newExercise.measurement)
+  $scope.showKg = false;
+  $scope.showLb = false;
 
   $scope.nameQuery = function() {
     var query = $scope.searchName;
@@ -57,8 +57,16 @@ myApp.controller('WorkoutController', ['$scope', '$http', 'DataFactory', functio
   };
 
   $scope.addExercise = function () {
+    if ($scope.newExercise.minutes != null) {
+      if ($scope.newExercise.seconds == null) {
+        $scope.newExercise.seconds = 0;
+      }
+      $scope.newExercise.seconds += ($scope.newExercise.minutes * 60);
+      $scope.newExercise.minutes = null;
+      console.log('Seconds: ', $scope.newExercise.seconds);
+    }
     $scope.formData.exercises.push($scope.newExercise);
-    $scope.newExercise = {};
+    resetNewExercise();
     console.log('These are the exercises', $scope.formData.exercises);
   };
 
@@ -73,6 +81,7 @@ myApp.controller('WorkoutController', ['$scope', '$http', 'DataFactory', functio
     $scope.showExercises = false;
     $scope.showWrapUp = false;
     $scope.section = 0;
+    resetNewExercise();
   };
 
   $scope.makeWarmUpActive = function() {
@@ -81,6 +90,7 @@ myApp.controller('WorkoutController', ['$scope', '$http', 'DataFactory', functio
     $scope.showExercises = false;
     $scope.showWrapUp = false;
     $scope.section = 1;
+    resetNewExercise();
   };
 
   $scope.makeExercisesActive = function() {
@@ -97,23 +107,54 @@ myApp.controller('WorkoutController', ['$scope', '$http', 'DataFactory', functio
     $scope.showExercises = false;
     $scope.showWrapUp = true;
     $scope.section = 3;
+    resetNewExercise();
+  };
+
+  $scope.showKgIntensity = function() {
+    $scope.showKg = true;
+    $scope.showLb = false;
+    $scope.newExercise.intensity_lbs = null;
+  };
+
+  $scope.showLbIntensity = function() {
+    $scope.showKg = false;
+    $scope.showLb = true;
+    $scope.newExercise.intensity_kgs = null;
   };
 
   $scope.showUnits = function() {
     console.log('This is the measurement', $scope.newExercise.measurement);
     if ($scope.newExercise.measurement == '#') {
+      $scope.newExercise.minutes = null;
+      $scope.newExercise.seconds = null;
+      $scope.newExercise.distance = null;
       $scope.showReps = true;
       $scope.showTime = false;
       $scope.showDistance = false;
     } else if ($scope.newExercise.measurement == 'time') {
+      $scope.newExercise.number = null;
+      $scope.newExercise.distance = null;
       $scope.showReps = false;
       $scope.showTime = true;
       $scope.showDistance = false;
     } else if ($scope.newExercise.measurement == 'distance') {
+      $scope.newExercise.minutes = null;
+      $scope.newExercise.seconds = null;
+      $scope.newExercise.number = null;
       $scope.showReps = false;
       $scope.showTime = false;
       $scope.showDistance = true;
     }
   };
+
+  function resetNewExercise() {
+    $scope.newExercise = {};
+    $scope.showReps = false;
+    $scope.showTime = false;
+    $scope.showDistance = false;
+    $scope.showKg = false;
+    $scope.showLb = false;
+    $scope.newExercise.measurement;
+  }
 
 }]);

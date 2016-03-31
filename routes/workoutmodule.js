@@ -42,8 +42,9 @@ router.post('/', function(req, res) {
           res.send(result);
           var workout_id = result.rows[0].id;
           for (var i = 0; i < exercises.length; i++) {
-            client.query("INSERT INTO workout_line_items(workout_id, exercise_id, sets, time) VALUES " +
-              "($1, $2, $3, $4)", [workout_id, exercises[i].exercise_id, exercises[i].sets, exercises[i].minutes],
+            client.query("INSERT INTO workout_line_items(workout_id, exercise_id, sets, time, distance, sets) VALUES " +
+              "($1, $2, $3, $4)", [workout_id, exercises[i].exercise_id, exercises[i].sets, exercises[i].seconds,
+              exercises[i].distance, exercises[i].number],
               function (err, result) {
                 if (err) {
                   console.log("Error inserting data: ", err);
