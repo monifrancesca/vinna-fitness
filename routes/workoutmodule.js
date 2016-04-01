@@ -139,6 +139,63 @@ router.get('/classlist', function(req, res) {
   });
 });
 
+router.get('/history/:id', function(req, res) {
+  var results = [];
 
+  var thisClient = {
+    id: req.params.id
+  };
+
+  pg.connect(connection, function (err, client, done) {
+    var query = client.query("SELECT workout.date, workout.id, users.first_name, users.last_name, location.name, " +
+      "class.class_type FROM workout JOIN users on (workout.user_id = users.id) JOIN location on (workout.location_id " +
+      "= location.id) JOIN class on (workout.class_type = class.id) WHERE workout.client_id = $1;" ,
+      [thisClient.id]);
+
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    query.on('end', function() {
+      client.end();
+      return res.json(results);
+    });
+
+    if(err) {
+      done();
+      console.log(err);
+    }
+  });
+});
+
+router.get('/detail/:id', function(req, res) {
+  var results = [];
+
+  var thisWorkout = {
+    id: req.params.id
+  };
+
+  pg.connect(connection, function (err, client, done) {
+    var query = client.query("SELECT workout.date, workout.id, workout.notes, workout.stretching, workout.warmup-notes" +
+      "users.first_name, users.last_name, location.name, class.class_type FROM workout JOIN users on " +
+      "(workout.user_id = users.id) JOIN location on (workout.location_id = location.id) JOIN class on " +
+      "(workout.class_type = class.id) WHERE workout.id = $1;" ,
+      [thisWorkout.id]);
+
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    query.on('end', function() {
+      client.end();
+      return res.json(results);
+    });
+
+    if(err) {
+      done();
+      console.log(err);
+    }
+  });
+});
 
 module.exports = router;

@@ -1,6 +1,6 @@
 <h1>Workout History</h1>
 
-<h3>Client Name Here</h3>
+<h3>{{client.first_name}} {{client.last_name}}</h3>
 
 <table>
     <tr>
@@ -10,9 +10,9 @@
         <th>Location:</th>
     </tr>
     <tr ng-repeat="workout in workouts" ng-click="getWorkout(workout.id)">
-        <td>{{workout.date}}</td>
+        <td>{{workout.date | date:'EEEE, MMMM d, y'}}</td>
         <td>{{workout.class_type}}</td>
-        <td>{{workout.user_id}}</td>
-        <td>{{workout.location_id}}</td>
+        <td>{{workout.first_name}} {{workout.last_name}}</td>
+        <td>{{workout.name}}</td>
     </tr>
 </table>

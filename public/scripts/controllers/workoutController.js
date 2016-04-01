@@ -158,9 +158,4 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
     $scope.newExercise.measurement;
   }
 
-  $scope.getWorkout = function(id) {
-    $scope.dataFactory.factoryGetWorkout(id);
-    $location.path('workoutdetails');
-  }
-
 }]);
