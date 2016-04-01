@@ -6,11 +6,17 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var selectedName;
   var exerciseQuery = [];
   var selectedExercise;
-  var fakeIdentifier = 'a';
+  var fakeIdentifier = 3;
   var clientMedical = undefined;
   var facUserIdNumber = '1';
   var facFmsData = null;
   var clientPersonal = undefined;
+  var selectedWorkout = undefined;
+  var classList = [];
+  var currentClass = undefined;
+  var workouts = [];
+  var workout = {};
+  var selectedClient = {first_name: "Test", last_name: "Person", id: 2};
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
 //the workout table and workout_line_items table.
@@ -19,6 +25,28 @@ myApp.factory('DataFactory', ['$http', function($http) {
     console.log('This is the workout we are sending to the server:', workout);
     $http.post('/workout', workout).then(function(response) {
     });
+  };
+
+  var fillClassList = function () {
+    var promise = $http.get('/workout/classlist/').then(function(response) {
+    classList = response.data;
+        console.log(classList);
+    });
+    return promise;
+  };
+
+  var retrieveWorkouts = function() {
+    var promise = $http.get('/workout/history/' + selectedClient.id).then(function (response) {
+      workouts = response.data;
+    });
+    return promise;
+  };
+
+  var retrieveWorkout = function() {
+    var promise = $http.get('/workout/detail/' + selectedWorkout).then(function (response) {
+      workout = response.data[0];
+    });
+    return promise;
   };
 
   // working on this
@@ -54,16 +82,14 @@ myApp.factory('DataFactory', ['$http', function($http) {
   };
 
   var postMedical = function(data) {
-    //console.log('factory data', data);
     $http.post('/medical/' + fakeIdentifier, data).then(function(response) {
+        console.log(response);
     });
   };
 
   var getMedical = function() {
-    //console.log('getMedical in factory fired');
     var promise = $http.get('/medical/' + fakeIdentifier).then(function(response) {
       clientMedical = response.data;
-      //console.log('clientMedical', clientMedical);
     });
     return promise;
   };
@@ -85,6 +111,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
     });
   };
 
+
   var postLocation = function(data) {
     console.log('factory data', data);
     $http.post('/admin/', data).then(function(response) {
@@ -97,6 +124,11 @@ myApp.factory('DataFactory', ['$http', function($http) {
     });
     return promise;
   };
+
+    var updateClassList = function() {
+        console.log('update class list in factory')
+    };
+
 
   //PUBLIC
 
@@ -124,14 +156,18 @@ myApp.factory('DataFactory', ['$http', function($http) {
       selectedExercise = id;
       return selectedExercise;
     },
+
     sendMedical: function(history) {
       //console.log('in the factory', history)
+
+      sendMedical: function(history) {
+
       postMedical(history);
     },
     retrieveMedical: function() {
       return getMedical();
     },
-    clientInfo: function() {
+    clientMedicalInfo: function() {
       return clientMedical;
     },
     postFmsData: function(data){
@@ -157,7 +193,43 @@ myApp.factory('DataFactory', ['$http', function($http) {
     //},
     clientInfo: function() {
       return clientPersonal;
-    }
+    },
+    factoryGetWorkout: function(id) {
+      selectedWorkout = id;
+      return selectedWorkout;
+    },
+    factoryGetClassList: function() {
+      return fillClassList();
+    },
+    factoryClasses: function() {
+      return classList;
+    },
+    factoryStartClass: function(id) {
+      currentClass = id;
+      console.log('This is the currentClass', id);
+      return currentClass;
+    },
+    factoryCurrentClass: function() {
+      return currentClass;
+    },
+    factoryRetrieveWorkouts: function() {
+      return retrieveWorkouts();
+    },
+    factoryWorkouts: function() {
+      return workouts;
+    },
+    factoryRetrieveWorkout: function() {
+      return retrieveWorkout();
+    },
+    factoryWorkout: function() {
+      return workout;
+    },
+    factoryReturnSelectedClient: function() {
+      return selectedClient;
+    },
+      adminRemoveClass: function() {
+          return updateClassList();
+      }
   };
 
   return dataFactoryOutput;

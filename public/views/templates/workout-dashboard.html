@@ -1,5 +1,9 @@
 <div>
     <h1>Start a Workout</h1>
-    <button>New Personal Training Session</button>
+    <label>Class Type</label>
+    <button ng-click="startPersonal()">New Personal Training Session</button>
     <button>New Class</button>
+    <select ng-model="classType" ng-options="class.class_type for class in classes" ng-change="startClass()">
+        <option value="">-- select class --</option>
+    </select>
 </div>
