@@ -10,7 +10,6 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var clientMedical = undefined;
   var facUserIdNumber = '1';
   var facFmsData = null;
-  //var fakeIdentifier = 'a';
   var clientPersonal = undefined;
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
@@ -68,6 +67,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
     });
     return promise;
   };
+
   var facPostFmsData = function(data) {
     console.log('posting fms data');
     var promise = $http.post('/fms', data).then(function(response) {
@@ -76,12 +76,26 @@ myApp.factory('DataFactory', ['$http', function($http) {
     });
     return promise;
   };
+
   var facGetFmsData = function() {
     console.log('getting data from server for id: ', facUserIdNumber);
     var promise = $http.get('/fms/' + facUserIdNumber).then(function (response) {
       facFmsData = response.data;
       console.log('Async data response:', facFmsData);
     });
+  };
+
+  var postLocation = function(data) {
+    console.log('factory data', data);
+    $http.post('/admin/', data).then(function(response) {
+    });
+  };
+
+  var getLocation = function(query) {
+    var promise = $http.get('/admin/').then(function(response) {
+      location = response.data;
+    });
+    return promise;
   };
 
   //PUBLIC
@@ -109,7 +123,8 @@ myApp.factory('DataFactory', ['$http', function($http) {
     factoryGetExerciseId: function(id){
       selectedExercise = id;
       return selectedExercise;
-    }, sendMedical: function(history) {
+    },
+    sendMedical: function(history) {
       //console.log('in the factory', history)
       postMedical(history);
     },
@@ -129,6 +144,14 @@ myApp.factory('DataFactory', ['$http', function($http) {
       console.log('in the factory', info);
       postPersonal(info);
     },
+    //sendLocation: function(location) {
+    //  console.log('in the factory', location);
+    //  postLocation(location);
+    //},
+    //searchLocation: function() {
+    //  console.log('in the factory', location);
+    //  return getLocation(location);
+    //},
     //retrievePersonal: function() {
     //  return getPersonal();
     //},
