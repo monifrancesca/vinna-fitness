@@ -30,6 +30,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var fillClassList = function () {
     var promise = $http.get('/workout/classlist/').then(function(response) {
     classList = response.data;
+        console.log(classList);
     });
     return promise;
   };
@@ -109,6 +110,10 @@ myApp.factory('DataFactory', ['$http', function($http) {
       console.log('Async data response:', facFmsData);
     });
   };
+
+    var updateClassList = function() {
+        console.log('update class list in factory')
+    };
 
   //PUBLIC
 
@@ -193,7 +198,10 @@ myApp.factory('DataFactory', ['$http', function($http) {
     },
     factoryReturnSelectedClient: function() {
       return selectedClient;
-    }
+    },
+      adminRemoveClass: function() {
+          return updateClassList();
+      }
   };
 
   return dataFactoryOutput;
