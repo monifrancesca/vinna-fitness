@@ -52,7 +52,6 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
   //  Using data factory to get previous medical information from the database
   $scope.dataFactory.retrieveMedical().then(function() {
     $scope.clientMedical = $scope.dataFactory.clientMedicalInfo();
-    console.log($scope.clientMedical);
 
       //Iterating through client conditions from the database to display on Dom
       for(var i = 0; i < $scope.clientMedical.length; i++) {
@@ -90,7 +89,6 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
 
     //  Taking client information from the database and displaying on the Dom
     $scope.history = $scope.clientMedical[0];
-    console.log($scope.history);
 
     $scope.currentInjuries = $scope.history.current_injuries;
     $scope.previousHistory = $scope.history.previous_medical_hist;
