@@ -13,7 +13,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
     })
     .when('/adminclasses', {
       templateUrl: '/views/templates/admin-classes.html',
-      controller: 'AdminController'
+      controller: 'AdminClassController'
     })
     .when('/adminclients', {
       templateUrl: '/views/templates/admin-clients.html',
