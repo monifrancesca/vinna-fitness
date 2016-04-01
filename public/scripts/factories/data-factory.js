@@ -10,7 +10,6 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var clientMedical = undefined;
   var facUserIdNumber = '1';
   var facFmsData = null;
-  //var fakeIdentifier = 'a';
   var clientPersonal = undefined;
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
@@ -55,20 +54,18 @@ myApp.factory('DataFactory', ['$http', function($http) {
   };
 
   var postMedical = function(data) {
-    //console.log('factory data', data);
     $http.post('/medical/' + fakeIdentifier, data).then(function(response) {
         console.log(response);
     });
   };
 
   var getMedical = function() {
-    //console.log('getMedical in factory fired');
     var promise = $http.get('/medical/' + fakeIdentifier).then(function(response) {
       clientMedical = response.data;
-      //console.log('clientMedical', clientMedical);
     });
     return promise;
   };
+
   var facPostFmsData = function(data) {
     console.log('posting fms data');
     var promise = $http.post('/fms', data).then(function(response) {
@@ -77,6 +74,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
     });
     return promise;
   };
+
   var facGetFmsData = function() {
     console.log('getting data from server for id: ', facUserIdNumber);
     var promise = $http.get('/fms/' + facUserIdNumber).then(function (response) {
@@ -110,8 +108,8 @@ myApp.factory('DataFactory', ['$http', function($http) {
     factoryGetExerciseId: function(id){
       selectedExercise = id;
       return selectedExercise;
-    }, sendMedical: function(history) {
-      //console.log('in the factory', history)
+    },
+      sendMedical: function(history) {
       postMedical(history);
     },
     retrieveMedical: function() {

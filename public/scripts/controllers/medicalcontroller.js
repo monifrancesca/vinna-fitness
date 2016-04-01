@@ -1,16 +1,18 @@
 myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', function($scope, $http, DataFactory) {
 
-  $scope.dataFactory = DataFactory;
+    $scope.dataFactory = DataFactory;
 
+    //variables for accordion
     $scope.showBasicMed = false;
     $scope.showLastDay = false;
     $scope.showConditions = false;
     $scope.showPhysician = false;
     $scope.showSignature = false;
 
-  var conditionsArray = [];
+    //variable for medical conditions
+    var conditionsArray = [];
 
-
+    //Accordion functionality for each section
     $scope.basicMedActive = function() {
         $scope.showBasicMed = $scope.showBasicMed === false ? true: false;
         $scope.showLastDay = false;
@@ -47,12 +49,14 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
         $scope.showPhysician = false;
     };
 
+  //  Using data factory to get previous medical information from the database
   $scope.dataFactory.retrieveMedical().then(function() {
     $scope.clientMedical = $scope.dataFactory.clientMedicalInfo();
     console.log($scope.clientMedical);
 
+      //Iterating through client conditions from the database to display on Dom
       for(var i = 0; i < $scope.clientMedical.length; i++) {
-          if($scope.clientMedical[i].condition_id == 1) {
+          if ($scope.clientMedical[i].condition_id == 1) {
               $scope.prevDislocations = 'Dislocations';
           }
           if ($scope.clientMedical[i].condition_id == 2) {
@@ -82,10 +86,9 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
           if ($scope.clientMedical[i].condition_id == 10) {
               $scope.prevFainting = 'Fainting spells';
           }
-
-          //console.log('i', i);
       }
 
+    //  Taking client information from the database and displaying on the Dom
     $scope.history = $scope.clientMedical[0];
     console.log($scope.history);
 
@@ -106,7 +109,10 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
     $scope.lastSigDateUnderAge = $scope.history.signature_date_under_age;
   });
 
+    //"Submit" function for form, takes all data from form
     $scope.saveMedical = function() {
+
+          //Organizing data for the client_conditions join table
           if($scope.dislocations != undefined) {
             $scope.dislocations = 1;
             conditionsArray.push($scope.dislocations);
@@ -148,8 +154,7 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
             conditionsArray.push($scope.fainting);
           }
 
-        //console.log(conditionsArray);
-
+        // Organizing other form data
         var history = {
           intakeDate: $scope.intakeDate,
           currentInjuries: $scope.currentInjuries,
@@ -168,7 +173,8 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
           signatureUnderAge: $scope.signatureUnderAge,
           signatureDateUnderAge: $scope.signatureDateUnderAge
         };
-      console.log('history in controller', history);
+
+        // Sending form data to data factory
         $scope.dataFactory.sendMedical(history);
      }
 
