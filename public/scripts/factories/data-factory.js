@@ -6,7 +6,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var selectedName;
   var exerciseQuery = [];
   var selectedExercise;
-  var fakeIdentifier = 'a';
+  var fakeIdentifier = 3;
   var clientMedical = undefined;
   var facUserIdNumber = '1';
   var facFmsData = null;
@@ -65,7 +65,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
     //console.log('getMedical in factory fired');
     var promise = $http.get('/medical/' + fakeIdentifier).then(function(response) {
       clientMedical = response.data;
-      console.log('clientMedical', clientMedical);
+      //console.log('clientMedical', clientMedical);
     });
     return promise;
   };

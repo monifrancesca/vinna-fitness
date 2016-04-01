@@ -34,6 +34,9 @@
 </form>
 
 <h1>Check any of the following that you currently or have ever had</h1>
+<h3>Conditions Already Noted: {{prevDislocations}} {{prevPhlebitis}} {{prevNeckInjuries}}
+ {{prevLowBackPain}} {{prevBloodPressure}} {{prevHeartProblems}} {{prevHeadaches}}
+    {{prevArthritis}} {{prevNerves}} </h3>
 <form>
     <!--checkbox Dislocations-->
     <label for="dislocations">Dislocations</label>
@@ -45,7 +48,7 @@
     <label for="neckInjuries">Neck injuries</label>
     <input type="checkbox" ng-model="neckInjuries" id="neckInjuries" />
     <!--low back pain-->
-    <label for="lowBackPain">Low Back Pain</label>
+    <label for="lowBackPain">Low back pain</label>
     <input type="checkbox" ng-model="lowBackPain" id="lowBackPain" />
     <!--checkbox High blood pressure-->
     <label for="bloodPressure">High blood pressure</label>

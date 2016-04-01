@@ -3,14 +3,50 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
   $scope.dataFactory = DataFactory;
 
   var conditionsArray = [];
-  //var checkConditions = [];
+    //var conditionHistory = [];
+    //$scope.conditionHistory =
 
   $scope.dataFactory.retrieveMedical().then(function() {
     $scope.clientMedical = $scope.dataFactory.clientMedicalInfo();
-    //console.log($scope.clientMedical);
+    console.log($scope.clientMedical);
+
+      for(var i = 0; i < $scope.clientMedical.length; i++) {
+          if($scope.clientMedical[i].condition_id == 1) {
+              $scope.prevDislocations = 'Dislocations';
+          }
+          if ($scope.clientMedical[i].condition_id == 2) {
+              $scope.prevPhlebitis = 'Phlebitis';
+          }
+          if ($scope.clientMedical[i].condition_id == 3) {
+              $scope.prevNeckInjuries = 'Neck injuries';
+          }
+          if ($scope.clientMedical[i].condition_id == 4) {
+              $scope.prevLowBackPain = 'Low back pain';
+          }
+          if ($scope.clientMedical[i].condition_id == 5) {
+              $scope.prevBloodPressure = 'High blood pressure';
+          }
+          if ($scope.clientMedical[i].condition_id == 6) {
+              $scope.prevHeartProblems = 'Heart problems';
+          }
+          if ($scope.clientMedical[i].condition_id == 7) {
+              $scope.prevHeadaches = 'Headaches';
+          }
+          if ($scope.clientMedical[i].condition_id == 8) {
+              $scope.prevArthritis = 'Arthritis';
+          }
+          if ($scope.clientMedical[i].condition_id == 9) {
+              $scope.prevNerves = 'Numbness/tingling/nerve conditions';
+          }
+          if ($scope.clientMedical[i].condition_id == 10) {
+              $scope.prevFainting = 'Fainting spells';
+          }
+
+          //console.log('i', i);
+      }
 
     $scope.history = $scope.clientMedical[0];
-    //console.log($scope.history);
+    console.log($scope.history);
 
     $scope.currentInjuries = $scope.history.current_injuries;
     $scope.previousHistory = $scope.history.previous_medical_hist;
@@ -30,8 +66,6 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
   });
 
     $scope.saveMedical = function() {
-        //set up array for conditions
-
           if($scope.dislocations != undefined) {
             $scope.dislocations = 1;
             conditionsArray.push($scope.dislocations);

@@ -14,7 +14,7 @@ router.post('/:fakeIdentifier', function(req, res) {
     var conditions = req.body.conditions;
 
     var addMedical = {
-        first_name: req.params.fakeIdentifier,
+        id: req.params.fakeIdentifier,
         intakeDate: req.body.intakeDate,
         currentInjuries: req.body.currentInjuries,
         previousHistory: req.body.previousHistory,
@@ -46,13 +46,13 @@ router.post('/:fakeIdentifier', function(req, res) {
             'inflammation = $6, flu = $7, fever = $8, cold = $9,' +
             'physician_name = $10, physician_phone = $11, signature = $12,' +
             'signature_date = $13, signature_under_age = $14, signature_date_under_age = $15' +
-            'WHERE first_name = $16 returning id',
+            'WHERE id = $16 returning id',
             [addMedical.intakeDate, addMedical.currentInjuries, addMedical.previousHistory,
                 addMedical.otherMeds, addMedical.infection, addMedical.inflammation,
                 addMedical.flu, addMedical.fever, addMedical.cold, addMedical.physiciansName,
                 addMedical.physiciansPhone, addMedical.signature, addMedical.signatureDate,
                 addMedical.signatureUnderAge, addMedical.signatureDateUnderAge,
-                addMedical.first_name],
+                addMedical.id],
             function (err, result) {
                 if (err) {
                     console.log("Error inserting data: ", err);
@@ -68,7 +68,6 @@ router.post('/:fakeIdentifier', function(req, res) {
                             if (err) {
                                 console.log("Error inserting data: ", err);
                                 res.send(false);
-                            } else {
                             }
                         });
                     }
@@ -81,7 +80,10 @@ router.get('/:fakeIdentifier', function(req, res) {
     var fakeId = req.params.fakeIdentifier;
     var results = [];
     pg.connect(connection, function(err, client, done) {
-        var query = client.query('SELECT * FROM client WHERE first_name = $1;',
+        var query = client.query('SELECT * FROM client ' +
+            'JOIN client_conditions ON (client.id = client_conditions.client_id)' +
+            'JOIN medical_conditions ON (client_conditions.condition_id = medical_conditions.id)' +
+            'WHERE client.id = $1;',
         [fakeId]);
 
         query.on('row', function(row) {
