@@ -61,11 +61,19 @@ myApp.config(['$routeProvider', function($routeProvider) {
     })
     .when('/workoutmain', {
       templateUrl: '/views/templates/workout-dashboard.html',
-      controller: 'WorkoutController'
+      controller: 'WorkoutDashboardController'
     })
     .when('/workout', {
       templateUrl: '/views/templates/workout.html',
       controller: 'WorkoutController'
+    })
+    .when('/workouthistory', {
+      templateUrl: '/views/templates/workout-history.html',
+      controller: 'WorkoutHistoryController'
+    })
+    .when('/workoutdetails', {
+      templateUrl: '/views/templates/workoutdetails.html',
+      controller: 'WorkoutDetailsController'
     })
     .otherwise({
         redirectTo: 'main'
