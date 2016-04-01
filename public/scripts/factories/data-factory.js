@@ -12,6 +12,9 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var facFmsData = null;
   //var fakeIdentifier = 'a';
   var clientPersonal = undefined;
+  var selectedWorkout = undefined;
+  var classList = [];
+  var currentClass = undefined;
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
 //the workout table and workout_line_items table.
@@ -21,6 +24,13 @@ myApp.factory('DataFactory', ['$http', function($http) {
     $http.post('/workout', workout).then(function(response) {
     });
   };
+
+  var fillClassList = function () {
+    var promise = $http.get('/workout/classlist/').then(function(response) {
+    classList = response.data;
+    });
+    return promise;
+};
 
   // working on this
   var postPersonal = function(data) {
@@ -134,6 +144,24 @@ myApp.factory('DataFactory', ['$http', function($http) {
     //},
     clientInfo: function() {
       return clientPersonal;
+    },
+    factoryGetWorkout: function(id) {
+      selectedWorkout = id;
+      return selectedWorkout;
+    },
+    factoryGetClassList: function() {
+      return fillClassList();
+    },
+    factoryClasses: function() {
+      return classList;
+    },
+    factoryStartClass: function(id) {
+      currentClass = id;
+      console.log('This is the currentClass', id);
+      return currentClass;
+    },
+    factoryCurrentClass: function() {
+      return currentClass;
     }
   };
 

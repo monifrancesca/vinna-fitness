@@ -1,0 +1,18 @@
+<h1>Workout History</h1>
+
+<h3>Client Name Here</h3>
+
+<table>
+    <tr>
+        <th>Date:</th>
+        <th>Class Type:</th>
+        <th>Trainer:</th>
+        <th>Location:</th>
+    </tr>
+    <tr ng-repeat="workout in workouts" ng-click="getWorkout(workout.id)">
+        <td>{{workout.date}}</td>
+        <td>{{workout.class_type}}</td>
+        <td>{{workout.user_id}}</td>
+        <td>{{workout.location_id}}</td>
+    </tr>
+</table>

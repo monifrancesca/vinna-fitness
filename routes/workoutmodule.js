@@ -21,7 +21,7 @@ router.post('/', function(req, res) {
     notes: req.body.notes,
     stretches: req.body.stretches,
     warm_up: req.body.warmup,
-    class_type: 1
+    class_type: req.body.class_type
   };
 
   var exercises = req.body.exercises;
@@ -42,8 +42,8 @@ router.post('/', function(req, res) {
           res.send(result);
           var workout_id = result.rows[0].id;
           for (var i = 0; i < exercises.length; i++) {
-            client.query("INSERT INTO workout_line_items(workout_id, exercise_id, sets, time, distance, sets) VALUES " +
-              "($1, $2, $3, $4)", [workout_id, exercises[i].exercise_id, exercises[i].sets, exercises[i].seconds,
+            client.query("INSERT INTO workout_line_items(workout_id, exercise_id, sets, time, distance, reps) VALUES " +
+              "($1, $2, $3, $4, $5, $6)", [workout_id, exercises[i].exercise_id, exercises[i].sets, exercises[i].seconds,
               exercises[i].distance, exercises[i].number],
               function (err, result) {
                 if (err) {
@@ -100,6 +100,28 @@ router.get('/searchexercise/:query', function(req, res) {
   pg.connect(connection, function (err, client, done) {
     var query = client.query("SELECT name, id FROM exercise WHERE name ILIKE $1 OR name ILIKE $2;" ,
       [mySearch.searchOne, mySearch.searchTwo]);
+
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    query.on('end', function() {
+      client.end();
+      return res.json(results);
+    });
+
+    if(err) {
+      done();
+      console.log(err);
+    }
+  });
+});
+
+router.get('/classlist', function(req, res) {
+  var results = [];
+
+  pg.connect(connection, function (err, client, done) {
+    var query = client.query("SELECT * FROM class ORDER BY class_type asc");
 
     query.on('row', function(row) {
       results.push(row);

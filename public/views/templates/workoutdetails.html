@@ -1,8 +1,8 @@
 <!--session info-->
-<h1><a href="" ng-click="makeBasicInfoActive()" ng-class="{active: section===0}">New Workout</a></h1>
+<h1>Past Workout</h1>
 <div ng-show="showBasic">
     <form>
-        <label>Client Name(s): </label>
+        <label>Client Name: </label>
         <input type="text" name="clientName" ng-model="searchName" ng-change="nameQuery(text)" placeholder=""/>
         <div class="resultsBox" ng-hide="searchName.length < 1 || searchName.length == undefined">
             <ul ng-show="names.length >= 1" class="searchResults">
@@ -11,10 +11,10 @@
         </div>
         <label>Location: </label>
         <label>
-        <input type="radio" name="location" value="1" ng-model="formData.location"/>Minneapolis
+            <input type="radio" name="location" value="1" ng-model="formData.location"/>Minneapolis
         </label>
         <label>
-        <input type="radio" name="location" value="2" ng-model="formData.location"/>St. Louis Park
+            <input type="radio" name="location" value="2" ng-model="formData.location"/>St. Louis Park
         </label>
 
         <label>Date of Session: </label>

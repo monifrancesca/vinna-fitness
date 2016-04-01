@@ -1,10 +1,11 @@
-myApp.controller('WorkoutController', ['$scope', '$http', 'DataFactory', function($scope, $http, DataFactory) {
+myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFactory', function($scope, $location, $http, DataFactory) {
 
   $scope.dataFactory = DataFactory;
 
   $scope.newExercise = {};
   $scope.formData = {};
   $scope.formData.exercises = [];
+  $scope.formData.class_type = $scope.dataFactory.factoryCurrentClass();
 
   $scope.searchName = undefined;
   $scope.names = [];
@@ -155,6 +156,11 @@ myApp.controller('WorkoutController', ['$scope', '$http', 'DataFactory', functio
     $scope.showKg = false;
     $scope.showLb = false;
     $scope.newExercise.measurement;
+  }
+
+  $scope.getWorkout = function(id) {
+    $scope.dataFactory.factoryGetWorkout(id);
+    $location.path('workoutdetails');
   }
 
 }]);
