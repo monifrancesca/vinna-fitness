@@ -2,9 +2,50 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
 
   $scope.dataFactory = DataFactory;
 
+    $scope.showBasicMed = false;
+    $scope.showLastDay = false;
+    $scope.showConditions = false;
+    $scope.showPhysician = false;
+    $scope.showSignature = false;
+
   var conditionsArray = [];
-    //var conditionHistory = [];
-    //$scope.conditionHistory =
+
+
+    $scope.basicMedActive = function() {
+        $scope.showBasicMed = $scope.showBasicMed === false ? true: false;
+        $scope.showLastDay = false;
+        $scope.showConditions = false;
+        $scope.showPhysician = false;
+        $scope.showSignature = false;
+    };
+    $scope.lastDayActive = function() {
+        $scope.showLastDay = $scope.showLastDay === false ? true: false;
+        $scope.showBasicMed = false;
+        $scope.showConditions = false;
+        $scope.showPhysician = false;
+        $scope.showSignature = false;
+    };
+    $scope.conditionsActive = function() {
+        $scope.showConditions = $scope.showConditions === false ? true: false;
+        $scope.showBasicMed = false;
+        $scope.showLastDay = false;
+        $scope.showPhysician = false;
+        $scope.showSignature = false;
+    };
+    $scope.physicianActive = function() {
+        $scope.showPhysician = $scope.showPhysician === false ? true: false;
+        $scope.showBasicMed = false;
+        $scope.showLastDay = false;
+        $scope.showConditions = false;
+        $scope.showSignature = false;
+    };
+    $scope.signatureActive = function() {
+        $scope.showSignature = $scope.showSignature === false ? true: false;
+        $scope.showBasicMed = false;
+        $scope.showLastDay = false;
+        $scope.showConditions = false;
+        $scope.showPhysician = false;
+    };
 
   $scope.dataFactory.retrieveMedical().then(function() {
     $scope.clientMedical = $scope.dataFactory.clientMedicalInfo();
