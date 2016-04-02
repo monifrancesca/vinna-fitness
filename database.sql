@@ -175,7 +175,7 @@ physician_phone varchar(100),
 location_id INTEGER REFERENCES location(id),
 signature varchar(100),
 signature_date timestamp,
-signature_date_under_age varchar(100),
+signature_under_age varchar(100),
 signature_date_under_age timestamp,
 active_status boolean
 );

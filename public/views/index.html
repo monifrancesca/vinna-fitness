@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Vinna Fitness</title>
     <script type="text/javascript" src="../vendors/angular.min.js"></script>
     <script type="text/javascript" src="../vendors/angular-route.min.js"></script>
     <script type="text/javascript" src="../scripts/app.js"></script>
@@ -16,13 +16,19 @@
     <script type="text/javascript" src="../scripts/controllers/medicalcontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/personalcontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/workoutcontroller.js"></script>
+    <script type="text/javascript" src="../scripts/controllers/admin-class-controller.js"></script>
+    <script type="text/javascript" src="../scripts/controllers/workoutdetailscontroller.js"></script>
+    <script type="text/javascript" src="../scripts/controllers/workoutdashboardcontroller.js"></script>
+    <script type="text/javascript" src="../scripts/controllers/workouthistorycontroller.js"></script>
+    <script type="text/javascript" src="../scripts/controllers/maincontroller.js"></script>
 
 </head>
 <body ng-app="myApp">
+
 <header ng-controller="NavController as nav">
     <h1>Googles</h1>
     <nav>
-        <ul
+        <ul>
             <li ><a href="#home">Home</a></li>
             <li ng-show="nav.displayLogout">Hi {{nav.username}}! | <a href="#" ng-click="nav.logout()">Logout</a></li>
         </ul>
@@ -33,8 +39,14 @@
     </section>
 </header>
     <div>
+
+    <!-- For injecting specific client IDs into medical history/FMS/workout history views, we may need to use -->
+    <!-- $location. Caitlin implemented this in her solo project. -->
+    <!--<div ng-controller="MainController">-->
+        <!--{{$route.current.scope.name}} &lt;!&ndash; This & MainController may be helpful for implementing sidebar nav. &ndash;&gt;-->
+
         <main ng-view></main>
-    </div>
+    <!--</div>-->
 
 </body>
 </html>
