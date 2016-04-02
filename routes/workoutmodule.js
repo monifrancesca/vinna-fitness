@@ -176,10 +176,40 @@ router.get('/detail/:id', function(req, res) {
   };
 
   pg.connect(connection, function (err, client, done) {
-    var query = client.query("SELECT workout.date, workout.id, workout.notes, workout.stretching, workout.warmup-notes" +
+    var query = client.query("SELECT workout.date, workout.id, workout.notes, workout.stretching, workout.warmup_notes, " +
       "users.first_name, users.last_name, location.name, class.class_type FROM workout JOIN users on " +
       "(workout.user_id = users.id) JOIN location on (workout.location_id = location.id) JOIN class on " +
       "(workout.class_type = class.id) WHERE workout.id = $1;" ,
+      [thisWorkout.id]);
+
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    query.on('end', function() {
+      client.end();
+      return res.json(results);
+    });
+
+    if(err) {
+      done();
+      console.log(err);
+    }
+  });
+});
+
+router.get('/exercises/:id', function(req, res) {
+  var results = [];
+
+  var thisWorkout = {
+    id: req.params.id
+  };
+
+  pg.connect(connection, function (err, client, done) {
+    var query = client.query("SELECT workout_line_items.time, workout_line_items.sets, workout_line_items.distance" +
+      ", workout_line_items.body_weight, workout_line_items.intensity_kgs, workout_line_items.intensity_lbs" +
+      ", workout_line_items.reps, exercise.name FROM workout_line_items JOIN exercise on " +
+      "(workout_line_items.exercise_id = exercise.id) WHERE workout_line_items.workout_id = $1;" ,
       [thisWorkout.id]);
 
     query.on('row', function(row) {

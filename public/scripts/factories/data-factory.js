@@ -16,6 +16,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var currentClass = undefined;
   var workouts = [];
   var workout = {};
+  var exercises = [];
   var selectedClient = {first_name: "Test", last_name: "Person", id: 2};
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
@@ -45,6 +46,13 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var retrieveWorkout = function() {
     var promise = $http.get('/workout/detail/' + selectedWorkout).then(function (response) {
       workout = response.data[0];
+    });
+    return promise;
+  };
+
+  var retrieveExercises = function() {
+    var promise = $http.get('/workout/exercises/' + selectedWorkout).then(function (response) {
+      exercises = response.data;
     });
     return promise;
   };
@@ -189,6 +197,12 @@ myApp.factory('DataFactory', ['$http', function($http) {
     },
     factoryWorkouts: function() {
       return workouts;
+    },
+    factoryRetrieveExercises: function() {
+      return retrieveExercises();
+    },
+    factoryExercises: function() {
+      return exercises;
     },
     factoryRetrieveWorkout: function() {
       return retrieveWorkout();

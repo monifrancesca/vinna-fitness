@@ -3,6 +3,7 @@ myApp.controller('WorkoutDetailsController', ['$scope', '$location', '$http', 'D
   $scope.dataFactory = DataFactory;
 
   $scope.workout = {};
+  $scope.exercises = [];
 
   $scope.client = $scope.dataFactory.factoryReturnSelectedClient();
 
@@ -11,9 +12,9 @@ myApp.controller('WorkoutDetailsController', ['$scope', '$location', '$http', 'D
     console.log('This is the workout', $scope.workout);
   });
 
-  //$scope.getWorkout = function(id) {
-  //  $scope.dataFactory.factoryGetWorkout(id);
-  //  $location.path('workoutdetails');
-  //}
+  $scope.dataFactory.factoryRetrieveExercises().then(function() {
+    $scope.exercises = $scope.dataFactory.factoryExercises();
+    console.log('These are the exercises', $scope.exercises);
+  });
 
 }]);
