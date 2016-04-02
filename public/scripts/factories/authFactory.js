@@ -1,6 +1,10 @@
 myApp.factory('AuthFactory', function ($http) {
   var Status = {
     loggedIn: false
+
+
+
+
   };
 
   // the public API
@@ -21,7 +25,7 @@ myApp.factory('AuthFactory', function ($http) {
 
     logout: function () {
       return $http.get('/auth/logout');
-    },
+    }
   };
 
 });

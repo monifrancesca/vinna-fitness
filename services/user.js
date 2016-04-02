@@ -65,6 +65,7 @@ console.log(id);
 
   createGoogleUser: function (id, token, name, email, callback) {
     console.log('in create google user');
+    var results = [];
     googleId = id;
     googleToken = token;
     googleName = name;
@@ -72,17 +73,23 @@ console.log(id);
     console.log(connection);
       pg.connect(connection, function(err, client, done) {
         console.log('posting new user');
-        client.query('INSERT INTO users ' +
+        var query = client.query('INSERT INTO users ' +
           '(google_id, google_token, google_name, google_email) VALUES ($1, $2, $3, $4) RETURNING *',
-          [googleId, googleToken, googleName, googleEmail],
-          function (err, user) {
-            if (err) {
-              return callback(err, null);
-            }
+          [googleId, googleToken, googleName, googleEmail]);
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+          console.log('pushing row');
+          results.push(row);
+        });
 
-            return callback(null, user);
+        // close connection
+        query.on('end', function (result) {
+          console.log('ending query');
+          if(result.rowCount == 0){
+            return callback(null, null);} else {
+            return callback(null, results);
           }
-        )
+        });
       });
   }
 };

@@ -59,6 +59,7 @@ console.log('token: '+token+  ' profile: ' +profile+ ' profile.id: ' + profile.i
       UserService.createGoogleUser(profile.id, token, profile.displayName,
         profile.emails[0].value, /* we take first email address */
         function (err, user) {
+          console.log('profile: '+profile);
           console.log('creating user');
           if (err) {
             throw err;
