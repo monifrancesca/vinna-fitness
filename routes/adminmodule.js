@@ -98,4 +98,73 @@ router.put('/status/:id', function(req, res){
   });
 });
 
+router.get('/exercise', function(req, res) {
+  var results = [];
+
+  pg.connect(connection, function (err, client, done) {
+    var query = client.query("SELECT * FROM exercise;");
+
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    query.on('end', function() {
+      client.end();
+      return res.json(results);
+    });
+
+    if(err) {
+      done();
+      console.log(err);
+    }
+  });
+});
+
+router.put('/exercise/:id', function(req, res){
+  console.log(req.body);
+
+  var newStatus = {
+    status: req.body.active_status,
+    id: req.params.id
+  };
+
+  pg.connect(connection, function(err, client, done) {
+    client.query('UPDATE exercise SET active_status = ($1) WHERE id = ($2)',
+      [newStatus.status, newStatus.id],
+      function (err, result) {
+        if(err) {
+          console.log("Error inserting data: ", err);
+          res.send(false);
+        } else {
+          res.send(result);
+        }
+      });
+    done();
+  });
+});
+
+router.post('/newexercise', function(req, res) {
+  console.log(req.body);
+
+  var newExercise = {
+    name: req.body.name,
+    category: req.body.category,
+    active_status: true
+  };
+
+  pg.connect(connection, function(err, client, done) {
+    client.query("INSERT INTO exercise (name, category, active_status) VALUES ($1, $2, $3)",
+      [newExercise.name, newExercise.category, newExercise.active_status],
+      function (err, result) {
+        if(err) {
+          console.log("Error inserting data: ", err);
+          res.send(false);
+        } else {
+          res.send(result);
+        }
+      });
+    done();
+  });
+});
+
 module.exports = router;

@@ -21,7 +21,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
     })
     .when('/adminexercises', {
       templateUrl: '/views/templates/admin-exercises.html',
-      controller: 'AdminController'
+      controller: 'AdminExerciseController'
     })
     .when('/adminlocation', {
       templateUrl: '/views/templates/admin-location.html',

@@ -100,7 +100,8 @@ router.get('/searchexercise/:query', function(req, res) {
   };
 
   pg.connect(connection, function (err, client, done) {
-    var query = client.query("SELECT name, id FROM exercise WHERE name ILIKE $1 OR name ILIKE $2;" ,
+    var query = client.query("SELECT name, id FROM exercise WHERE name ILIKE $1 AND active_status = true " +
+      "OR name ILIKE $2 AND active_status = true;" ,
       [mySearch.searchOne, mySearch.searchTwo]);
 
     query.on('row', function(row) {

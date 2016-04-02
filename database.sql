@@ -283,3 +283,4 @@ right_hand_length INTEGER
 
 ALTER TABLE workout_line_items ADD COLUMN reps INTEGER;
 ALTER TABLE workout_line_items RENAME COLUMN worout_id TO workout_id;
+ALTER TABLE exercise ADD COLUMN active_status BOOLEAN;

@@ -19,6 +19,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var exercises = [];
   var selectedClient = {first_name: "Test", last_name: "Person", id: 2};
   var clients = [];
+  var allExercises = [];
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
 //the workout table and workout_line_items table.
@@ -163,6 +164,36 @@ myApp.factory('DataFactory', ['$http', function($http) {
     $http.put('/admin/status/' + id, data).then(function(response) {
     });
   };
+
+  var retrieveAllExercises = function() {
+    var promise = $http.get('/admin/exercise').then(function(response) {
+      allExercises = response.data;
+    });
+    return promise;
+  };
+
+  var exerciseActive = function(id) {
+    var data = {
+      active_status: true
+    };
+
+    $http.put('/admin/exercise/' + id, data).then(function(response) {
+    });
+  };
+
+  var exerciseInactive = function(id) {
+    var data = {
+      active_status: false
+    };
+
+    $http.put('/admin/exercise/' + id, data).then(function(response) {
+    });
+  };
+
+  var exerciseAdd = function(data) {
+    $http.post('/admin/newexercise', data).then(function(response) {
+    });
+  };
   //PUBLIC
 
   var dataFactoryOutput = {
@@ -278,6 +309,21 @@ myApp.factory('DataFactory', ['$http', function($http) {
     },
     factoryMakeInactive: function(id) {
       return setAsInactive(id);
+    },
+    factoryRetrieveAllExercises: function(){
+      return retrieveAllExercises();
+    },
+    factoryAllExercises: function(){
+      return allExercises;
+    },
+    factoryMakeExerciseActive: function(id) {
+      return exerciseActive(id);
+    },
+    factoryMakeExerciseInactive: function(id) {
+      return exerciseInactive(id);
+    },
+    factoryAddExercise: function(exercise) {
+      return exerciseAdd(exercise);
     }
   };
   return dataFactoryOutput;
