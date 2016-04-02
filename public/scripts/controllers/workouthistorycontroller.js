@@ -6,10 +6,14 @@ myApp.controller('WorkoutHistoryController', ['$scope', '$location', '$http', 'D
 
   $scope.client = $scope.dataFactory.factoryReturnSelectedClient();
 
-  $scope.dataFactory.factoryRetrieveWorkouts().then(function() {
-    $scope.workouts = $scope.dataFactory.factoryWorkouts();
-    console.log('These are the workouts', $scope.workouts);
-  });
+  if ($scope.client == 'undefined') {
+    $location.path('existingclient');
+  } else {
+    $scope.dataFactory.factoryRetrieveWorkouts().then(function() {
+      $scope.workouts = $scope.dataFactory.factoryWorkouts();
+      console.log('These are the workouts', $scope.workouts);
+    });
+  }
 
   $scope.getWorkout = function(id) {
     $scope.dataFactory.factoryGetWorkout(id);

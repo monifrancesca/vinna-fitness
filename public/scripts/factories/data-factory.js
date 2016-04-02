@@ -18,6 +18,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var workout = {};
   var exercises = [];
   var selectedClient = {first_name: "Test", last_name: "Person", id: 2};
+  var clients = [];
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
 //the workout table and workout_line_items table.
@@ -141,11 +142,40 @@ myApp.factory('DataFactory', ['$http', function($http) {
 
     var postNewClass = function(data) {
         console.log(data);
-        var promise = $http.post('/admin/classlist', data).then(function(response) {
+        var promise = $http.post('/admin/classlist', data).then(function (response) {
         });
         return promise;
     };
 
+  var updateClassList = function() {
+      console.log('update class list in factory')
+  };
+
+  var retrieveClients = function() {
+    var promise = $http.get('/admin/clients').then(function(response) {
+      clients = response.data;
+      console.log('These are the clients: ', clients);
+    });
+    return promise;
+  };
+
+  var setAsActive = function(id) {
+    var data = {
+      active_status: true
+    };
+
+    $http.put('/admin/status/' + id, data).then(function(response) {
+    });
+  };
+
+  var setAsInactive = function(id) {
+    var data = {
+      active_status: false
+    };
+
+    $http.put('/admin/status/' + id, data).then(function(response) {
+    });
+  };
   //PUBLIC
 
   var dataFactoryOutput = {
@@ -172,8 +202,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
       selectedExercise = id;
       return selectedExercise;
     },
-      sendMedical: function(history) {
-
+    sendMedical: function(history) {
       postMedical(history);
     },
     retrieveMedical: function() {
@@ -208,6 +237,9 @@ myApp.factory('DataFactory', ['$http', function($http) {
     },
     factoryGetWorkout: function(id) {
       selectedWorkout = id;
+      return selectedWorkout;
+    },
+    factoryCheckWorkout: function() {
       return selectedWorkout;
     },
     factoryGetClassList: function() {
@@ -251,7 +283,22 @@ myApp.factory('DataFactory', ['$http', function($http) {
       sendNewClass: function(newClass) {
           //console.log(newClass);
           return postNewClass(newClass);
-      }
+      },
+    adminRemoveClass: function() {
+        return updateClassList();
+    },
+    factoryRetrieveClients: function() {
+      return retrieveClients();
+    },
+    factoryClients: function() {
+      return clients;
+    },
+    factoryMakeActive: function(id) {
+      return setAsActive(id);
+    },
+    factoryMakeInactive: function(id) {
+      return setAsInactive(id);
+    }
   };
   return dataFactoryOutput;
 

@@ -1,0 +1,26 @@
+<h1>Manage Clients</h1>
+
+<h2>All Clients</h2>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>DOB</th>
+        <th>Last Workout</th>
+        <th>Current Status</th>
+        <th>Change Status</th>
+    </tr>
+    <tr ng-repeat="client in clients">
+        <td>{{client.first_name}} {{client.last_name}}</td>
+        <td>{{client.dob | date:'MMMM d, y'}}</td>
+        <td>Last Workout Date Here</td>
+        <td>
+            <span ng-if="client.active_status == true">Active</span>
+            <span ng-if="client.active_status == false">Inactive</span>
+        </td>
+        <td>
+            <button ng-if="client.active_status == true" ng-click="makeInactive(client.id)">Set As Inactive</button>
+            <button ng-if="client.active_status == false" ng-click="makeActive(client.id)">Set As Active</button>
+        </td>
+    </tr>
+</table>

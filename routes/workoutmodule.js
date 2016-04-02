@@ -70,7 +70,9 @@ router.get('/searchname/:query', function(req, res) {
   console.log('This is the query', mySearch.search);
 
   pg.connect(connection, function (err, client, done) {
-    var query = client.query("SELECT first_name, last_name, id FROM client WHERE first_name ILIKE $1 OR last_name ILIKE $1;" ,
+    var
+      query = client.query("SELECT first_name, last_name, id FROM client WHERE first_name ILIKE $1 AND active_status" +
+        " = true OR last_name ILIKE $1 AND active_status = true;" ,
       [mySearch.search]);
 
     query.on('row', function(row) {

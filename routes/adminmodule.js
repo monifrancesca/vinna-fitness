@@ -93,4 +93,49 @@ router.post('/classlist', function(req, res) {
 });
 
 
+router.get('/clients', function(req, res) {
+  var results = [];
+
+  pg.connect(connection, function (err, client, done) {
+    var query = client.query("SELECT client.first_name, client.last_name, client.dob, client.active_status, client.id FROM client;");
+
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    query.on('end', function() {
+      client.end();
+      return res.json(results);
+    });
+
+    if(err) {
+      done();
+      console.log(err);
+    }
+  });
+});
+
+router.put('/status/:id', function(req, res){
+  console.log(req.body);
+
+  var newStatus = {
+    status: req.body.active_status,
+    id: req.params.id
+  };
+
+  pg.connect(connection, function(err, client, done) {
+    client.query('UPDATE client SET active_status = ($1) WHERE id = ($2)',
+      [newStatus.status, newStatus.id],
+      function (err, result) {
+        if(err) {
+          console.log("Error inserting data: ", err);
+          res.send(false);
+        } else {
+          res.send(result);
+        }
+      });
+    done();
+  });
+});
+
 module.exports = router;
