@@ -34,7 +34,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var fillClassList = function () {
     var promise = $http.get('/workout/classlist/').then(function(response) {
     classList = response.data;
-        console.log(classList);
+        //console.log(classList);
     });
     return promise;
   };
@@ -136,10 +136,6 @@ myApp.factory('DataFactory', ['$http', function($http) {
     return promise; // needed to wrap up this function
   };
 
-  var updateClassList = function() {
-    console.log('update class list in factory')
-  };
-
     var deleteFromClassList = function(data) {
       var promise = $http.delete('/admin/classList' + data).then(function(response) {
         });
@@ -152,10 +148,6 @@ myApp.factory('DataFactory', ['$http', function($http) {
         });
         return promise;
     };
-
-  var updateClassList = function() {
-      console.log('update class list in factory')
-  };
 
   var retrieveClients = function() {
     var promise = $http.get('/admin/clients').then(function(response) {
@@ -326,18 +318,12 @@ myApp.factory('DataFactory', ['$http', function($http) {
     factoryReturnSelectedClient: function() {
       return selectedClient;
     },
-    adminRemoveClass: function() {
-      return updateClassList();
-    },
     adminRemoveClass: function(id) {
         return deleteFromClassList(id);
     },
     sendNewClass: function(newClass) {
         //console.log(newClass);
         return postNewClass(newClass);
-    },
-    adminRemoveClass: function() {
-        return updateClassList();
     },
     factoryRetrieveClients: function() {
       return retrieveClients();
