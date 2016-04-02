@@ -119,9 +119,24 @@ myApp.factory('DataFactory', ['$http', function($http) {
     });
   };
 
+
+  var postLocation = function(data) {
+    console.log('factory data', data);
+    $http.post('/admin/', data).then(function(response) {
+    });
+  };
+
+  var getLocation = function(query) {
+    var promise = $http.get('/admin/').then(function(response) {
+      location = response.data;
+    });
+    return promise;
+  };
+
     var updateClassList = function() {
         console.log('update class list in factory')
     };
+
 
   //PUBLIC
 
@@ -149,7 +164,12 @@ myApp.factory('DataFactory', ['$http', function($http) {
       selectedExercise = id;
       return selectedExercise;
     },
+
+    sendMedical: function(history) {
+      //console.log('in the factory', history)
+
       sendMedical: function(history) {
+
       postMedical(history);
     },
     retrieveMedical: function() {
@@ -168,6 +188,14 @@ myApp.factory('DataFactory', ['$http', function($http) {
       console.log('in the factory', info);
       postPersonal(info);
     },
+    //sendLocation: function(location) {
+    //  console.log('in the factory', location);
+    //  postLocation(location);
+    //},
+    //searchLocation: function() {
+    //  console.log('in the factory', location);
+    //  return getLocation(location);
+    //},
     //retrievePersonal: function() {
     //  return getPersonal();
     //},
