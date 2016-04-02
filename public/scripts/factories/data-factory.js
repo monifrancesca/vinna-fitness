@@ -164,10 +164,6 @@ myApp.factory('DataFactory', ['$http', function($http) {
       selectedExercise = id;
       return selectedExercise;
     },
-
-    sendMedical: function(history) {
-      //console.log('in the factory', history)
-
       sendMedical: function(history) {
 
       postMedical(history);
@@ -245,7 +241,6 @@ myApp.factory('DataFactory', ['$http', function($http) {
           return updateClassList();
       }
   };
-
   return dataFactoryOutput;
 
 }]);
