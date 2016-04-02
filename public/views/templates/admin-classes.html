@@ -1,5 +1,5 @@
 <h1>Add or Remove Classes</h1>
 <div ng-repeat="class in classes">
     <p>{{class.class_type}}</p>
-    <button ng-click="removeClass()">Remove Class</button>
+    <button ng-click="removeClass(class.id)">Remove Class</button>
 </div>

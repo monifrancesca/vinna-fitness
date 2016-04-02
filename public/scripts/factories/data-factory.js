@@ -133,10 +133,11 @@ myApp.factory('DataFactory', ['$http', function($http) {
     return promise;
   };
 
-    var updateClassList = function() {
-        console.log('update class list in factory')
+    var deleteFromClassList = function(data) {
+      var promise = $http.delete('/admin/classList' + data).then(function(response) {
+        });
+        return promise;
     };
-
 
   //PUBLIC
 
@@ -237,8 +238,8 @@ myApp.factory('DataFactory', ['$http', function($http) {
     factoryReturnSelectedClient: function() {
       return selectedClient;
     },
-      adminRemoveClass: function() {
-          return updateClassList();
+      adminRemoveClass: function(id) {
+          return deleteFromClassList(id);
       }
   };
   return dataFactoryOutput;

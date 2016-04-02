@@ -53,4 +53,22 @@ router.get('/', function(req, res) {
   })
 });
 
+router.delete('/classList:id', function(req, res) {
+  var classId = req.params.id;
+  pg.connect(connection, function(err, client, done) {
+    client.query('DELETE FROM class WHERE id = $1',
+        [classId],
+        function (err, result) {
+          done();
+          if (err) {
+            console.log("Error inserting data: ", err);
+            res.send(false);
+          } else {
+            res.send(result);
+          }
+        });
+  });
+
+});
+
 module.exports = router;
