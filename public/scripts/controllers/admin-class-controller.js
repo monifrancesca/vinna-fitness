@@ -14,4 +14,15 @@ myApp.controller('AdminClassController', ['$scope', '$http', 'DataFactory', func
         });
     };
 
+    $scope.saveNewClass = function() {
+        var newClass = {
+            className: $scope.className
+        };
+        $scope.dataFactory.sendNewClass(newClass).then(function() {
+            $scope.dataFactory.factoryGetClassList().then(function() {
+                $scope.classes = $scope.dataFactory.factoryClasses();
+            });
+        });
+    };
+
 }]);

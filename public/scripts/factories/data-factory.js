@@ -139,6 +139,13 @@ myApp.factory('DataFactory', ['$http', function($http) {
         return promise;
     };
 
+    var postNewClass = function(data) {
+        console.log(data);
+        var promise = $http.post('/admin/classlist', data).then(function(response) {
+        });
+        return promise;
+    };
+
   //PUBLIC
 
   var dataFactoryOutput = {
@@ -240,6 +247,10 @@ myApp.factory('DataFactory', ['$http', function($http) {
     },
       adminRemoveClass: function(id) {
           return deleteFromClassList(id);
+      },
+      sendNewClass: function(newClass) {
+          //console.log(newClass);
+          return postNewClass(newClass);
       }
   };
   return dataFactoryOutput;

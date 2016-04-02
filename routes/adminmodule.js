@@ -71,4 +71,26 @@ router.delete('/classList:id', function(req, res) {
 
 });
 
+router.post('/classlist', function(req, res) {
+  //console.log('req body', req.body);
+  var addNewClass = {
+    className: req.body.className
+  };
+
+  pg.connect(connection, function(err, client, done) {
+    client.query('INSERT INTO class (class_type) VALUES ($1)',
+        [addNewClass.className],
+        function (err, result) {
+          done();
+          if (err) {
+            console.log("Error inserting data: ", err);
+            res.send(false);
+          } else {
+            res.send(result);
+          }
+        });
+  });
+});
+
+
 module.exports = router;

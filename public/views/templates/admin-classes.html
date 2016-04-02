@@ -3,3 +3,12 @@
     <p>{{class.class_type}}</p>
     <button ng-click="removeClass(class.id)">Remove Class</button>
 </div>
+
+<form>
+    <h1>Add New Class</h1>
+
+    <label for="className">Class Name:</label>
+    <input type="text" id="className" ng-model="className" />
+
+    <button id="new_class_submit" ng-click="saveNewClass()" type="button">Submit</button>
+</form>
