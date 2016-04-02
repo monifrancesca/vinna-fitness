@@ -17,6 +17,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var workouts = [];
   var workout = {};
   var exercises = [];
+  var location = undefined;
   var selectedClient = {first_name: "Test", last_name: "Person", id: 2};
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
@@ -113,29 +114,29 @@ myApp.factory('DataFactory', ['$http', function($http) {
 
   var facGetFmsData = function() {
     console.log('getting data from server for id: ', facUserIdNumber);
-    var promise = $http.get('/fms/' + facUserIdNumber).then(function (response) {
+    var promise = $http.get('/fms/' + facUserIdNumber).then(function(response) {
       facFmsData = response.data;
       console.log('Async data response:', facFmsData);
     });
   };
-
-
-  var postLocation = function(data) {
-    console.log('factory data', data);
-    $http.post('/admin/', data).then(function(response) {
+  // post info from the location view
+  var postLocation = function(location) {
+    //console.log('factory location', location);
+    $http.post('/admin/', location).then(function(response) {
     });
   };
 
-  var getLocation = function(query) {
-    var promise = $http.get('/admin/').then(function(response) {
-      location = response.data;
+  var retrieveLocation = function() {
+    var promise = $http.get('/admin/').then(function(response) { // go to the GET in admin module and wait for a response. then use that data in this next function.
+      location = response.data; // save those results to the location variable and go back to the controller
+      //console.log("inside the retrieveLocation", location);
     });
-    return promise;
+    return promise; // needed to wrap up this function
   };
 
-    var updateClassList = function() {
-        console.log('update class list in factory')
-    };
+  var updateClassList = function() {
+    console.log('update class list in factory')
+  };
 
 
   //PUBLIC
@@ -164,8 +165,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
       selectedExercise = id;
       return selectedExercise;
     },
-      sendMedical: function(history) {
-
+    sendMedical: function(history) {
       postMedical(history);
     },
     retrieveMedical: function() {
@@ -184,10 +184,22 @@ myApp.factory('DataFactory', ['$http', function($http) {
       console.log('in the factory', info);
       postPersonal(info);
     },
-    //sendLocation: function(location) {
-    //  console.log('in the factory', location);
-    //  postLocation(location);
+    sendLocation: function(location) {
+      console.log('in the factory', location);
+      postLocation(location);
+    },
+    //saveLocation: function() {
+    //  //console.log('in the factory');
+    //  return postLocation();
     //},
+    // call the retrieveLocation function from private. return the data.
+    getLocation: function() {
+      return retrieveLocation();
+    },
+    // store the location in this function to be called by the controller
+    getLocationVariable: function() {
+      return location;
+    },
     //searchLocation: function() {
     //  console.log('in the factory', location);
     //  return getLocation(location);
@@ -195,6 +207,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
     //retrievePersonal: function() {
     //  return getPersonal();
     //},
+
     clientInfo: function() {
       return clientPersonal;
     },
@@ -237,9 +250,9 @@ myApp.factory('DataFactory', ['$http', function($http) {
     factoryReturnSelectedClient: function() {
       return selectedClient;
     },
-      adminRemoveClass: function() {
-          return updateClassList();
-      }
+    adminRemoveClass: function() {
+      return updateClassList();
+    }
   };
   return dataFactoryOutput;
 
