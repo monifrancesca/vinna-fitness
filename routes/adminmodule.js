@@ -52,6 +52,26 @@ router.get('/', function(req, res) {
   })
 });
 
+router.delete('/locationList:id', function(req, res) {
+  var locationId = req.params.id;
+  pg.connect(connection, function(err, client, done) {
+    client.query('DELETE FROM location WHERE id = $1',
+        [locationId],
+        function (err, result) {
+          done();
+          if (err) {
+            console.log("Error inserting data: ", err);
+            res.send(false);
+          } else {
+            res.send(result);
+          }
+        });
+  });
+
+});
+
+
+
 router.delete('/classList:id', function(req, res) {
   var classId = req.params.id;
   pg.connect(connection, function(err, client, done) {
