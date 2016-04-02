@@ -4,11 +4,25 @@ myApp.controller('AdminClassController', ['$scope', '$http', 'DataFactory', func
 
     $scope.dataFactory.factoryGetClassList().then(function() {
         $scope.classes = $scope.dataFactory.factoryClasses();
-        console.log('These are the classes', $scope.classes);
     });
 
-    $scope.removeClass = function() {
-        $scope.dataFactory.adminRemoveClass();
+    $scope.removeClass = function(id) {
+        $scope.dataFactory.adminRemoveClass(id).then(function() {
+            $scope.dataFactory.factoryGetClassList().then(function() {
+                $scope.classes = $scope.dataFactory.factoryClasses();
+            });
+        });
+    };
+
+    $scope.saveNewClass = function() {
+        var newClass = {
+            className: $scope.className
+        };
+        $scope.dataFactory.sendNewClass(newClass).then(function() {
+            $scope.dataFactory.factoryGetClassList().then(function() {
+                $scope.classes = $scope.dataFactory.factoryClasses();
+            });
+        });
     };
 
 }]);

@@ -135,6 +135,19 @@ myApp.factory('DataFactory', ['$http', function($http) {
     return promise;
   };
 
+    var deleteFromClassList = function(data) {
+      var promise = $http.delete('/admin/classList' + data).then(function(response) {
+        });
+        return promise;
+    };
+
+    var postNewClass = function(data) {
+        console.log(data);
+        var promise = $http.post('/admin/classlist', data).then(function (response) {
+        });
+        return promise;
+    };
+
   var updateClassList = function() {
       console.log('update class list in factory')
   };
@@ -295,6 +308,13 @@ myApp.factory('DataFactory', ['$http', function($http) {
     factoryReturnSelectedClient: function() {
       return selectedClient;
     },
+      adminRemoveClass: function(id) {
+          return deleteFromClassList(id);
+      },
+      sendNewClass: function(newClass) {
+          //console.log(newClass);
+          return postNewClass(newClass);
+      },
     adminRemoveClass: function() {
         return updateClassList();
     },
