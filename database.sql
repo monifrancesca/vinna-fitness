@@ -175,7 +175,7 @@ physician_phone varchar(100),
 location_id INTEGER REFERENCES location(id),
 signature varchar(100),
 signature_date timestamp,
-signature_date_under_age varchar(100),
+signature_under_age varchar(100),
 signature_date_under_age timestamp,
 active_status boolean
 );
@@ -283,3 +283,4 @@ right_hand_length INTEGER
 
 ALTER TABLE workout_line_items ADD COLUMN reps INTEGER;
 ALTER TABLE workout_line_items RENAME COLUMN worout_id TO workout_id;
+ALTER TABLE exercise ADD COLUMN active_status BOOLEAN;
