@@ -14,3 +14,5 @@ node_modules
 
 # Mac OS files
 .DS_Store
+
+auth.js

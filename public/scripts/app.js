@@ -3,9 +3,10 @@ var myApp = angular.module('myApp', ['ngRoute']);
 myApp.config(['$routeProvider', function($routeProvider) {
 
   $routeProvider
-    .when('/main', {
-      templateUrl: '/views/templates/login-dashboard.html',
-      controller: 'LoginController'
+    .when('/login', {
+      templateUrl: '/views/templates/login.html',
+      controller: 'AuthController',
+      controllerAs: 'auth'
     })
     .when('/admin', {
       templateUrl: '/views/templates/admin.html',
@@ -68,6 +69,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: 'WorkoutController'
     })
     .otherwise({
-        redirectTo: 'main'
+        redirectTo: 'login'
     });
 }]);
