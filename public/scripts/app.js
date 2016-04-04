@@ -28,10 +28,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/templates/admin-location.html',
       controller: 'AdminController'
     })
-    .when('/adminmanage', {
-      templateUrl: '/views/templates/admin-manage-admins.html',
-      controller: 'AdminController'
-    })
+    //.when('/adminmanage', {
+    //  templateUrl: '/views/templates/admin-manage-admins.html',
+    //  controller: 'AdminController'
+    //})
     .when('/admintrainers', {
       templateUrl: '/views/templates/admin-trainers.html',
       controller: 'AdminController'

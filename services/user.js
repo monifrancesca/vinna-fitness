@@ -32,6 +32,7 @@ var UserService = {
 
         // close connection
         query.on('end', function (result) {
+          done();
           if(result.rowCount == 0){
             return callback(null, null);} else {
             return callback(null, results);
@@ -54,7 +55,8 @@ console.log(id);
 
         // close connection
         query.on('end', function (result) {
-          console.log('ending query');
+          console.log('ending query in find by g');
+          done();
           if(result.rowCount == 0){
             return callback(null, null);} else {
             return callback(null, results);
@@ -84,7 +86,8 @@ console.log(id);
 
         // close connection
         query.on('end', function (result) {
-          console.log('ending query');
+          console.log('ending query in create');
+          done();
           if(result.rowCount == 0){
             return callback(null, null);} else {
             return callback(null, results);

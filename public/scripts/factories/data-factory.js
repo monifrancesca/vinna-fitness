@@ -18,6 +18,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var workout = {};
   var exercises = [];
   var selectedClient = {first_name: "Test", last_name: "Person", id: 2};
+  var facTrainerList = [];
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
 //the workout table and workout_line_items table.
@@ -32,6 +33,13 @@ myApp.factory('DataFactory', ['$http', function($http) {
     var promise = $http.get('/workout/classlist/').then(function(response) {
     classList = response.data;
         console.log(classList);
+    });
+    return promise;
+  };
+
+  var facGetTrainers = function() {
+    var promise = $http.get('/admin/trainers/').then(function (response) {
+      facTrainerList = response.data;
     });
     return promise;
   };
@@ -141,6 +149,12 @@ myApp.factory('DataFactory', ['$http', function($http) {
   //PUBLIC
 
   var dataFactoryOutput = {
+    getTrainers: function() {
+      return facGetTrainers();
+    },
+    trainerList: function() {
+      return facTrainerList;
+    },
     factorySaveNewWorkout: function(workout) {
       return saveNewWorkout(workout);
     },

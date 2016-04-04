@@ -53,4 +53,25 @@ router.get('/', function(req, res) {
   })
 });
 
+router.get('/trainers', function(req, res) {
+  //var fakeId = req.params.fakeIdentifier;
+  var results = [];
+  pg.connect(connection, function(err, client, done) {
+    var query = client.query('SELECT * FROM users');
+
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    query.on('end', function() {
+      client.end();
+      return res.json(results);
+    });
+
+    if(err) {
+      console.log(err);
+    }
+  })
+});
+
 module.exports = router;

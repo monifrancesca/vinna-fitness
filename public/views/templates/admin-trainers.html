@@ -1,0 +1,16 @@
+<h1>Manage Trainers</h1>
+<h2>Trainers:</h2>
+<div ng-repeat="trainer in allTrainers">
+  <p>{{trainer.first_name}}{{' '+trainer.last_name}}<button ng-click="showEdit($index)">edit</button></p>
+  <form ng-show="selected == $index" class="trainerEdit">
+    <label>First Name</label>
+    <input type="text" ng-model="trainerInfo.tFirstName" value="{{trainer.first_name}}">
+    <label>Last Name</label>
+    <input type="text" ng-model="trainerInfo.tLastName" value="{{trainer.last_name}}">
+    <!--<label>Google Email</label>-->
+    <!--<input type="text" ng-model="trainerInfo.email" value="{{trainer.google_email}}">-->
+    <label>Admin Status</label>
+    <input type="checkbox" ng-model="trainerInfo.adminStatus" value="true">{{adminStatus}}
+    <button ng-click="submitChanges()">submit changes</button>
+  </form>
+</div>
