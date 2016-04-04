@@ -28,8 +28,7 @@ var UserService = {
         // Stream results back one row at a time
         query.on('row', function(row) {
           results.push(row);
-        });
-
+         });
         // close connection
         query.on('end', function (result) {
           done();
@@ -41,32 +40,55 @@ var UserService = {
       });
   },
 
-  findUserByGoogleId: function (id, callback) {
-      var results = [];
-console.log(id);
-      pg.connect(connection, function(err, client, done) {
-        var query = client.query('SELECT * FROM users WHERE google_id = $1', [id]);
+//  findUserByGoogleId: function (id, callback) {
+//      var results = [];
+//console.log(id);
+//      pg.connect(connection, function(err, client, done) {
+//        var query = client.query('SELECT * FROM users WHERE google_id = $1', [id]);
+//
+//        // Stream results back one row at a time
+//        query.on('row', function(row) {
+//          console.log('pushing row');
+//          results.push(row);
+//        });
+//
+//        // close connection
+//        query.on('end', function (result) {
+//          console.log('ending query in find by g');
+//          done();
+//          if(result.rowCount == 0){
+//            return callback(null, null);} else {
+//            return callback(null, results);
+//          }
+//        });
+//      });
+//  },
 
-        // Stream results back one row at a time
-        query.on('row', function(row) {
-          console.log('pushing row');
-          results.push(row);
-        });
+  findUserByEmail: function (email, callback) {
+    var results = [];
+    pg.connect(connection, function(err, client, done) {
+      var query = client.query('SELECT * FROM users WHERE google_email = $1', [email]);
 
-        // close connection
-        query.on('end', function (result) {
-          console.log('ending query in find by g');
-          done();
-          if(result.rowCount == 0){
-            return callback(null, null);} else {
-            return callback(null, results);
-          }
-        });
+      // Stream results back one row at a time
+      query.on('row', function(row) {
+        console.log('pushing row');
+        results.push(row);
       });
+
+      // close connection
+      query.on('end', function (result) {
+        console.log('ending query in find by email');
+        done();
+        if(result.rowCount == 0){
+          return callback(null, null);} else {
+          return callback(null, results);
+        }
+      });
+    });
   },
 
-  createGoogleUser: function (id, token, name, email, callback) {
-    console.log('in create google user');
+  updateUser: function (id, token, name, email, callback) {
+    console.log('in updateUser');
     var results = [];
     googleId = id;
     googleToken = token;
@@ -74,9 +96,10 @@ console.log(id);
     googleEmail = email;
     console.log(connection);
       pg.connect(connection, function(err, client, done) {
-        console.log('posting new user');
-        var query = client.query('INSERT INTO users ' +
-          '(google_id, google_token, google_name, google_email) VALUES ($1, $2, $3, $4) RETURNING *',
+        console.log('updating new user');
+        var query = client.query('UPDATE users '+
+        'SET google_id = $1, google_token = $2, google_name = $3 '+
+        'WHERE google_email = $4',
           [googleId, googleToken, googleName, googleEmail]);
         // Stream results back one row at a time
         query.on('row', function(row) {
@@ -86,7 +109,7 @@ console.log(id);
 
         // close connection
         query.on('end', function (result) {
-          console.log('ending query in create');
+          console.log('ending query in update');
           done();
           if(result.rowCount == 0){
             return callback(null, null);} else {

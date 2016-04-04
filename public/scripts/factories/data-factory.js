@@ -44,6 +44,24 @@ myApp.factory('DataFactory', ['$http', function($http) {
     return promise;
   };
 
+  var facNewTrainer = function(data) {
+    console.log('posting new trainer data');
+    var promise = $http.post('/admin/trainers', data).then(function(response) {
+      console.log('match data saved');
+      console.log(response);
+    });
+    return promise;
+  };
+
+  var facUpdateTrainer = function(data) {
+    console.log('updating trainer data');
+    var promise = $http.put('/admin/trainers', data).then(function(response) {
+      console.log('trainer updated');
+      console.log(response);
+    });
+    return promise;
+  };
+
   var retrieveWorkouts = function() {
     var promise = $http.get('/workout/history/' + selectedClient.id).then(function (response) {
       workouts = response.data;
@@ -149,6 +167,12 @@ myApp.factory('DataFactory', ['$http', function($http) {
   //PUBLIC
 
   var dataFactoryOutput = {
+    newTrainer: function(data){
+      return facNewTrainer(data);
+    },
+    updateTrainer: function(data){
+      return facUpdateTrainer(data);
+    },
     getTrainers: function() {
       return facGetTrainers();
     },

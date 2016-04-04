@@ -1,16 +1,30 @@
 <h1>Manage Trainers</h1>
+<button ng-click="showHide()">Add New Trainer</button>
+  <div ng-hide="showHideStatus">
+    <form>
+      <label>First Name</label>
+      <input type="text" ng-model="$scope.trainerInfo.tFirstName">
+      <label>Last Name</label>
+      <input type="text" ng-model="$scope.trainerInfo.tLastName">
+      <label>Google Email</label>
+      <input type="text" ng-model="$scope.trainerInfo.googleEmail">
+      <label>Make Admin</label>
+      <input type="checkbox" ng-model="$scope.trainerInfo.adminStatus">
+      <button ng-click="addTrainer($scope.trainerInfo)">Submit</button>
+    </form>
+  </div>
 <h2>Trainers:</h2>
 <div ng-repeat="trainer in allTrainers">
   <p>{{trainer.first_name}}{{' '+trainer.last_name}}<button ng-click="showEdit($index)">edit</button></p>
   <form ng-show="selected == $index" class="trainerEdit">
     <label>First Name</label>
-    <input type="text" ng-model="trainerInfo.tFirstName" value="{{trainer.first_name}}">
+    <input type="text" ng-model="trainer.first_name" value="{{trainer.first_name}}">
     <label>Last Name</label>
-    <input type="text" ng-model="trainerInfo.tLastName" value="{{trainer.last_name}}">
-    <!--<label>Google Email</label>-->
-    <!--<input type="text" ng-model="trainerInfo.email" value="{{trainer.google_email}}">-->
+    <input type="text" ng-model="trainer.last_name" value="{{trainer.last_name}}">
+    <label>Google Email</label>
+    <input type="text" ng-model="trainer.google_email" value="{{trainer.google_email}}">
     <label>Admin Status</label>
-    <input type="checkbox" ng-model="trainerInfo.adminStatus" value="true">{{adminStatus}}
-    <button ng-click="submitChanges()">submit changes</button>
+    <input type="checkbox" ng-model="trainer.admin" value="trainer.admin">{{trainer.admin}}
+    <button ng-click="submitUpdate(trainer)">submit changes</button>
   </form>
 </div>

@@ -8,8 +8,9 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', function(
     adminStatus: null,
     tFirstName: null,
     tLastName: null,
-    email: null
+    googleEmail: null
   };
+  $scope.showHideStatus = true;
   //$scope.dataFactory.getLocation().then(function() {
   //  $scope.location = $scope.dataFactory.getLocation();
   //  console.log($scope.location);
@@ -30,6 +31,20 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', function(
   });
   $scope.showEdit = function(index){
     $scope.selected = index;
+  };
+  $scope.addTrainer = function(info){
+    $scope.dataFactory.newTrainer(info).then(function(){
+      $scope.allTrainers = $scope.dataFactory.trainerList();
+    })
+  };
+  $scope.submitUpdate = function(trainer){
+    $scope.dataFactory.updateTrainer(trainer).then(function(){
+      $scope.allTrainers = $scope.dataFactory.trainerList();
+    })
+  };
+
+  $scope.showHide = function(){
+    $scope.showHideStatus ^= true;
   };
 
 }]);
