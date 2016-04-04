@@ -7,6 +7,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var exerciseQuery = [];
   var selectedExercise;
   var fakeIdentifier = 3;
+  var fakeIdPersonal = 13;
   var clientMedical = undefined;
   var facUserIdNumber = '1';
   var facFmsData = null;
@@ -63,23 +64,23 @@ myApp.factory('DataFactory', ['$http', function($http) {
     });
   };
 
-  var getPersonal = function() {
-    console.log('getPersonal in factory fired');
-    var promise = $http.get('/personal/'+ personalInfoId).then(function(response) {
-      clientPersonal = response.data;
-      console.log('clientPersonal', clientPersonal);
-    });
-    return promise;
-  };
-
   //var getPersonal = function() {
   //  console.log('getPersonal in factory fired');
-  //  var promise = $http.get('/personal/' + fakeIdentifier).then(function(response) {
+  //  var promise = $http.get('/personal/'+ personalInfoId).then(function(response) {
   //    clientPersonal = response.data;
   //    console.log('clientPersonal', clientPersonal);
   //  });
   //  return promise;
   //};
+
+  var getPersonal = function() {
+    //console.log('getPersonal in factory fired');
+    var promise = $http.get('/personalhistory/' + fakeIdPersonal).then(function(response) {
+      clientPersonal = response.data;
+      console.log('clientPersonal', clientPersonal);
+    });
+    return promise;
+  };
   // ----------------------------------- end of personal -------------------------------------------
 
 
@@ -283,9 +284,9 @@ myApp.factory('DataFactory', ['$http', function($http) {
       //console.log('in the factory', info);
       return postPersonal(info);
     },
-    retrievePersonal: function() {
-      return getPersonal();
-    },
+    //retrievePersonal: function() {
+    //  return getPersonal();
+    //},
     //  console.log('in the factory', info);
     //  return postPersonal(info);
     //},
@@ -310,9 +311,11 @@ myApp.factory('DataFactory', ['$http', function($http) {
     //factoryLocations: function() {
     //  return locationList;
     //},
-    //retrievePersonal: function() {
-    //  return getPersonal();
-    //},
+    retrievePersonal: function() {
+      //console.log('retrievePersonal function working data factory');
+      return getPersonal();
+
+    },
 
     clientInfo: function() {
       return clientPersonal;
