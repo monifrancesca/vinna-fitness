@@ -10,6 +10,7 @@ var fms = require('./routes/fmsmodule');
 var login = require('./routes/loginmodule');
 var medical = require('./routes/medicalmodule');
 var personal = require('./routes/personalmodule');
+var personalhistory = require('./routes/personalhistorymodule');
 var workout = require('./routes/workoutmodule');
 
 app.use(bodyParser.json());
@@ -21,6 +22,7 @@ app.use('/fms', fms);
 app.use('/login', login);
 app.use('/medical', medical);
 app.use('/personal', personal);
+app.use('/personalhistory', personalhistory);
 app.use('/workout', workout);
 
 app.use(express.static('public'));

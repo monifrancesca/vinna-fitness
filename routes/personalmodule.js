@@ -18,7 +18,7 @@ router.post('/', function(req, res) {
         phone: req.body.phoneNumber,
         email: req.body.emailAddress,
         dob: req.body.dateOfBirth,
-        height: req.body.heightFeet,
+        height: req.body.height,
         //heightInches: req.body.heightInches,
         weight: req.body.weightPounds,
         emergency_name: req.body.emergencyContactName,
@@ -27,12 +27,11 @@ router.post('/', function(req, res) {
     console.log('add personal var', addPersonal);
 
     pg.connect(connection, function (err, client, done) {
-        client.query('INSERT into client (first_name, last_name, phone, ' +
-            'email, dob, height, weight, emergency_name, emergency_phone)' +
-            'VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9) returning id',
-            [addPersonal.firstName, addPersonal.lastName, addPersonal.phoneNumber,
-                addPersonal.emailAddress, addPersonal.dateOfBirth, addPersonal.heightFeet,
-                addPersonal.weightPounds, addPersonal.emergencyContactName, addPersonal.emergencyContactNumber],
+        client.query('INSERT into client (first_name, last_name, email, phone, dob, height, weight, emergency_name,' +
+            ' emergency_phone) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) returning id',
+            [addPersonal.first_name, addPersonal.last_name, addPersonal.email,
+                addPersonal.phone, addPersonal.dob, addPersonal.height,
+                addPersonal.weight, addPersonal.emergency_name, addPersonal.emergency_phone],
             function (err, result) {
                 done();
                 if (err) {
@@ -46,27 +45,29 @@ router.post('/', function(req, res) {
     });
 });
 
-    router.get('/:fakeIdentifier', function(req, res) {
-        var fakeId = req.params.fakeIdentifier;
-        var results = [];
-        pg.connect(connection, function(err, client, done) {
-            var query = client.query('SELECT * FROM client WHERE first_name = $1;',
-                [fakeId]);
+    // should this go somewhere else?
 
-            query.on('row', function(row) {
-                results.push(row);
-            });
-
-            query.on('end', function() {
-                client.end();
-                return res.json(results);
-            });
-
-            if(err) {
-                console.log(err);
-            }
-        });
-    });
+    //router.get('/:id', function(req, res) {
+    //    var id = req.params.id;
+    //    var results = [];
+    //    pg.connect(connection, function(err, client, done) {
+    //        var query = client.query('SELECT * FROM client WHERE id = $1;',
+    //            [id]);
+    //
+    //        query.on('row', function(row) {
+    //            results.push(row);
+    //        });
+    //
+    //        query.on('end', function() {
+    //            client.end();
+    //            return res.json(results);
+    //        });
+    //
+    //        if(err) {
+    //            console.log(err);
+    //        }
+    //    });
+    //});
 
 
 

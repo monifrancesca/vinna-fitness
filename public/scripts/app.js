@@ -59,6 +59,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/templates/personal-info.html',
       controller: 'PersonalController'
     })
+    .when('/personalhistory', {
+      templateUrl: '/views/templates/personal-info-history.html',
+      controller: 'PersonalHistoryController'
+    })
     .when('/workoutmain', {
       templateUrl: '/views/templates/workout-dashboard.html',
       controller: 'WorkoutDashboardController'
