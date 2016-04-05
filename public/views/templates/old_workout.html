@@ -1,0 +1,142 @@
+<h1><a href="" ng-click="makeBasicInfoActive()" ng-class="{active: section===0}">New Workout</a></h1>
+<div ng-show="showBasic">
+    <form>
+        <label>Client Name(s): </label>
+        <input type="text" name="clientName" ng-model="searchName" ng-change="nameQuery(text)" placeholder=""/>
+        <div class="resultsBox" ng-hide="searchName.length < 1 || searchName.length == undefined">
+            <ul ng-show="names.length >= 1" class="searchResults">
+                <li ng-repeat="name in names"><a class="result" ng-click="selectName(name.id, name.first_name, name.last_name)">{{name.first_name}} {{name.last_name}}</a></li>
+            </ul>
+        </div>
+        <label>Location: </label>
+        <label>
+            <input type="radio" name="location" value="1" ng-model="formData.location"/>Minneapolis
+        </label>
+        <label>
+            <input type="radio" name="location" value="2" ng-model="formData.location"/>St. Louis Park
+        </label>
+
+        <label>Date of Session: </label>
+        <input type="date" name="date" ng-model="formData.date"/>
+    </form>
+</div>
+
+<!--enter warm up info-->
+<h1><a href="" ng-click="makeWarmUpActive()" ng-class="{active: section==1}">Warm-up</a></h1>
+<div ng-show="showWarmUp">
+    <form>
+        <label>Warm Up: </label>
+        <textarea name="warmup" ng-model="formData.warmup"></textarea>
+    </form>
+</div>
+
+<!--enter main workout info-->
+<h1><a href="" ng-click="makeExercisesActive()" ng-class="{active: section==2}">Exercises:</a></h1>
+<div ng-show="showExercises">
+    <table>
+        <tr>
+            <th>Name:</th>
+            <th>Sets:</th>
+            <th>Reps:</th>
+            <th>Intensity:</th>
+        </tr>
+        <tr ng-repeat="exercise in formData.exercises">
+            <td>{{exercise.exercisename}}</td>
+            <td>{{exercise.sets}}</td>
+            <td>
+                <span ng-if="exercise.minutes != null && exercise.seconds != null && exercise.number == null &&
+           exercise.distance == null">{{(exercise.minutes * 60) + exercise.seconds}} sec</span>
+                <span ng-if="exercise.minutes == null && exercise.seconds != null && exercise.number == null &&
+           exercise.distance == null">{{exercise.seconds}} sec</span>
+                <span ng-if="exercise.minutes != null && exercise.seconds ==  null && exercise.number == null &&
+           exercise.distance == null">{{(exercise.minutes * 60)}} sec</span>
+                <span ng-if="exercise.minutes != null  && exercise.seconds ==  null && exercise.number == null &&
+           exercise.distance == null">{{(exercise.minutes * 60)}} sec</span>
+                <span ng-if="exercise.minutes == null && exercise.seconds == null && exercise.number != null &&
+           exercise.distance == null">{{exercise.number}} reps</span>
+                <span ng-if="exercise.minutes == null && exercise.seconds == null && exercise.number == null &&
+           exercise.distance != null">{{exercise.distance}} meters</span>
+            </td>
+            <td >
+                <span ng-if="exercise.weight == 'body'">Body Weight</span>
+                <span ng-if="exercise.weight == 'kgs'">{{exercise.intensity_kgs}}kgs</span>
+                <span ng-if="exercise.weight == 'lbs'">{{exercise.intensity_lbs}}lbs</span>
+            </td>
+        </tr>
+    </table>
+    <form>
+        <label>Exercise Name:</label>
+        <input type="text" name="exercisename" ng-model="newExercise.exercisename" ng-change="exerciseQuery(text)" placeholder=""/>
+        <div class="resultsBox" ng-hide="newExercise.exercisename.length < 1 || newExercise.exercisename.length == undefined">
+            <ul ng-show="newExercise.exercisename.length >= 1" class="searchResults">
+                <li ng-repeat="exercise in exerciseResults"><a class="result" ng-click="selectExercise(exercise.id, exercise.name)">{{exercise.name}}</a></li>
+            </ul>
+        </div>
+        <label>Sets:</label>
+        <select name="sets" ng-model="newExercise.sets">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+
+        <label>Rep Units:</label>
+        <select name="measurement" ng-model="newExercise.measurement" ng-change="showUnits()">
+            <option value="#">Number</option>
+            <option value="time">Time</option>
+            <option value="distance">Distance</option>
+        </select>
+
+        <div ng-show="showReps">
+            <label>Number of Reps:</label>
+            <input type="number" name="number" ng-model="newExercise.number"/>
+        </div>
+        <div ng-show="showTime">
+            <label>Time per Rep:</label>
+            <label>M</label>
+            <input type="number" name="minutes" ng-model="newExercise.minutes"/>
+            <label>S</label>
+            <input name="seconds" type="number" ng-model="newExercise.seconds"/>
+        </div>
+        <div ng-show="showDistance">
+            <label>Distance per rep (in meters):</label>
+            <input type="number" name="distance" ng-model="newExercise.distance"/>
+        </div>
+
+        <label>Intensity:</label>
+        <label>
+            <input type="radio" name="weight" value="body" ng-model="newExercise.weight"/>Body Weight
+        </label>
+        <label>
+            <input type="radio" name="weight" value="kgs" ng-model="newExercise.weight" ng-click="showKgIntensity()"/>Weight (kgs)
+        </label>
+        <label>
+            <input type="radio" name="weight" value="lbs" ng-model="newExercise.weight" ng-click="showLbIntensity()"/>Weight (lbs)
+        </label>
+        <label ng-show="showKg" ><input type="number" name="kgweight" ng-model="newExercise.intensity_kgs"/> kgs</label>
+        <label ng-show="showLb" ><input type="number" name="lbweight" ng-model="newExercise.intensity_lbs"/> lbs</label>
+        <button ng-click="addExercise()">Add Exercise</button>
+    </form>
+    <button>Finished with Exercises</button>
+</div>
+
+<!--enter stretches-->
+<!--enter notes and add flag if needed-->
+<h1><a href="" ng-click="makeWrapUpActive()" ng-class="{active: section==3}">Stretching and Notes</a></h1>
+<div ng-show="showWrapUp">
+    <form>
+        <label>Stretches:</label>
+        <textarea ng-model="formData.stretches"></textarea>
+        <label>Notes:</label>
+        <textarea ng-model="formData.notes"></textarea>
+        <label>Flag
+            <input type="checkbox" name="flag" ng-model="formData.flag" ng-true-value="'yes'" ng-false-value="'no'">
+        </label>
+    </form>
+</div>

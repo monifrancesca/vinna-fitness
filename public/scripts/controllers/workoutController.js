@@ -7,7 +7,7 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
   $scope.formData.exercises = [];
   $scope.formData.class_type = $scope.dataFactory.factoryCurrentClass();
 
-  $scope.searchName = undefined;
+  $scope.searchName = {};
   $scope.names = [];
   $scope.exerciseResults = [];
   $scope.showBasic = true;
@@ -18,7 +18,8 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
   $scope.showLb = false;
 
   $scope.nameQuery = function() {
-    var query = $scope.searchName;
+    var query = $scope.searchName.query;
+    console.log('name query', query);
     if (query.length >= 1) {
       console.log('This is the query', query);
       $scope.dataFactory.factorySearchClient(query).then(function() {
@@ -32,13 +33,14 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
   };
 
   $scope.selectName = function(id, firstName, lastName){
-    $scope.searchName = firstName + ' ' + lastName;
+    $scope.searchName.query = firstName + ' ' + lastName;
     $scope.names = [];
     $scope.formData.client_id = $scope.dataFactory.factoryGetClientId(id);
   };
 
   $scope.exerciseQuery = function() {
     var query = $scope.newExercise.exercisename;
+    console.log('exercise query', query);
     if (query.length >= 1) {
       console.log('This is the query', query);
       $scope.dataFactory.factorySearchExercise(query).then(function() {
