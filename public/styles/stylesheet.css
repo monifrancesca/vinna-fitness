@@ -1,3 +1,8 @@
- .dateInput {
-    width: 50%;
+.rep-type {
+    display: inline-block;
+}
+
+.rep-units {
+    display: inline-block;
+    margin-right: 5%;
 }
