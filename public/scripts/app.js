@@ -28,10 +28,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/templates/admin-location.html',
       controller: 'AdminController'
     })
-    //.when('/adminmanage', {
-    //  templateUrl: '/views/templates/admin-manage-admins.html',
-    //  controller: 'AdminController'
-    //})
     .when('/admintrainers', {
       templateUrl: '/views/templates/admin-trainers.html',
       controller: 'AdminController'
@@ -51,6 +47,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
     .when('/fms', {
       templateUrl: '/views/templates/fms.html',
       controller: 'FMSController'
+    })
+    .when('/existingFms', {
+      templateUrl: '/views/templates/existing-fms.html',
+      controller: 'ExistingFMSController'
+    })
+    .when('/fmsDetails', {
+      templateUrl: '/views/templates/fms-details.html',
+      controller: 'FmsDetailsController'
     })
     .when('/medical', {
       templateUrl: '/views/templates/medical-history.html',

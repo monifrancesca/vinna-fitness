@@ -33,8 +33,8 @@ myApp.controller('FMSController', ['$scope', '$http', 'DataFactory', function($s
     rotaryRightUp: null,
     rotaryDF: null,
     total: null,
-    client_id: 1,
-    user_id: 1,
+    client_id: 2,
+    user_id: 24,
     date: null,
     handDominance: null,
     swingDominance: null,
@@ -43,7 +43,8 @@ myApp.controller('FMSController', ['$scope', '$http', 'DataFactory', function($s
     rightShinLength: null,
     leftShinLength: null,
     leftHandLength: null,
-    rightHandLength: null
+    rightHandLength: null,
+    location: null
   };
   $scope.dominanceHeader = 'Dominance';
   $scope.dominanceStatus = true;

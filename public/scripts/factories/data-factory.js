@@ -19,6 +19,9 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var exercises = [];
   var selectedClient = {first_name: "Test", last_name: "Person", id: 2};
   var facTrainerList = [];
+  var facFMScreens = [];
+  var facFMScreen = {};
+  var facSelectedFMS = undefined;
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
 //the workout table and workout_line_items table.
@@ -69,9 +72,24 @@ myApp.factory('DataFactory', ['$http', function($http) {
     return promise;
   };
 
+  var facRetrieveScreens = function() {
+    var promise = $http.get('/fms/history/' + selectedClient.id).then(function (response) {
+      console.log('response.data: '+response.data);
+      facFMScreens = response.data;
+    });
+    return promise;
+  };
+
   var retrieveWorkout = function() {
     var promise = $http.get('/workout/detail/' + selectedWorkout).then(function (response) {
       workout = response.data[0];
+    });
+    return promise;
+  };
+
+  var facRetrieveFMS = function() {
+    var promise = $http.get('/fms/detail/' + facSelectedFMS).then(function (response) {
+      facFMScreen = response.data[0];
     });
     return promise;
   };
@@ -239,8 +257,15 @@ myApp.factory('DataFactory', ['$http', function($http) {
       selectedWorkout = id;
       return selectedWorkout;
     },
+    selectedFMS: function(id) {
+      facSelectedFMS = id;
+      return facSelectedFMS;
+    },
     factoryCheckWorkout: function() {
       return selectedWorkout;
+    },
+    checkFMS: function() {
+      return facSelectedFMS;
     },
     factoryGetClassList: function() {
       return fillClassList();
@@ -262,6 +287,12 @@ myApp.factory('DataFactory', ['$http', function($http) {
     factoryWorkouts: function() {
       return workouts;
     },
+    fmScreens: function() {
+      return facFMScreens;
+    },
+    retrieveScreens: function() {
+      return facRetrieveScreens();
+    },
     factoryRetrieveExercises: function() {
       return retrieveExercises();
     },
@@ -271,8 +302,14 @@ myApp.factory('DataFactory', ['$http', function($http) {
     factoryRetrieveWorkout: function() {
       return retrieveWorkout();
     },
+    retrieveFMS: function() {
+      return facRetrieveFMS();
+    },
     factoryWorkout: function() {
       return workout;
+    },
+    fmScreen: function() {
+      return facFMScreen;
     },
     factoryReturnSelectedClient: function() {
       return selectedClient;

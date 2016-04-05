@@ -1,10 +1,19 @@
 <!--fms intake info-->
-<h1>Today's date:</h1>
+
 <form name="fmsForm">
   <div class="date">
+    <h2>Date:</h2>
     <label>Date: </label>
     <input type="date" ng-model="fmsData.date"/>
   </div>
+
+  <label>Location: </label>
+  <label>
+    <input type="radio" name="location" value="1" ng-model="fmsData.location" required/>Minneapolis
+  </label>
+  <label>
+    <input type="radio" name="location" value="2" ng-model="fmsData.location" required/>St. Louis Park
+  </label>
 
   <div id="dominance">
     <h2 ng-click="showHideDominance()">{{dominanceHeader}}</h2>

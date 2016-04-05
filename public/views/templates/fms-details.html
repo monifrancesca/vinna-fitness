@@ -1,0 +1,69 @@
+<h1>Past FMS</h1>
+
+<h3>{{client.first_name}} {{client.last_name}}</h3>
+
+<p>Date: {{screen.date | date:'EEEE, MMMM d, y'}}</p>
+<p>Location: {{screen.name}}</p>
+<p>Trainer: {{screen.first_name}} {{screen.last_name}}</p>
+
+<table>
+  <tr>
+    <th>Test:</th>
+    <th>Score:</th>
+    <th>Dysfunction:</th>
+    <th>Special:</th>
+  </tr>
+  <tr>
+    <td>Deep Squat</td>
+    <td>{{screen.deep_squat}}</td>
+    <td>{{screen.deep_squat_df}}</td>
+    <td>Toe Touch: {{toeTouch}}</td>
+  </tr>
+  <tr>
+    <td>Hurdle Step</td>
+    <td>{{screen.hurdle_step}}</td>
+    <td>{{screen.hurdle_df}}</td>
+    <td>Left Leg Up: {{screen.left_leg_up}}<br>
+        Right Leg Up: {{screen.right_leg_up}}</td>
+  </tr>
+  <tr>
+    <td>In-Line Lunge</td>
+    <td>{{screen.in_line_lunge}}</td>
+    <td>{{screen.lunge_df}}</td>
+    <td>Left Leg Forward: {{screen.left_leg_forward}}<br>
+        Right Leg Forward: {{screen.right_leg_forward}}</td>
+  </tr>
+  <tr>
+    <td>Shoulder Mobility</td>
+    <td>{{screen.shoulder_mobility}}</td>
+    <td>{{screen.shoulder_df}}</td>
+    <td>Left Top: {{screen.left_top}}<br>
+        Right Top: {{screen.right_top}}<br>
+        Left Impingement: {{lImpingement}}<br>
+        Right Impingement: {{rImpingement}}</td>
+  </tr>
+  <tr>
+    <td>Active Straight Leg Raise</td>
+    <td>{{screen.active_straight_leg}}</td>
+    <td>{{screen.leg_raise_df}}</td>
+    <td>Left Up: {{screen.asl_l_up}}<br>
+        Right Up: {{screen.asl_r_up}}</td>
+  </tr>
+  <tr>
+    <td>Trunk Stability Push Up</td>
+    <td>{{screen.trunk_pushup}}</td>
+    <td>{{screen.trunk_df}}</td>
+    <td>Prone Press Up Test: {{pronePress}}</td>
+  </tr>
+  <tr>
+    <td>Rotary Stability Quadruped</td>
+    <td>{{screen.rotary_stability}}</td>
+    <td>{{screen.rotary_df}}</td>
+    <td>Left Up: {{screen.rotary_left_up}}<br>
+        Right Up: {{screen.rotary_right_up}}<br>
+        Kneeling Lumbar Flexion Test: {{flex}}</td>
+  </tr>
+</table>
+
+
+
