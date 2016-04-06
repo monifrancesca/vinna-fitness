@@ -1,78 +1,137 @@
 <!--Basic Medical Info-->
-<h1 ng-click="basicMedActive()">Basic Information</h1>
-<div ng-show="showBasicMed">
-    <h3>Last medical screening: {{lastMedical | date}}</h3>
-    <label for="intakeDate">Intake Date</label>
-    <input type="date" id="intakeDate" ng-model="intakeDate"/>
+<div class="scrollable">
+    <div class="scrollable-content">
+<div class="section">
+<h1>Medical History</h1>
+    <h4>Last medical screening: {{lastMedical | date}}</h4>
 
-    <label for="currentInjuries">Current Injuries</label>
-    <input type="textarea" id="currentInjuries" ng-model="currentInjuries" placeholder="Current Injuries" />
+    <div class="panel-group" ui-state="myAccordion" ui-default="1">
+        <div class="panel panel-default">
+            <div class="panel-heading" ui-set="{'myAccordion': 1}">
+                <h4 class="panel-title">
+                    Basic Information
+                </h4>
+            </div>
 
-    <label for="previousHistory">Previous medical history/surgery history</label>
-    <input type="textarea" id="previousHistory" ng-model="previousHistory" placeholder="Previous medical history/surgery history" />
+    <div ui-if="myAccordion == 1">
+        <div class="panel-body">
+            <form>
+                <fieldset>
+                    <div class="form-group">
+                        <label for="intakeDate">Intake Date</label>
+                        <input class="form-control" type="date" id="intakeDate" ng-model="intakeDate"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="currentInjuries">Current Injuries</label>
+                        <input class="form-control" type="textarea" id="currentInjuries" ng-model="currentInjuries"
+                               placeholder="Current Injuries" />
+                    </div>
+                    <div class="form-group">
+                        <label for="previousHistory">Previous medical history/surgery history</label>
+                        <input class="form-control" type="textarea" id="previousHistory" ng-model="previousHistory"
+                               placeholder="Previous medical history/surgery history" />
 
-    <label for="otherMeds">List any medicines or supplements</label>
-    <input type="textarea" id="otherMeds" ng-model="otherMeds" placeholder="List any medicines or supplements" />
-</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="otherMeds">List any medicines or supplements</label>
+                        <input class="form-control" type="textarea" id="otherMeds" ng-model="otherMeds"
+                               placeholder="List any medicines or supplements" />
+                    </div>
+
+                </fieldset>
+            </form>
+        </div>
+    </div>
+        </div>
+    </div>
+
 
 <!--Symptoms from the last 24 hours-->
-<h1 ng-click="lastDayActive()">Last 24 Hours</h1>
-<div ng-show="showLastDay">
-    <h3>Check any that apply in the last 24 hours:</h3>
-    <form>
-        <label for="infection">Infection</label>
-        <input type="checkbox" ng-model="infection" id="infection" />
-        <label for="inflammation">Inflammation</label>
-        <input type="checkbox" ng-model="inflammation" id="inflammation" />
-        <label for="flu">Flu</label>
-        <input type="checkbox" ng-model="flu" id="flu" />
-        <label for="fever">Fever</label>
-        <input type="checkbox" ng-model="fever" id="fever" />
-        <label for="cold">Cold</label>
-        <input type="checkbox" ng-model="cold" id="cold" />
-    </form>
-</div>
+            <div class="panel panel-default">
+                <div class="panel-heading" ui-set="{'myAccordion': 2}">
+                    <h4 class="panel-title">
+                        Last 24 Hours
+                    </h4>
+                </div>
+                <div ui-if="myAccordion == 2">
+                    <div class="panel-body">
+                        <form>
+                            <fieldset>
+                                <h4>Check any that apply in the last 24 hours:</h4>
+                                <div class="form-group">
+                                    <label class="radio-inline" for="infection">Infection</label>
+                                    <input type="radio" ng-model="infection" id="infection" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="radio-inline" for="inflammation">Inflammation</label>
+                                    <input type="radio" ng-model="inflammation" id="inflammation" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="radio-inline" for="flu">Flu</label>
+                                    <input type="radio" ng-model="flu" id="flu" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="radio-inline" for="fever">Fever</label>
+                                    <input type="radio" ng-model="fever" id="fever" />
+                                </div>
+                                <div class="form-group">
+                                    <label class="radio-inline" for="cold">Cold</label>
+                                    <input type="radio" ng-model="cold" id="cold" />
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
 
 <!--Long term medical conditions-->
-<h1 ng-click="conditionsActive()">Medical Conditions</h1>
-<div ng-show="showConditions">
-    <h3>Conditions Already Noted: {{prevDislocations}} {{prevPhlebitis}} {{prevNeckInjuries}}
-        {{prevLowBackPain}} {{prevBloodPressure}} {{prevHeartProblems}} {{prevHeadaches}}
-        {{prevArthritis}} {{prevNerves}} {{prevFainting}}</h3>
-    <h3>Check any of the following that you currently or have ever had:</h3>
-    <form>
-        <label for="dislocations">Dislocations</label>
-        <input type="checkbox" ng-model="dislocations" id="dislocations" />
+        <div class="panel panel-default">
+            <div class="panel-heading" ui-set="{'myAccordion': 3}">
+                <h4 class="panel-title">
+                    Medical Conditions
+                </h4>
+            </div>
+            <div ui-if="myAccordion == 3">
+                <div class="panel-body">
+                    <p>Conditions Already Noted: {{prevDislocations}} {{prevPhlebitis}} {{prevNeckInjuries}}
+                        {{prevLowBackPain}} {{prevBloodPressure}} {{prevHeartProblems}} {{prevHeadaches}}
+                        {{prevArthritis}} {{prevNerves}} {{prevFainting}}</p>
+                    <h4>Check any of the following that you currently or have ever had:</h4>
+                    <form>
+                        <label for="dislocations">Dislocations</label>
+                        <input type="checkbox" ng-model="dislocations" id="dislocations" />
 
-        <label for="phlebitis">Phlebitis</label>
-        <input type="checkbox" ng-model="phlebitis" id="phlebitis" />
+                        <label for="phlebitis">Phlebitis</label>
+                        <input type="checkbox" ng-model="phlebitis" id="phlebitis" />
 
-        <label for="neckInjuries">Neck injuries</label>
-        <input type="checkbox" ng-model="neckInjuries" id="neckInjuries" />
+                        <label for="neckInjuries">Neck injuries</label>
+                        <input type="checkbox" ng-model="neckInjuries" id="neckInjuries" />
 
-        <label for="lowBackPain">Low back pain</label>
-        <input type="checkbox" ng-model="lowBackPain" id="lowBackPain" />
+                        <label for="lowBackPain">Low back pain</label>
+                        <input type="checkbox" ng-model="lowBackPain" id="lowBackPain" />
 
-        <label for="bloodPressure">High blood pressure</label>
-        <input type="checkbox" ng-model="bloodPressure" id="bloodPressure" />
+                        <label for="bloodPressure">High blood pressure</label>
+                        <input type="checkbox" ng-model="bloodPressure" id="bloodPressure" />
 
-        <label for="heartProblems">Heart problems</label>
-        <input type="checkbox" ng-model="heartProblems" id="heartProblems" />
+                        <label for="heartProblems">Heart problems</label>
+                        <input type="checkbox" ng-model="heartProblems" id="heartProblems" />
 
-        <label for="headaches">Headaches</label>
-        <input type="checkbox" ng-model="headaches" id="headaches" />
+                        <label for="headaches">Headaches</label>
+                        <input type="checkbox" ng-model="headaches" id="headaches" />
 
-        <label for="arthritis">Arthritis</label>
-        <input type="checkbox" ng-model="arthritis" id="arthritis">
+                        <label for="arthritis">Arthritis</label>
+                        <input type="checkbox" ng-model="arthritis" id="arthritis">
 
-        <label for="nerves">Numbness/tingling/nerve conditions</label>
-        <input type="checkbox" ng-model="nerves" id="nerves" />
+                        <label for="nerves">Numbness/tingling/nerve conditions</label>
+                        <input type="checkbox" ng-model="nerves" id="nerves" />
 
-        <label for="fainting">Fainting spells</label>
-        <input type="checkbox" ng-model="fainting" id="fainting" />
-    </form>
-</div>
-
+                        <label for="fainting">Fainting spells</label>
+                        <input type="checkbox" ng-model="fainting" id="fainting" />
+                    </form>
+                </div>
+            </div>
+        </div>
 
 <!--Physicians Contact Information-->
 <h1 ng-click="physicianActive()">Physician Contact</h1>
@@ -111,6 +170,9 @@
     <label for="signatureDateUnderAge">Date</label>
     <input type="date" ng-model="signatureDateUnderAge" id="signatureDateUnderAge" />
 </div>
+            </div>
+        </div>
+    </div>
 
 <!--Submit!-->
 <button id="med_submit" ng-click="saveMedical()" type="button">Submit</button>

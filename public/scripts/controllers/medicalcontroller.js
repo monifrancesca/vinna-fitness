@@ -3,51 +3,52 @@ myApp.controller('MedicalController', ['$scope', '$http', 'DataFactory', functio
     $scope.dataFactory = DataFactory;
 
     //variables for accordion
-    $scope.showBasicMed = false;
-    $scope.showLastDay = false;
-    $scope.showConditions = false;
-    $scope.showPhysician = false;
-    $scope.showSignature = false;
+    //$scope.showBasicMed = false;
+    //$scope.showLastDay = false;
+    //$scope.showConditions = false;
+    //$scope.showPhysician = false;
+    //$scope.showSignature = false;
+
+
+    ////Accordion functionality for each section
+    //$scope.basicMedActive = function() {
+    //    $scope.showBasicMed = $scope.showBasicMed === false ? true: false;
+    //    $scope.showLastDay = false;
+    //    $scope.showConditions = false;
+    //    $scope.showPhysician = false;
+    //    $scope.showSignature = false;
+    //};
+    //$scope.lastDayActive = function() {
+    //    $scope.showLastDay = $scope.showLastDay === false ? true: false;
+    //    $scope.showBasicMed = false;
+    //    $scope.showConditions = false;
+    //    $scope.showPhysician = false;
+    //    $scope.showSignature = false;
+    //};
+    //$scope.conditionsActive = function() {
+    //    $scope.showConditions = $scope.showConditions === false ? true: false;
+    //    $scope.showBasicMed = false;
+    //    $scope.showLastDay = false;
+    //    $scope.showPhysician = false;
+    //    $scope.showSignature = false;
+    //};
+    //$scope.physicianActive = function() {
+    //    $scope.showPhysician = $scope.showPhysician === false ? true: false;
+    //    $scope.showBasicMed = false;
+    //    $scope.showLastDay = false;
+    //    $scope.showConditions = false;
+    //    $scope.showSignature = false;
+    //};
+    //$scope.signatureActive = function() {
+    //    $scope.showSignature = $scope.showSignature === false ? true: false;
+    //    $scope.showBasicMed = false;
+    //    $scope.showLastDay = false;
+    //    $scope.showConditions = false;
+    //    $scope.showPhysician = false;
+    //};
 
     //variable for medical conditions
     var conditionsArray = [];
-
-    //Accordion functionality for each section
-    $scope.basicMedActive = function() {
-        $scope.showBasicMed = $scope.showBasicMed === false ? true: false;
-        $scope.showLastDay = false;
-        $scope.showConditions = false;
-        $scope.showPhysician = false;
-        $scope.showSignature = false;
-    };
-    $scope.lastDayActive = function() {
-        $scope.showLastDay = $scope.showLastDay === false ? true: false;
-        $scope.showBasicMed = false;
-        $scope.showConditions = false;
-        $scope.showPhysician = false;
-        $scope.showSignature = false;
-    };
-    $scope.conditionsActive = function() {
-        $scope.showConditions = $scope.showConditions === false ? true: false;
-        $scope.showBasicMed = false;
-        $scope.showLastDay = false;
-        $scope.showPhysician = false;
-        $scope.showSignature = false;
-    };
-    $scope.physicianActive = function() {
-        $scope.showPhysician = $scope.showPhysician === false ? true: false;
-        $scope.showBasicMed = false;
-        $scope.showLastDay = false;
-        $scope.showConditions = false;
-        $scope.showSignature = false;
-    };
-    $scope.signatureActive = function() {
-        $scope.showSignature = $scope.showSignature === false ? true: false;
-        $scope.showBasicMed = false;
-        $scope.showLastDay = false;
-        $scope.showConditions = false;
-        $scope.showPhysician = false;
-    };
 
   //  Using data factory to get previous medical information from the database
   $scope.dataFactory.retrieveMedical().then(function() {
