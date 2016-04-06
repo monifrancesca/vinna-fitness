@@ -59,31 +59,37 @@
                             <fieldset>
                                 <h4>Check any that apply in the last 24 hours:</h4>
                                 <div class="form-group">
-                                    <label class="radio-inline" for="infection">Infection</label>
-                                    <input type="radio" ng-model="infection" id="infection" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="radio-inline" for="inflammation">Inflammation</label>
-                                    <input type="radio" ng-model="inflammation" id="inflammation" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="radio-inline" for="flu">Flu</label>
-                                    <input type="radio" ng-model="flu" id="flu" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="radio-inline" for="fever">Fever</label>
-                                    <input type="radio" ng-model="fever" id="fever" />
-                                </div>
-                                <div class="form-group">
-                                    <label class="radio-inline" for="cold">Cold</label>
-                                    <input type="radio" ng-model="cold" id="cold" />
+                                    <label class="radio-inline">
+                                        <input type="radio" ng-model="infection" />
+                                        Infection
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="radio" ng-model="inflammation" />
+                                        Inflammation
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="radio" ng-model="flu" />
+                                        Flu
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="radio" ng-model="fever" />
+                                        Fever
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="radio" ng-model="cold" />
+                                        Cold
+                                    </label>
+
                                 </div>
                             </fieldset>
                         </form>
                     </div>
                 </div>
             </div>
-
 
 <!--Long term medical conditions-->
         <div class="panel panel-default">
@@ -93,56 +99,89 @@
                 </h4>
             </div>
             <div ui-if="myAccordion == 3">
+                <p>Conditions Already Noted: {{prevDislocations}} {{prevPhlebitis}} {{prevNeckInjuries}}
+                    {{prevLowBackPain}} {{prevBloodPressure}} {{prevHeartProblems}} {{prevHeadaches}}
+                    {{prevArthritis}} {{prevNerves}} {{prevFainting}}</p>
                 <div class="panel-body">
-                    <p>Conditions Already Noted: {{prevDislocations}} {{prevPhlebitis}} {{prevNeckInjuries}}
-                        {{prevLowBackPain}} {{prevBloodPressure}} {{prevHeartProblems}} {{prevHeadaches}}
-                        {{prevArthritis}} {{prevNerves}} {{prevFainting}}</p>
-                    <h4>Check any of the following that you currently or have ever had:</h4>
                     <form>
-                        <label for="dislocations">Dislocations</label>
-                        <input type="checkbox" ng-model="dislocations" id="dislocations" />
+                        <fieldset>
+                            <h4>Check any of the following that you currently or have ever had:</h4>
+                            <div class="form-group">
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="dislocations" />
+                                    Dislocations
+                                </label>
 
-                        <label for="phlebitis">Phlebitis</label>
-                        <input type="checkbox" ng-model="phlebitis" id="phlebitis" />
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="phlebitis" />
+                                    Phlebitis
+                                </label>
 
-                        <label for="neckInjuries">Neck injuries</label>
-                        <input type="checkbox" ng-model="neckInjuries" id="neckInjuries" />
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="neckInjuries" />
+                                    Neck injuries
+                                </label>
 
-                        <label for="lowBackPain">Low back pain</label>
-                        <input type="checkbox" ng-model="lowBackPain" id="lowBackPain" />
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="lowBackPain" />
+                                    Low back pain
+                                </label>
 
-                        <label for="bloodPressure">High blood pressure</label>
-                        <input type="checkbox" ng-model="bloodPressure" id="bloodPressure" />
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="bloodPressure" />
+                                    High blood pressure
+                                </label>
 
-                        <label for="heartProblems">Heart problems</label>
-                        <input type="checkbox" ng-model="heartProblems" id="heartProblems" />
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="heartProblems" />
+                                    Heart problems
+                                </label>
 
-                        <label for="headaches">Headaches</label>
-                        <input type="checkbox" ng-model="headaches" id="headaches" />
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="headaches" />
+                                    Headaches
+                                </label>
 
-                        <label for="arthritis">Arthritis</label>
-                        <input type="checkbox" ng-model="arthritis" id="arthritis">
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="arthritis">
+                                    Arthritis
+                                </label>
 
-                        <label for="nerves">Numbness/tingling/nerve conditions</label>
-                        <input type="checkbox" ng-model="nerves" id="nerves" />
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="nerves" />
+                                    Numbness/tingling/nerve conditions
+                                </label>
 
-                        <label for="fainting">Fainting spells</label>
-                        <input type="checkbox" ng-model="fainting" id="fainting" />
+                                <label class="radio-inline">
+                                    <input type="radio" ng-model="fainting" />
+                                    Fainting spells
+                                </label>
+                            </div>
+
+                        </fieldset>
                     </form>
                 </div>
             </div>
         </div>
 
 <!--Physicians Contact Information-->
-<h1 ng-click="physicianActive()">Physician Contact</h1>
-<div ng-show="showPhysician">
-    <h3>Physicians Name</h3>
-    <label for="physiciansName">Name</label>
-    <input type="text" ng-model="physiciansName" id="physiciansName" />
-    <h3>Physicians Phone Number</h3>
-    <label for="physiciansPhone">Phone Number</label>
-    <input type="number" ng-model="physiciansPhone" id="physiciansPhone" />
-</div>
+    <div class="panel panel-default">
+        <div class="panel-heading" ui-set="{'myAccordion': 3}">
+            <h4 class="panel-title">
+                Physician Contact
+            </h4>
+        </div>
+        <div ui-if="myAccordion == 3">
+            <div class="panel-body">
+                    <h4>Physicians Name</h4>
+                    <label for="physiciansName">Name</label>
+                    <input type="text" ng-model="physiciansName" id="physiciansName" />
+                    <h4>Physicians Phone Number</h4>
+                    <label for="physiciansPhone">Phone Number</label>
+                    <input type="number" ng-model="physiciansPhone" id="physiciansPhone" />
+            </div>
+        </div>
+    </div>
 
 <!--Signature Fields-->
 <h1 ng-click="signatureActive()">Signature</h1>
