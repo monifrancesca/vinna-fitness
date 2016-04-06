@@ -13,12 +13,14 @@
                         <th>Trainer:</th>
                         <th>Location:</th>
                     </tr>
-                    <tr ng-repeat="workout in workouts" ng-click="getWorkout(workout.id)" class="historyRow">
+                    <a>
+                    <tr ng-repeat="workout in workouts" ng-click="getWorkout(workout.id)" class="tableRow">
                         <td>{{workout.date | date:'EEEE, MMMM d, y'}}</td>
                         <td>{{workout.class_type}}</td>
                         <td>{{workout.first_name}} {{workout.last_name}}</td>
                         <td>{{workout.name}}</td>
                     </tr>
+                    </a>
                 </table>
             </div>
         </div>
