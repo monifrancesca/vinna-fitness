@@ -284,3 +284,16 @@ right_hand_length INTEGER
 ALTER TABLE workout_line_items ADD COLUMN reps INTEGER;
 ALTER TABLE workout_line_items RENAME COLUMN worout_id TO workout_id;
 ALTER TABLE exercise ADD COLUMN active_status BOOLEAN;
+
+ALTER TABLE users
+ADD COLUMN google_name varchar(255);
+
+ALTER TABLE users
+RENAME COLUMN email TO google_email;
+
+ALTER TABLE users ALTER COLUMN google_id DROP NOT NULL;
+
+ALTER TABLE users ALTER COLUMN google_token DROP NOT NULL;
+
+INSERT INTO users (first_name, last_name, google_email, admin)
+VALUES ('Your First Name', 'Your Last Name', 'Your email', TRUE);
