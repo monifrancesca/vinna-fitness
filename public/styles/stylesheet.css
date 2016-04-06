@@ -6,3 +6,15 @@
     display: inline-block;
     margin-right: 5%;
 }
+
+.exercise-btn {
+    float: right;
+}
+
+.manageexhead {
+    display: inline-block;
+}
+
+.historyRow:hover {
+    background-color: #2ac845;
+}

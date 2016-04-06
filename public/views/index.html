@@ -11,11 +11,13 @@
     <script type="text/javascript" src="../vendors/angular-route.min.js"></script>
     <script type="text/javascript" src="../vendors/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
     <script type="text/javascript" src="../scripts/app.js"></script>
+    <script type="text/javascript" src="../scripts/factories/authFactory.js"></script>
     <script type="text/javascript" src="../scripts/factories/data-factory.js"></script>
+    <script type="text/javascript" src="../scripts/controllers/navController.js"></script>
+    <script type="text/javascript" src="../scripts/controllers/authController.js"></script>
     <script type="text/javascript" src="../scripts/controllers/admincontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/clientcontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/fmscontroller.js"></script>
-    <script type="text/javascript" src="../scripts/controllers/logincontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/medicalcontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/personalcontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/personal-history-controller.js"></script>
@@ -26,10 +28,14 @@
     <script type="text/javascript" src="../scripts/controllers/workoutdetailscontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/workoutdashboardcontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/workouthistorycontroller.js"></script>
+    <script type="text/javascript" src="../scripts/controllers/fms-details-controller.js"></script>
+    <script type="text/javascript" src="../scripts/controllers/existing-fms-controller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/maincontroller.js"></script>
 
 </head>
 <body ng-app="myApp">
+
+<div ui-yield-to="modals"></div>
 
     <div class="sidebar sidebar-left">
         <div class="scrollable">
@@ -63,7 +69,9 @@
 
             <div class="btn-group pull-right">
                 <div class="btn btn-navbar">
-                    Logout
+                    <ul ng-controller="NavController as nav">
+                        <li><a href="#" ng-click="nav.logout()">Logout</a></li>
+                    </ul>
                 </div>
             </div>
         </div>

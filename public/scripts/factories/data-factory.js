@@ -21,6 +21,10 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var exercises = [];
   var location = undefined;
   var selectedClient = {first_name: "Test", last_name: "Person", id: 2};
+  var facTrainerList = [];
+  var facFMScreens = [];
+  var facFMScreen = {};
+  var facSelectedFMS = undefined;
   var clients = [];
   var allExercises = [];
 
@@ -33,7 +37,39 @@ myApp.factory('DataFactory', ['$http', function($http) {
     });
   };
 
-// post personal info data into the database
+  var fillClassList = function () {
+    var promise = $http.get('/workout/classlist/').then(function(response) {
+    classList = response.data;
+        console.log(classList);
+    });
+    return promise;
+  };
+
+  var facGetTrainers = function() {
+    var promise = $http.get('/admin/trainers/').then(function (response) {
+      facTrainerList = response.data;
+    });
+    return promise;
+  };
+
+  var facNewTrainer = function(data) {
+    console.log('posting new trainer data');
+    var promise = $http.post('/admin/trainers', data).then(function(response) {
+      console.log('match data saved');
+      console.log(response);
+    });
+    return promise;
+  };
+
+  var facUpdateTrainer = function(data) {
+    console.log('updating trainer data');
+    var promise = $http.put('/admin/trainers', data).then(function(response) {
+      console.log('trainer updated');
+      console.log(response);
+    });
+    return promise;
+  };
+
   var retrieveWorkouts = function() {
     var promise = $http.get('/workout/history/' + selectedClient.id).then(function (response) {
       workouts = response.data;
@@ -41,9 +77,24 @@ myApp.factory('DataFactory', ['$http', function($http) {
     return promise;
   };
 
+  var facRetrieveScreens = function() {
+    var promise = $http.get('/fms/history/' + selectedClient.id).then(function (response) {
+      console.log('response.data: '+response.data);
+      facFMScreens = response.data;
+    });
+    return promise;
+  };
+
   var retrieveWorkout = function() {
     var promise = $http.get('/workout/detail/' + selectedWorkout).then(function (response) {
       workout = response.data[0];
+    });
+    return promise;
+  };
+
+  var facRetrieveFMS = function() {
+    var promise = $http.get('/fms/detail/' + facSelectedFMS).then(function (response) {
+      facFMScreen = response.data[0];
     });
     return promise;
   };
@@ -242,6 +293,18 @@ myApp.factory('DataFactory', ['$http', function($http) {
   //PUBLIC
 
   var dataFactoryOutput = {
+    newTrainer: function(data){
+      return facNewTrainer(data);
+    },
+    updateTrainer: function(data){
+      return facUpdateTrainer(data);
+    },
+    getTrainers: function() {
+      return facGetTrainers();
+    },
+    trainerList: function() {
+      return facTrainerList;
+    },
     factorySaveNewWorkout: function(workout) {
       return saveNewWorkout(workout);
     },
@@ -324,8 +387,15 @@ myApp.factory('DataFactory', ['$http', function($http) {
       selectedWorkout = id;
       return selectedWorkout;
     },
+    selectedFMS: function(id) {
+      facSelectedFMS = id;
+      return facSelectedFMS;
+    },
     factoryCheckWorkout: function() {
       return selectedWorkout;
+    },
+    checkFMS: function() {
+      return facSelectedFMS;
     },
     factoryGetClassList: function() {
       return fillClassList();
@@ -347,6 +417,12 @@ myApp.factory('DataFactory', ['$http', function($http) {
     factoryWorkouts: function() {
       return workouts;
     },
+    fmScreens: function() {
+      return facFMScreens;
+    },
+    retrieveScreens: function() {
+      return facRetrieveScreens();
+    },
     factoryRetrieveExercises: function() {
       return retrieveExercises();
     },
@@ -356,8 +432,14 @@ myApp.factory('DataFactory', ['$http', function($http) {
     factoryRetrieveWorkout: function() {
       return retrieveWorkout();
     },
+    retrieveFMS: function() {
+      return facRetrieveFMS();
+    },
     factoryWorkout: function() {
       return workout;
+    },
+    fmScreen: function() {
+      return facFMScreen;
     },
     factoryReturnSelectedClient: function() {
       return selectedClient;

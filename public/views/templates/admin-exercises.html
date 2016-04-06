@@ -1,33 +1,65 @@
-<h1>Manage Exercises</h1>
 
-<h2>All Exercises</h2>
-
-<table>
-    <tr>
-        <th>Exercise Name</th>
-        <th>Exercise Category</th>
-        <th>Current Status</th>
-        <th>Change Status</th>
-    </tr>
-    <tr ng-repeat="exercise in exercises">
-        <td>{{exercise.name}}</td>
-        <td>{{exercise.category}}</td>
-        <td>
-            <span ng-if="exercise.active_status == true">Active</span>
-            <span ng-if="exercise.active_status == false">Inactive</span>
-        </td>
-        <td>
-            <button ng-if="exercise.active_status == true" ng-click="makeExerciseInactive(exercise.id)">Set As Inactive</button>
-            <button ng-if="exercise.active_status == false" ng-click="makeExerciseActive(exercise.id)">Set As Active</button>
-        </td>
-    </tr>
-</table>
-
-<form>
-    <h3>Add a New Exercise</h3>
-    <label>Name: </label>
-    <input type="text" name="exerciseName" ng-model="exerciseName" placeholder=""/>
-    <label>Category: </label>
-    <input type="text" name="exerciseCategory" ng-model="exerciseCategory" placeholder=""/>
-    <button ng-click="addNewExercise()">Add Exercise</button>
-</form>
+<div class="scrollable">
+    <div class="scrollable-content">
+        <div class="list-group">
+            <div class="list-group-item scrollable-header">
+                <h1 class="manageexhead">Manage Exercises</h1>
+                <a href ui-turn-on="modal1" class="btn btn-default exercise-btn">Add New Exercise</a>
+            </div>
+            <div class="list-group-item">
+                <table class="table">
+                    <tr>
+                        <th>Exercise Name</th>
+                        <th>Exercise Category</th>
+                        <th>Current Status</th>
+                        <th>Change Status</th>
+                    </tr>
+                        <tr ng-repeat="exercise in exercises">
+                            <td>{{exercise.name}}</td>
+                            <td>{{exercise.category}}</td>
+                            <td>
+                                <span ng-if="exercise.active_status == true">Active</span>
+                                <span ng-if="exercise.active_status == false">Inactive</span>
+                            </td>
+                            <td>
+                                <button class="btn" ng-if="exercise.active_status == true" ng-click="makeExerciseInactive(exercise.id)">Set As Inactive</button>
+                                <button class="btn" ng-if="exercise.active_status == false" ng-click="makeExerciseActive(exercise.id)">Set As Active</button>
+                            </td>
+                        </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal" ui-if="modal1" ui-state='modal1'>
+        <div class="modal-backdrop in"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close"
+                            ui-turn-off="modal1">&times;</button>
+                    <h4 class="modal-title">New Exercise</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <fieldset>
+                            <div class="form-group">
+                                <label>Name: </label>
+                                <input class="form-control" type="text" name="exerciseName" ng-model="newExercise.exerciseName" placeholder=""/>
+                            </div>
+                            <div class="form-group">
+                                <label>Category: </label>
+                                <input class="form-control" type="text" name="exerciseCategory" ng-model="newExercise.exerciseCategory" placeholder=""/>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="addNewExercise()">Add Exercise</button>
+                    <button ui-turn-off="modal1" class="btn btn-default">Finished Adding Exercises</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

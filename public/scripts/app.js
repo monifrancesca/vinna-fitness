@@ -3,9 +3,10 @@ var myApp = angular.module('myApp', ['ngRoute', 'mobile-angular-ui']);
 myApp.config(['$routeProvider', function($routeProvider) {
 
   $routeProvider
-    .when('/main', {
-      templateUrl: '/views/templates/login-dashboard.html',
-      controller: 'LoginController'
+    .when('/login', {
+      templateUrl: '/views/templates/login.html',
+      controller: 'AuthController',
+      controllerAs: 'auth'
     })
     .when('/admin', {
       templateUrl: '/views/templates/admin.html',
@@ -27,10 +28,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/templates/admin-location.html',
       controller: 'AdminController'
     })
-    .when('/adminmanage', {
-      templateUrl: '/views/templates/admin-manage-admins.html',
-      controller: 'AdminController'
-    })
     .when('/admintrainers', {
       templateUrl: '/views/templates/admin-trainers.html',
       controller: 'AdminController'
@@ -50,6 +47,14 @@ myApp.config(['$routeProvider', function($routeProvider) {
     .when('/fms', {
       templateUrl: '/views/templates/fms.html',
       controller: 'FMSController'
+    })
+    .when('/existingFms', {
+      templateUrl: '/views/templates/existing-fms.html',
+      controller: 'ExistingFMSController'
+    })
+    .when('/fmsDetails', {
+      templateUrl: '/views/templates/fms-details.html',
+      controller: 'FmsDetailsController'
     })
     .when('/medical', {
       templateUrl: '/views/templates/medical-history.html',
@@ -80,6 +85,6 @@ myApp.config(['$routeProvider', function($routeProvider) {
       controller: 'WorkoutDetailsController'
     })
     .otherwise({
-        redirectTo: 'main'
+        redirectTo: 'login'
     });
 }]);

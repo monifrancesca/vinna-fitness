@@ -1,46 +1,57 @@
-<h1>Past Workout</h1>
-
-<h3>{{client.first_name}} {{client.last_name}}</h3>
-
-<p>Date: {{workout.date | date:'EEEE, MMMM d, y'}}</p>
-<p>Location: {{workout.name}}</p>
-<p>Class Type: {{workout.class_type}}</p>
-<p>Trainer: {{workout.first_name}} {{workout.last_name}}</p>
-
-<p>Warm-Up: {{workout.warmup_notes}}</p>
-
-<table>
-    <tr>
-        <th>Name:</th>
-        <th>Sets:</th>
-        <th>Reps:</th>
-        <th>Intensity:</th>
-    </tr>
-    <tr ng-repeat="exercise in exercises">
-        <td>{{exercise.name}}</td>
-        <td>{{exercise.sets}}</td>
-        <td>
-            <span ng-if="exercise.time != null && exercise.reps == null &&
-           exercise.distance == null">{{exercise.time}} sec</span>
-            <span ng-if="exercise.time == null && exercise.reps != null &&
-           exercise.distance == null">{{exercise.reps}} reps</span>
-            <span ng-if="exercise.time == null && exercise.reps == null &&
-           exercise.distance != null">{{exercise.distance}} meters</span>
-        </td>
-        <td >
-            <span ng-if="exercise.body_weight != null && exercise.intensity_kgs == null &&
-           exercise.intensity_lbs == null">Body Weight</span>
-            <span ng-if="exercise.body_weight == null && exercise.intensity_kgs != null &&
-           exercise.intensity_lbs == null">{{exercise.intensity_kgs}}kgs</span>
-            <span ng-if="exercise.body_weight == null && exercise.intensity_kgs == null &&
-           exercise.intensity_lbs != null">{{exercise.intensity_lbs}}lbs</span>
-            <span ng-if="exercise.body_weight == null && exercise.intensity_kgs == null &&
-           exercise.intensity_lbs == null">N/A</span>
-        </td>
-    </tr>
-</table>
-
-<p>Stretching: {{workout.stretching}}</p>
-<p>Notes: {{workout.notes}}</p>
-
+<div class="scrollable">
+    <div class="scrollable-content">
+        <div class="list-group">
+            <div class="list-group-item scrollable-header">
+                <h1>Past Workout</h1>
+                <h4>{{client.first_name}} {{client.last_name}}</h4>
+            </div>
+            <div class="list-group-item">
+                <p><label>Date:</label> {{workout.date | date:'EEEE, MMMM d, y'}}</p>
+                <p><label>Location:</label> {{workout.name}}</p>
+                <p><label>Type:</label>  {{workout.class_type}}</p>
+                <p><label>Trainer:</label> {{workout.first_name}} {{workout.last_name}}</p>
+            </div>
+            <div class="list-group-item">
+                <p><label>Warm-Up:</label> {{workout.warmup_notes}}</p>
+            </div>
+            <div class="list-group-item">
+            <label>Exercises</label>
+                <table class="table">
+                    <tr>
+                        <th>Name:</th>
+                        <th>Sets:</th>
+                        <th>Reps:</th>
+                        <th>Intensity:</th>
+                    </tr>
+                    <tr ng-repeat="exercise in exercises">
+                        <td>{{exercise.name}}</td>
+                        <td>{{exercise.sets}}</td>
+                        <td>
+                            <span ng-if="exercise.time != null && exercise.reps == null &&
+                           exercise.distance == null">{{exercise.time}} sec</span>
+                            <span ng-if="exercise.time == null && exercise.reps != null &&
+                           exercise.distance == null">{{exercise.reps}} reps</span>
+                            <span ng-if="exercise.time == null && exercise.reps == null &&
+                           exercise.distance != null">{{exercise.distance}} meters</span>
+                        </td>
+                        <td>
+                            <span ng-if="exercise.body_weight != null && exercise.intensity_kgs == null &&
+                           exercise.intensity_lbs == null">Body Weight</span>
+                            <span ng-if="exercise.body_weight == null && exercise.intensity_kgs != null &&
+                           exercise.intensity_lbs == null">{{exercise.intensity_kgs}}kgs</span>
+                            <span ng-if="exercise.body_weight == null && exercise.intensity_kgs == null &&
+                           exercise.intensity_lbs != null">{{exercise.intensity_lbs}}lbs</span>
+                            <span ng-if="exercise.body_weight == null && exercise.intensity_kgs == null &&
+                           exercise.intensity_lbs == null">N/A</span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="list-group-item">
+                <p><label>Stretching:</label> {{workout.stretching}}</p>
+                <p><label>Notes:</label> {{workout.notes}}</p>
+            </div>
+        </div>
+    </div>
+</div>
 
