@@ -4,6 +4,8 @@ myApp.controller('AdminExerciseController', ['$scope', '$location', '$http', 'Da
 
   $scope.exercises = [];
 
+  $scope.newExercise = {};
+
   $scope.dataFactory.factoryRetrieveAllExercises().then(function() {
     $scope.exercises = $scope.dataFactory.factoryAllExercises();
   });
@@ -23,18 +25,13 @@ myApp.controller('AdminExerciseController', ['$scope', '$location', '$http', 'Da
   };
 
   $scope.addNewExercise = function() {
-    var newExercise = {
-      name: $scope.exerciseName,
-      category: $scope.exerciseCategory
-    };
-
-    $scope.dataFactory.factoryAddExercise(newExercise);
+    console.log('This is the New Exercise:', $scope.newExercise);
+    $scope.dataFactory.factoryAddExercise($scope.newExercise);
     $scope.dataFactory.factoryRetrieveAllExercises().then(function() {
       $scope.exercises = $scope.dataFactory.factoryAllExercises();
+      $scope.newExercise.exerciseName = '';
+      $scope.newExercise.exerciseCategory = '';
     });
-
-    $scope.exerciseName = '';
-    $scope.exerciseCategory = '';
   }
 
 }]);

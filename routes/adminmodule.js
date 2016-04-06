@@ -206,8 +206,8 @@ router.post('/newexercise', function(req, res) {
   console.log(req.body);
 
   var newExercise = {
-    name: req.body.name,
-    category: req.body.category,
+    name: req.body.exerciseName,
+    category: req.body.exerciseCategory,
     active_status: true
   };
 
