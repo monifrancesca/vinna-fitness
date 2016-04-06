@@ -15,6 +15,7 @@
     display: inline-block;
 }
 
-.historyRow:hover {
-    background-color: #2ac845;
+.tableRow:hover {
+    background-color: #f7f7f7;
+    cursor: pointer;
 }

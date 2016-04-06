@@ -68,10 +68,8 @@
             </div>
 
             <div class="btn-group pull-right">
-                <div class="btn btn-navbar">
-                    <ul ng-controller="NavController as nav">
-                        <li><a href="#" ng-click="nav.logout()">Logout</a></li>
-                    </ul>
+                <div class="btn btn-navbar" ng-controller="NavController as nav" ng-click="nav.logout()">
+                    Logout
                 </div>
             </div>
         </div>
