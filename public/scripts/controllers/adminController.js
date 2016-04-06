@@ -2,6 +2,8 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', function(
 
   $scope.dataFactory = DataFactory;
 
+  $scope.flags = [];
+
   $scope.allTrainers = [];
   $scope.selected = null;
   $scope.trainerInfo = {
