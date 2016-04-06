@@ -1,38 +1,329 @@
 <!--fms intake info-->
 <h1>Today's date:</h1>
-<label for="handDominance">Hand dominance</label>
-<input type="text" id="handDominance" />
-right or Left
-<label for="swingDominance">Swing dominance</label>
-<input type="text" id="swingDominance" />
-right or left
-<label for="legDominance">Leg dominance</label>
-<input type="text" id="legDominance" />
-right or left
-<label for="throwDominance">Throw dominance</label>
-<input type="text" id="throwDominance" />
-right or left
-<button type="button">Submit</button>
+<form>
+  <div class="date">
+    <label>Date: </label>
+    <input type="date" ng-model="fmsData.date"/>
+  </div>
 
-<!--fms test-->
-3 columns:
-Test
-Score
-Dysfunction
+  <div id="dominance">
+    <h2 ng-click="showHideDominance()">{{dominanceHeader}}</h2>
+    <div class="wrapper" ng-show="dominanceStatus">
+      <label>Hand Dominance: </label>
+      <input type="radio" ng-model="fmsData.handDominance" value="left"/>Left
+      <input type="radio" ng-model="fmsData.handDominance" value="right"/>Right<br>
 
-// next row
-// under test
-1. Deep Squat
-Toe Touch test
-checkbox Able
-checkbox Not able
+      <label>Leg Dominance: </label>
+      <input type="radio" ng-model="fmsData.legDominance" value="left"/>Left
+      <input type="radio" ng-model="fmsData.legDominance" value="right"/>Right<br>
 
-// under score
-small text field
-small text field
-small text field
-small text field
+      <label>Swing Dominance: </label>
+      <input type="radio" ng-model="fmsData.swingDominance" value="left"/>Left
+      <input type="radio" ng-model="fmsData.swingDominance" value="right"/>Right<br>
 
-// under dysfunction
-open text field
+      <label>Throw Dominance: </label>
+      <input type="radio" ng-model="fmsData.throwDominance" value="left"/>Left
+      <input type="radio" ng-model="fmsData.throwDominance" value="right"/>Right<br>
+      <button ng-click="showHideDominance()">Save</button>
+    </div>
+  </div>
 
+{{fmsData.handDominance}}<br>
+{{fmsData.legDominance}}<br>
+{{fmsData.swingDominance}}<br>
+{{fmsData.throwDominance}}<br>
+
+  <div id="deep-squat">
+    <h2 ng-click="showHideDeepSquat()">{{deepSquatHeader}}</h2>
+    <div class="wrapper" ng-hide="deepSquatStatus">
+      <label>Toe Touch Test: </label>
+      <input type="radio" ng-model="fmsData.toeTouch" value="true"/>Able
+      <input type="radio" ng-model="fmsData.toeTouch" value="false"/>Not Able<br>
+
+      <label>Deep Squat: </label>
+      <input type="radio" ng-model="fmsData.deepSquat" value="3"/>3
+      <input type="radio" ng-model="fmsData.deepSquat" value="2"/>2
+      <input type="radio" ng-model="fmsData.deepSquat" value="1"/>1
+      <input type="radio" ng-model="fmsData.deepSquat" value="0"/>0<br>
+
+      <label>Dysfunction: </label>
+      <input type="text" ng-model="fmsData.deepSquatDF">
+
+      <p>Grading Criteria 3:
+        <br>-Upper torso is parallel with tibia or toward vertical
+        <br>-Femur below horizontal
+        <br>-Knees aligned over feet
+        <br>-Dowel aligned over feet</p>
+      <p>Grading Criteria 2:
+        <br>-Upper torso is parralel with tibia or toward vertical
+        <br>-Femur below horizontal
+        <br>-Knees aligned over feet
+        <br>-Dowel aligned over feet on a 2x4</p>
+      <p>Grading Criteria 1:
+        <br>Tibia and upper torso are not parallel
+        <br>-Femur not below horizontal
+        <br>-Knees not aligned over feet
+        <br>-Lumbar flexion noted</p>
+
+      <button ng-click="showHideDeepSquat()">Save</button>
+    </div>
+  </div>
+
+  {{fmsData.toeTouch}}
+  {{fmsData.deepSquat}}
+  {{fmsData.deepSquatDF}}
+
+  <div id="hurdle-step">
+    <h2 ng-click="showHideHurdleStep()">{{hurdleStepHeader}}</h2>
+    <div class="wrapper" ng-hide="hurdleStepStatus">
+      <p>Inches: {{Placeholder}}</p>
+
+      <label>Left Leg Up: </label>
+      <input type="radio" ng-model="fmsData.leftLegUp" value="3"/>3
+      <input type="radio" ng-model="fmsData.leftLegUp" value="2"/>2
+      <input type="radio" ng-model="fmsData.leftLegUp" value="1"/>1
+      <input type="radio" ng-model="fmsData.leftLegUp" value="0"/>0<br>
+
+      <label>Right Leg Up: </label>
+      <input type="radio" ng-model="fmsData.rightLegUp" value="3"/>3
+      <input type="radio" ng-model="fmsData.rightLegUp" value="2"/>2
+      <input type="radio" ng-model="fmsData.rightLegUp" value="1"/>1
+      <input type="radio" ng-model="fmsData.rightLegUp" value="0"/>0<br>
+
+      <label>Hurdle Step: </label>
+      <input type="radio" ng-model="fmsData.hurdleStep" value="3"/>3
+      <input type="radio" ng-model="fmsData.hurdleStep" value="2"/>2
+      <input type="radio" ng-model="fmsData.hurdleStep" value="1"/>1
+      <input type="radio" ng-model="fmsData.hurdleStep" value="0"/>0<br>
+
+      <label>Dysfunction: </label>
+      <input type="text" ng-model="fmsData.hurdleDF">
+
+      <p>Grading Criteria 3:
+        <br>-The hips, knees & ankles remain aligned in the sagital plane
+        <br>-Minimal movement in the lumbar spine
+        <br>-Dowel & hurdle remain parallel</p>
+      <p>Grading Criteria 2:
+        <br>-Alignment is lost between hips, knees & ankles
+        <br>-Movement in the lumbar spine
+        <br>-Dowel & hurdle do not remain parallel</p>
+      <p>Grading Criteria 1:
+        <br>Contact with foot & hurdle
+        <br>-Loss of balance at any time</p>
+
+      <button ng-click="showHideHurdleStep()">Save</button>
+    </div>
+  </div>
+
+  {{fmsData.leftLegUp}}
+  {{fmsData.rightLegUp}}
+  {{fmsData.hurdleStep}}
+  {{fmsData.hurdleDF}}
+
+  <div id="in-line-lunge">
+    <h2 ng-click="showHideInLineLunge()">{{inLineLungeHeader}}</h2>
+    <div class="wrapper" ng-hide="inLineLungeStatus">
+      <p>Inches: {{Placeholder}}</p>
+
+      <label>Left Leg Forward: </label>
+      <input type="radio" ng-model="fmsData.leftLegForward" value="3"/>3
+      <input type="radio" ng-model="fmsData.leftLegForward" value="2"/>2
+      <input type="radio" ng-model="fmsData.leftLegForward" value="1"/>1
+      <input type="radio" ng-model="fmsData.leftLegForward" value="0"/>0<br>
+
+      <label>Right Leg Forward: </label>
+      <input type="radio" ng-model="fmsData.rightLegForward" value="3"/>3
+      <input type="radio" ng-model="fmsData.rightLegForward" value="2"/>2
+      <input type="radio" ng-model="fmsData.rightLegForward" value="1"/>1
+      <input type="radio" ng-model="fmsData.rightLegForward" value="0"/>0<br>
+
+      <label>In-line Lunge: </label>
+      <input type="radio" ng-model="fmsData.inLineLunge" value="3"/>3
+      <input type="radio" ng-model="fmsData.inLineLunge" value="2"/>2
+      <input type="radio" ng-model="fmsData.inLineLunge" value="1"/>1
+      <input type="radio" ng-model="fmsData.inLineLunge" value="0"/>0<br>
+
+      <label>Dysfunction: </label>
+      <input type="text" ng-model="fmsData.lungeDF">
+
+      <p>Grading Criteria 3:
+        <br>-Minimal to no torso movement
+        <br>-Feet remain in sagital plane on the 2x6
+        <br>-Knee touches 2x6 behind the heel of front foot</p>
+      <p>Grading Criteria 2:
+        <br>-Movement noted in torso
+        <br>-Feet do not remain in sagital plane on the 2x6
+        <br>-Knee does not touch 2x6 behind the heel of front foot</p>
+      <p>Grading Criteria 1:
+        <br>Loss of balance at any time</p>
+
+      <button ng-click="showHideInLineLunge()">Save</button>
+    </div>
+  </div>
+
+  {{fmsData.leftLegForward}}
+  {{fmsData.rightLegForward}}
+  {{fmsData.inLineLunge}}
+  {{fmsData.lungeDF}}
+
+  <div id="shoulder-mobility">
+    <h2 ng-click="showHideShoulderMobility()">{{shoulderMobilityHeader}}</h2>
+    <div class="wrapper" ng-hide="shoulderMobilityStatus">
+      <p>Distance (tip of middle finger to distal crease): {{Placeholder}}</p>
+      <p>Left Top: {{Placeholder}}</p>
+      <p>Right Top: {{Placeholder}}</p>
+
+      <label>Impingement Test Left: </label>
+      <input type="radio" ng-model="fmsData.leftImpingement" value="3"/>3
+      <input type="radio" ng-model="fmsData.leftImpingement" value="2"/>2
+      <input type="radio" ng-model="fmsData.leftImpingement" value="1"/>1
+      <input type="radio" ng-model="fmsData.leftImpingement" value="0"/>0<br>
+
+      <label>Impingement Test Right: </label>
+      <input type="radio" ng-model="fmsData.rightImpingement" value="3"/>3
+      <input type="radio" ng-model="fmsData.rightImpingement" value="2"/>2
+      <input type="radio" ng-model="fmsData.rightImpingement" value="1"/>1
+      <input type="radio" ng-model="fmsData.rightImpingement" value="0"/>0<br>
+
+      <label>Shoulder Mobility: </label>
+      <input type="radio" ng-model="fmsData.shoulderMobility" value="3"/>3
+      <input type="radio" ng-model="fmsData.shoulderMobility" value="2"/>2
+      <input type="radio" ng-model="fmsData.shoulderMobility" value="1"/>1
+      <input type="radio" ng-model="fmsData.shoulderMobility" value="0"/>0<br>
+
+      <label>Dysfunction: </label>
+      <input type="text" ng-model="fmsData.shoulderDF">
+
+      <p>Grading Criteria 3:
+        <br>-Fists should be within one hand length</p>
+      <p>Grading Criteria 2:
+        <br>-Fists should be withing one and a half hand lengths</p>
+      <p>Grading Criteria 1:
+        <br>Fists fall greater than one and a half hand lengths</p>
+
+        <button ng-click="showHideShoulderMobility()">Save</button>
+    </div>
+  </div>
+
+  {{fmsData.leftImpingement}}
+  {{fmsData.rightImpingement}}
+  {{fmsData.shoulderMobility}}
+  {{fmsData.shoulderDF}}
+
+  <div id="act-str-leg-raise">
+    <h2 ng-click="showHideActiveStraightLeg()">{{activeStraightLegHeader}}</h2>
+    <div class="wrapper" ng-hide="activeStraightLegStatus">
+      <p>L: {{Placeholder}}</p>
+      <p>R: {{Placeholder}}</p>
+
+      <label>Active Straight Leg Raise: </label>
+      <input type="radio" ng-model="fmsData.activeStraightLeg" value="3"/>3
+      <input type="radio" ng-model="fmsData.activeStraightLeg" value="2"/>2
+      <input type="radio" ng-model="fmsData.activeStraightLeg" value="1"/>1
+      <input type="radio" ng-model="fmsData.activeStraightLeg" value="0"/>0<br>
+
+      <label>Dysfunction: </label>
+      <input type="text" ng-model="fmsData.legRaiseDF">
+
+      <p>Grading Criteria 3:
+        <br>-Malleoi resides between mid-thigh and ASIS</p>
+      <p>Grading Criteria 2:
+        <br>-Malleoi resides between mid-thigh and mid patella</p>
+      <p>Grading Criteria 1:
+        <br>-Malleoi resides below mid-patella</p>
+
+      <button ng-click="showHideActiveStraightLeg()">Save</button>
+    </div>
+  </div>
+
+  {{fmsData.activeStraightLeg}}
+  {{fmsData.legRaiseDF}}
+
+  <div id="trunk-push-up">
+    <h2 ng-click="showHideTrunkPushUp()">{{trunkPushUpHeader}}</h2>
+    <div class="wrapper" ng-hide="trunkPushUpStatus">
+      <p>Prone Press Up Test: {{Placeholder}}</p>
+
+      <label>Trunk Stability Push Up: </label>
+      <input type="radio" ng-model="fmsData.trunkPushUp" value="3"/>3
+      <input type="radio" ng-model="fmsData.trunkPushUp" value="2"/>2
+      <input type="radio" ng-model="fmsData.trunkPushUp" value="1"/>1
+      <input type="radio" ng-model="fmsData.trunkPushUp" value="0"/>0<br>
+
+      <label>Dysfunction: </label>
+      <input type="text" ng-model="fmsData.trunkDF">
+
+      <p>Grading Criteria 3:
+        <br>-Males perform 1 rep with the thumbs at center of forehead
+        <br>-Females perform 1 rep with thumbs in line with the chin</p>
+      <p>Grading Criteria 2:
+        <br>-Males perform 1 rep with thumbs in line with the chin
+        <br>-Females perform 1 rep with thumbs in line with the clavicle</p>
+      <p>Grading Criteria 1:
+        <br>-Males unable to perform 1 rep with hands in line with chin
+        <br>-Females unable to perform 1 rep with thumbs in line with clavicle</p>
+
+      <button ng-click="showHideTrunkPushUp()">Save</button>
+    </div>
+  </div>
+
+  {{fmsData.trunkPushUp}}
+  {{fmsData.trunkDF}}
+
+  <div id="rotary-stability">
+    <h2 ng-click="showHideRotaryStability()">{{rotaryStabilityHeader}}</h2>
+    <div class="wrapper" ng-hide="rotaryStabilityStatus">
+      <p>Kneeling Lumbar Flexion Test: {{Placeholder}}</p>
+
+      <label>Left Up: </label>
+      <input type="radio" ng-model="fmsData.rotaryLeftUp" value="3"/>3
+      <input type="radio" ng-model="fmsData.rotaryLeftUp" value="2"/>2
+      <input type="radio" ng-model="fmsData.rotaryLeftUp" value="1"/>1
+      <input type="radio" ng-model="fmsData.rotaryLeftUp" value="0"/>0<br>
+
+      <label>Right Up: </label>
+      <input type="radio" ng-model="fmsData.rotaryRightUp" value="3"/>3
+      <input type="radio" ng-model="fmsData.rotaryRightUp" value="2"/>2
+      <input type="radio" ng-model="fmsData.rotaryRightUp" value="1"/>1
+      <input type="radio" ng-model="fmsData.rotaryRightUp" value="0"/>0<br>
+
+      <label>Rotary Stability Quadruped: </label>
+      <input type="radio" ng-model="fmsData.rotaryStability" value="3"/>3
+      <input type="radio" ng-model="fmsData.rotaryStability" value="2"/>2
+      <input type="radio" ng-model="fmsData.rotaryStability" value="1"/>1
+      <input type="radio" ng-model="fmsData.rotaryStability" value="0"/>0<br>
+
+      <label>Dysfunction: </label>
+      <input type="text" ng-model="fmsData.rotaryDF">
+
+      <p>Grading Criteria 3:
+        <br>-Performs 1 unilateral rep while keeping torso to board
+        <br>-Knee & Elbow touch in line with the board</p>
+      <p>Grading Criteria 2:
+        <br>-Performs 1 diagonal rep while keeping torso parallel to board
+        <br>-Knee & elbow touch in line with the board</p>
+      <p>Grading Criteria 1:
+        <br>-unable to perform diagonal repetitions</p>
+
+      <button ng-click="showHideRotaryStability()">Save</button>
+    </div>
+  </div>
+
+  {{fmsData.rotaryLeftUp}}
+  {{fmsData.rotaryRightUp}}
+  {{fmsData.rotaryStability}}
+  {{fmsData.rotaryDF}}
+
+  <div id="total-fms">
+    <h2 ng-click="showHideTotalFms()">{{totalFmsHeader}}</h2>
+    <div class="wrapper" ng-hide="totalFmsStatus">
+
+      <label>Total Score: </label>
+      <input type="text" ng-model="fmsData.total">
+
+    </div>
+  </div>
+
+  <button ng-click="sendData()">Submit</button>
+  <button ng-click="getData()">Get</button>
+</form>

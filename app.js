@@ -2,15 +2,28 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var path = require('path');
-//add in route modules
 
+//route modules
+var admin = require('./routes/adminmodule');
+var client = require('./routes/clientmodule');
+var fms = require('./routes/fmsmodule');
+var login = require('./routes/loginmodule');
+var medical = require('./routes/medicalmodule');
+var personal = require('./routes/personalmodule');
+var personalhistory = require('./routes/personalhistorymodule');
+var workout = require('./routes/workoutmodule');
 
-// catch-all route for static files
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-// get routes
-
+app.use('/admin', admin);
+app.use('/client', client);
+app.use('/fms', fms);
+app.use('/login', login);
+app.use('/medical', medical);
+app.use('/personal', personal);
+app.use('/personalhistory', personalhistory);
+app.use('/workout', workout);
 
 app.use(express.static('public'));
 app.use(express.static('public/views'));
@@ -19,8 +32,6 @@ app.use(express.static('public/scripts/controllers'));
 app.use(express.static('public/scripts/factories'));
 app.use(express.static('public/styles'));
 app.use(express.static('public/vendors'));
-
-
 
 app.set('port', process.env.PORT || 5000);
 
