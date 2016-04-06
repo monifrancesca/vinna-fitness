@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute']);
+var myApp = angular.module('myApp', ['ngRoute', 'mobile-angular-ui']);
 
 myApp.config(['$routeProvider', function($routeProvider) {
 
@@ -18,11 +18,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
     })
     .when('/adminclients', {
       templateUrl: '/views/templates/admin-clients.html',
-      controller: 'AdminController'
+      controller: 'AdminClientController'
     })
     .when('/adminexercises', {
       templateUrl: '/views/templates/admin-exercises.html',
-      controller: 'AdminController'
+      controller: 'AdminExerciseController'
     })
     .when('/adminlocation', {
       templateUrl: '/views/templates/admin-location.html',
@@ -63,6 +63,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
     .when('/personal', {
       templateUrl: '/views/templates/personal-info.html',
       controller: 'PersonalController'
+    })
+    .when('/personalhistory', {
+      templateUrl: '/views/templates/personal-info-history.html',
+      controller: 'PersonalHistoryController'
     })
     .when('/workoutmain', {
       templateUrl: '/views/templates/workout-dashboard.html',

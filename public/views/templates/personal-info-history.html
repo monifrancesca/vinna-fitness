@@ -13,8 +13,7 @@
     <label for="emailAddress">Email address:</label>
     <input type="email" ng-model="emailAddress" id="emailAddress" placeholder="Email Address" />
 <!--DOB - calendar dropdown-->
-    <label for="dateOfBirth">Date of birth:</label>
-    <input type="date" ng-model="dateOfBirth" id="dateOfBirth" />
+    <label>Date of birth: {{dateOfBirth | date}}</label>
 <!--height: ft, inches-->
     <p>Height:</p>
     <label for="heightFeet">Feet:</label>

@@ -1,18 +1,21 @@
-<h1>Workout History</h1>
+<div class="section scrollable">
+    <h1>Workout History</h1>
 
-<h3>{{client.first_name}} {{client.last_name}}</h3>
-
-<table>
-    <tr>
-        <th>Date:</th>
-        <th>Class Type:</th>
-        <th>Trainer:</th>
-        <th>Location:</th>
-    </tr>
-    <tr ng-repeat="workout in workouts" ng-click="getWorkout(workout.id)">
-        <td>{{workout.date | date:'EEEE, MMMM d, y'}}</td>
-        <td>{{workout.class_type}}</td>
-        <td>{{workout.first_name}} {{workout.last_name}}</td>
-        <td>{{workout.name}}</td>
-    </tr>
-</table>
+    <h3>{{client.first_name}} {{client.last_name}}</h3>
+    <div class="scrollable-content">
+        <table class="table">
+            <tr>
+                <th>Date:</th>
+                <th>Class Type:</th>
+                <th>Trainer:</th>
+                <th>Location:</th>
+            </tr>
+            <tr ng-repeat="workout in workouts" ng-click="getWorkout(workout.id)">
+                <td>{{workout.date | date:'EEEE, MMMM d, y'}}</td>
+                <td>{{workout.class_type}}</td>
+                <td>{{workout.first_name}} {{workout.last_name}}</td>
+                <td>{{workout.name}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

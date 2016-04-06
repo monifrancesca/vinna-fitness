@@ -16,10 +16,20 @@ var client = require('./routes/clientmodule');
 var fms = require('./routes/fmsmodule');
 var medical = require('./routes/medicalmodule');
 var personal = require('./routes/personalmodule');
+var personalhistory = require('./routes/personalhistorymodule');
 var workout = require('./routes/workoutmodule');
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.use('/admin', admin);
+app.use('/client', client);
+app.use('/fms', fms);
+//app.use('/login', login);
+app.use('/medical', medical);
+app.use('/personal', personal);
+app.use('/personalhistory', personalhistory);
+app.use('/workout', workout);
 
 app.use(express.static('public'));
 app.use(express.static('public/views'));
@@ -34,7 +44,7 @@ app.use(session({
     key: 'user',
     resave: 'true',
     saveUninitialized: false,
-    cookie: { maxage: 60000, secure: false },
+    cookie: { maxage: 60000, secure: false }
 }));
 /** ---------- PASSPORT ---------- **/
 app.use(passport.initialize()); // kickstart passport

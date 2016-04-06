@@ -7,21 +7,26 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var exerciseQuery = [];
   var selectedExercise;
   var fakeIdentifier = 3;
+  var fakeIdPersonal = 13;
   var clientMedical = undefined;
   var facUserIdNumber = '1';
   var facFmsData = null;
   var clientPersonal = undefined;
+  var personalInfoId;
   var selectedWorkout = undefined;
   var classList = [];
   var currentClass = undefined;
   var workouts = [];
   var workout = {};
   var exercises = [];
+  var location = undefined;
   var selectedClient = {first_name: "Test", last_name: "Person", id: 2};
   var facTrainerList = [];
   var facFMScreens = [];
   var facFMScreen = {};
   var facSelectedFMS = undefined;
+  var clients = [];
+  var allExercises = [];
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
 //the workout table and workout_line_items table.
@@ -101,21 +106,34 @@ myApp.factory('DataFactory', ['$http', function($http) {
     return promise;
   };
 
-  // working on this
+  // ----------------------------------- personal -------------------------------------------
   var postPersonal = function(data) {
-    console.log('factory data', data);
+    //console.log('factory data', data);
     $http.post('/personal/', data).then(function(response) {
+      console.log(response.data.rows[0]);
+      personalInfoId = response.data.rows[0];
     });
   };
 
   //var getPersonal = function() {
   //  console.log('getPersonal in factory fired');
-  //  var promise = $http.get('/personal/' + fakeIdentifier).then(function(response) {
+  //  var promise = $http.get('/personal/'+ personalInfoId).then(function(response) {
   //    clientPersonal = response.data;
   //    console.log('clientPersonal', clientPersonal);
   //  });
   //  return promise;
   //};
+
+  var getPersonal = function() {
+    //console.log('getPersonal in factory fired');
+    var promise = $http.get('/personalhistory/' + fakeIdPersonal).then(function(response) {
+      clientPersonal = response.data;
+      console.log('clientPersonal', clientPersonal);
+    });
+    return promise;
+  };
+  // ----------------------------------- end of personal -------------------------------------------
+
 
   //Route to find client names in database that match query.
   var searchClient = function(query) {
@@ -157,31 +175,121 @@ myApp.factory('DataFactory', ['$http', function($http) {
 
   var facGetFmsData = function() {
     console.log('getting data from server for id: ', facUserIdNumber);
-    var promise = $http.get('/fms/' + facUserIdNumber).then(function (response) {
+    var promise = $http.get('/fms/' + facUserIdNumber).then(function(response) {
       facFmsData = response.data;
       console.log('Async data response:', facFmsData);
     });
   };
 
-
-  var postLocation = function(data) {
-    console.log('factory data', data);
-    $http.post('/admin/', data).then(function(response) {
-    });
-  };
-
-  var getLocation = function(query) {
-    var promise = $http.get('/admin/').then(function(response) {
-      location = response.data;
+  // ------------------------------------ admin locations ---------------------------------------
+  // post info from the location view
+  var postLocation = function(location) {
+    //console.log('factory location', location);
+    var promise = $http.post('/admin/', location).then(function(response) {
     });
     return promise;
   };
 
-    var updateClassList = function() {
-        console.log('update class list in factory')
+  var retrieveLocation = function() {
+    var promise = $http.get('/admin/').then(function(response) { // go to the GET in admin module and wait for a response. then use that data in this next function.
+      location = response.data; // save those results to the location variable and go back to the controller
+      //console.log("inside the retrieveLocation", location);
+    });
+    return promise; // needed to wrap up this function
+  };
+
+  var deleteFromLocationList = function(data) {
+    console.log(data);
+    var promise = $http.delete('/admin/locationList' + data).then(function(response) {
+    });
+    return promise;
+  };
+
+  //var fillLocationList = function () {
+  //  var promise = $http.get('/admin/locationList/').then(function(response) {
+  //    locationList = response.data;
+  //    console.log(classList);
+  //  });
+  //  return promise;
+  //};
+  // ------------------------------------- end of admin locations ------------------------------------------
+
+  var fillClassList = function () {
+    var promise = $http.get('/workout/classlist/').then(function(response) {
+      classList = response.data;
+      //console.log(classList);
+    });
+    return promise;
+  };
+
+  var deleteFromClassList = function(data) {
+    var promise = $http.delete('/admin/classList' + data).then(function(response) {
+    });
+    return promise;
+  };
+
+  var postNewClass = function(data) {
+    console.log(data);
+    var promise = $http.post('/admin/classlist', data).then(function (response) {
+    });
+    return promise;
+  };
+
+  var retrieveClients = function() {
+    var promise = $http.get('/admin/clients').then(function(response) {
+      clients = response.data;
+      console.log('These are the clients: ', clients);
+    });
+    return promise;
+  };
+
+  var setAsActive = function(id) {
+    var data = {
+      active_status: true
     };
 
+    $http.put('/admin/status/' + id, data).then(function(response) {
+    });
+  };
 
+  var setAsInactive = function(id) {
+    var data = {
+      active_status: false
+    };
+
+    $http.put('/admin/status/' + id, data).then(function(response) {
+    });
+  };
+
+  var retrieveAllExercises = function() {
+    var promise = $http.get('/admin/exercise').then(function(response) {
+      allExercises = response.data;
+    });
+    return promise;
+  };
+
+  var exerciseActive = function(id) {
+    var data = {
+      active_status: true
+    };
+
+    $http.put('/admin/exercise/' + id, data).then(function(response) {
+    });
+  };
+
+  var exerciseInactive = function(id) {
+    var data = {
+      active_status: false
+    };
+
+    $http.put('/admin/exercise/' + id, data).then(function(response) {
+    });
+  };
+
+  var exerciseAdd = function(data) {
+    $http.post('/admin/newexercise', data).then(function(response) {
+    });
+  };
   //PUBLIC
 
   var dataFactoryOutput = {
@@ -221,7 +329,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
       return selectedExercise;
     },
     sendMedical: function(history) {
-      postMedical(history);
+      return postMedical(history);
     },
     retrieveMedical: function() {
       return getMedical();
@@ -236,20 +344,42 @@ myApp.factory('DataFactory', ['$http', function($http) {
       return facGetFmsData();
     },
     sendPersonal: function(info) {
-      console.log('in the factory', info);
-      postPersonal(info);
+      //console.log('in the factory', info);
+      return postPersonal(info);
     },
-    //sendLocation: function(location) {
-    //  console.log('in the factory', location);
-    //  postLocation(location);
-    //},
-    //searchLocation: function() {
-    //  console.log('in the factory', location);
-    //  return getLocation(location);
-    //},
     //retrievePersonal: function() {
     //  return getPersonal();
     //},
+    //  console.log('in the factory', info);
+    //  return postPersonal(info);
+    //},
+    sendLocation: function(location) {
+      //console.log('in the factory', location);
+      return postLocation(location);
+    },
+    // call the retrieveLocation function from private. return the data.
+    getLocation: function() {
+      return retrieveLocation();
+    },
+    // store the location in this function to be called by the controller
+    getLocationVariable: function() {
+      return location;
+    },
+    adminRemoveLocation: function(id) {
+      return deleteFromLocationList(id);
+    },
+    //factoryGetLocationList: function() {
+    //  return fillLocationList();
+    //},
+    //factoryLocations: function() {
+    //  return locationList;
+    //},
+    retrievePersonal: function() {
+      //console.log('retrievePersonal function working data factory');
+      return getPersonal();
+
+    },
+
     clientInfo: function() {
       return clientPersonal;
     },
@@ -314,9 +444,40 @@ myApp.factory('DataFactory', ['$http', function($http) {
     factoryReturnSelectedClient: function() {
       return selectedClient;
     },
-      adminRemoveClass: function() {
-          return updateClassList();
-      }
+    adminRemoveClass: function(id) {
+      return deleteFromClassList(id);
+    },
+    sendNewClass: function(newClass) {
+      //console.log(newClass);
+      return postNewClass(newClass);
+    },
+    factoryRetrieveClients: function() {
+      return retrieveClients();
+    },
+    factoryClients: function() {
+      return clients;
+    },
+    factoryMakeActive: function(id) {
+      return setAsActive(id);
+    },
+    factoryMakeInactive: function(id) {
+      return setAsInactive(id);
+    },
+    factoryRetrieveAllExercises: function(){
+      return retrieveAllExercises();
+    },
+    factoryAllExercises: function(){
+      return allExercises;
+    },
+    factoryMakeExerciseActive: function(id) {
+      return exerciseActive(id);
+    },
+    factoryMakeExerciseInactive: function(id) {
+      return exerciseInactive(id);
+    },
+    factoryAddExercise: function(exercise) {
+      return exerciseAdd(exercise);
+    }
   };
   return dataFactoryOutput;
 
