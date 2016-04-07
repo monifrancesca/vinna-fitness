@@ -32,7 +32,7 @@ myApp.controller('PersonalHistoryController', ['$scope', '$http', 'DataFactory',
       phoneNumber: $scope.phoneNumber,
       emailAddress: $scope.emailAddress,
       dateOfBirth: $scope.dateOfBirth,
-      height: height,
+      height: $scope.height,
       weightPounds: $scope.weightPounds,
       emergencyContactName: $scope.emergencyContactName,
       emergencyContactNumber: $scope.emergencyContactNumber
