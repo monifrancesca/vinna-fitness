@@ -1,4 +1,4 @@
-myApp.controller('NewMedicalController', ['$scope', '$http', 'DataFactory', function($scope, $http, DataFactory) {
+myApp.controller('NewMedicalController', ['$scope', '$location', '$http', 'DataFactory', function($scope, $location, $http, DataFactory) {
 
     $scope.dataFactory = DataFactory;
 
@@ -74,6 +74,7 @@ myApp.controller('NewMedicalController', ['$scope', '$http', 'DataFactory', func
 
         // Sending form data to data factory
         $scope.dataFactory.sendMedical(history);
+        $location.path('existingclient');
     }
 
 }]);
