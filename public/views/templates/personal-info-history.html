@@ -42,13 +42,11 @@
                     <fieldset>
                         <div class="form-group">
                             <!--DOB - calendar dropdown-->
-                                <label>Date of birth: {{dateOfBirth | date}}</label>
+                                <label>Date of birth:</label>
+                                <input class="form-control" value="{{dateOfBirth | date}}" />
                             <!--height: ft, inches-->
-                                <p>Height:</p>
-                                <label for="heightFeet">Feet:</label>
-                                <input class="form-control" type="number" ng-model="heightFeet" id="heightFeet" />
-                                <label for="heightInches">Inches:</label>
-                                <input class="form-control" type="number" ng-model="heightInches" id="heightInches" />
+                                <label>Height:</label>
+                                <input class="form-control" ng-model="height" />
                             <!--weight:-->
                                 <label for="weightPounds">Weight (pounds):</label>
                                 <input class="form-control" type="number" ng-model="weightPounds" id="weightPounds" />
@@ -80,36 +78,3 @@
         </div>
     </div>
 </div>
-
-<!--personal info form:-->
-<form>
-<h1>Personal Info</h1>
-<!--name:-->
-    <label for="firstName">First name:</label>
-    <input type="text" ng-model="firstName" id="firstName" placeholder="First Name" />
-    <label for="lastName">Last name:</label>
-    <input type="text" ng-model="lastName" id="lastName" placeholder="Last Name" />
-<!--phone:-->
-    <label for="phoneNumber">Phone number:</label>
-    <input type="tel" ng-model="phoneNumber" id="phoneNumber" />
-<!--email address:-->
-    <label for="emailAddress">Email address:</label>
-    <input type="email" ng-model="emailAddress" id="emailAddress" placeholder="Email Address" />
-<!--DOB - calendar dropdown-->
-    <label>Date of birth:</label>
-    <input value="{{dateOfBirth | date}}" />
-<!--height: ft, inches-->
-    <label>Height:</label>
-    <input ng-model="height" />
-<!--weight:-->
-    <label for="weightPounds">Weight (pounds):</label>
-    <input type="number" ng-model="weightPounds" id="weightPounds" />
-<!--emergency contact: name: phone number-->
-    <p>Emergency Contact:</p>
-    <label for="emergencyContactName">Name:</label>
-    <input type="text" ng-model="emergencyContactName" id="emergencyContactName" placeholder="Emergency Contact Name" />
-    <label for="emergencyContactNumber">Phone number:</label>
-    <input type="tel" ng-model="emergencyContactNumber" id="emergencyContactNumber" />
-<!--submit button-->
-    <button id="personalInfo_submit" ng-click="savePersonalInfo()" type="button">Submit</button>
-</form>
