@@ -115,6 +115,16 @@ myApp.factory('DataFactory', ['$http', function($http) {
     });
   };
 
+
+// ----------------------------------------------------------------------------------------------------
+  var updatePersonal = function(editedInfo) {
+    console.log('factory data', editedInfo);
+    $http.put('/personalhistory/', editedInfo).then(function(response) {
+      //console.log(response.data.rows[0]);
+      personalInfoId = response.data.rows[0];
+    });
+  };
+
   //var getPersonal = function() {
   //  console.log('getPersonal in factory fired');
   //  var promise = $http.get('/personal/'+ personalInfoId).then(function(response) {
@@ -166,11 +176,10 @@ myApp.factory('DataFactory', ['$http', function($http) {
 
   var facPostFmsData = function(data) {
     console.log('posting fms data');
-    var promise = $http.post('/fms', data).then(function(response) {
+    $http.post('/fms', data).then(function(response) {
       console.log('match data saved');
       console.log(response);
     });
-    return promise;
   };
 
   var facGetFmsData = function() {
@@ -347,6 +356,10 @@ myApp.factory('DataFactory', ['$http', function($http) {
       //console.log('in the factory', info);
       return postPersonal(info);
     },
+    insertPersonal: function(editedInfo) {
+      //console.log('in the factory', info);
+      return updatePersonal(editedInfo);
+    },
     //retrievePersonal: function() {
     //  return getPersonal();
     //},
@@ -405,7 +418,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
     },
     factoryStartClass: function(id) {
       currentClass = id;
-      console.log('This is the currentClass', id);
+      //console.log('This is the currentClass', id);
       return currentClass;
     },
     factoryCurrentClass: function() {

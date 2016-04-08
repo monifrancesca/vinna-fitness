@@ -18,16 +18,16 @@ router.post('/', function(req, res) {
       'right_leg_forward, lunge_df, shoulder_mobility, left_top, right_top, l_impingement, r_impingement, shoulder_df, ' +
       'active_straight_leg, asl_l_up, asl_r_up, leg_raise_df, trunk_pushup, prone_press, trunk_df, ' +
       'rotary_stability, flexion, rotary_left_up, rotary_right_up, rotary_df, total, client_id, user_id, date, hand_dominance, ' +
-      'swing_dominance, throw_dominance, leg_dominance, right_shin_length, left_shin_length, left_hand_length, right_hand_length, location_id) ' +
+      'swing_dominance, throw_dominance, leg_dominance, shin_length, hand_length, location_id) ' +
       'VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25, ' +
-      '$26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40, $41, $42) RETURNING id';
+      '$26, $27, $28, $29, $30, $31, $32, $33, $34, $35, $36, $37, $38, $39, $40) RETURNING id';
     client.query(queryVar,
       [req.body.deepSquat, req.body.toeTouch, req.body.deepSquatDF, req.body.hurdleStep, req.body.leftLegUp, req.body.rightLegUp, req.body.hurdleDF,
         req.body.inLineLunge, req.body.leftLegForward, req.body.rightLegForward, req.body.lungeDF, req.body.shoulderMobility, req.body.leftTop, req.body.rightTop,
         req.body.leftImpingement, req.body.rightImpingement, req.body.shoulderDF, req.body.activeStraightLeg, req.body.leftLegRaise, req.body.rightLegRaise, req.body.legRaiseDF,
         req.body.trunkPushUp, req.body.pronePressUpTest, req.body.trunkDF, req.body.rotaryStability, req.body.kneelingLumbar, req.body.rotaryLeftUp, req.body.rotaryRightUp,
         req.body.rotaryDF, req.body.total, req.body.client_id, req.body.user_id, req.body.date, req.body.handDominance, req.body.swingDominance,
-        req.body.throwDominance, req.body.legDominance, req.body.rightShinLength, req.body.leftShinLength, req.body.leftHandLength, req.body.rightHandLength, req.body.location],
+        req.body.throwDominance, req.body.legDominance, req.body.shinLength, req.body.handLength, req.body.location],
       function(err, result) {
         done();
         if(err) {
