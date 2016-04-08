@@ -1,34 +1,143 @@
-<!--personal info form:-->
-<form>
-<h1>Personal Info</h1>
-<!--name:-->
-    <label for="firstName">First name:</label>
-    <input type="text" ng-model="firstName" id="firstName" placeholder="First Name" />
-    <label for="lastName">Last name:</label>
-    <input type="text" ng-model="lastName" id="lastName" placeholder="Last Name" />
-<!--phone:-->
-    <label for="phoneNumber">Phone number:</label>
-    <input type="tel" ng-model="phoneNumber" id="phoneNumber" />
-<!--email address:-->
-    <label for="emailAddress">Email address:</label>
-    <input type="email" ng-model="emailAddress" id="emailAddress" placeholder="Email Address" />
-<!--DOB - calendar dropdown-->
-    <label>Date of birth: {{dateOfBirth | date}}</label>
-<!--height: ft, inches-->
-    <p>Height:</p>
-    <label for="heightFeet">Feet:</label>
-    <input type="number" ng-model="heightFeet" id="heightFeet" />
-    <label for="heightInches">Inches:</label>
-    <input type="number" ng-model="heightInches" id="heightInches" />
-<!--weight:-->
-    <label for="weightPounds">Weight (pounds):</label>
-    <input type="number" ng-model="weightPounds" id="weightPounds" />
-<!--emergency contact: name: phone number-->
-    <p>Emergency Contact:</p>
-    <label for="emergencyContactName">Name:</label>
-    <input type="text" ng-model="emergencyContactName" id="emergencyContactName" placeholder="Emergency Contact Name" />
-    <label for="emergencyContactNumber">Phone number:</label>
-    <input type="tel" ng-model="emergencyContactNumber" id="emergencyContactNumber" />
-<!--submit button-->
-    <button id="personalInfo_submit" ng-click="savePersonalInfo()" type="button">Submit</button>
-</form>
+<div ng-hide="displayHistory">
+    <div class="scrollable">
+        <div class="scrollable-content">
+            <div class="section">
+                <h1>Personal Info History</h1>
+                <div class="panel-group" ui-state="myAccordion" ui-default="1">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" ui-set="{'myAccordion': 1}">
+                            <h4 class="panel-title">
+                                Basic Info
+                            </h4>
+                        </div>
+                        <div ui-if="myAccordion == 1">
+                            <div class="panel-body">
+                                <!--name:-->
+                                <p>First name: {{firstName}}</p>
+                                <p>Last name: {{lastName}}</p>
+                                <p>Phone number: {{phoneNumber}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" ui-set="{'myAccordion': 2}">
+                        <h4 class="panel-title">
+                            DOB/Height/Weight
+                        </h4>
+                    </div>
+                    <div ui-if="myAccordion == 2">
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <!--DOB - calendar dropdown-->
+                                <p>Date of Birth: {{dateOfBirth | date}}</p>
+                                <p>Height: {{height}}</p>
+                                <p>Weight: {{weightPounds}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" ui-set="{'myAccordion': 3}">
+                        <h4 class="panel-title">
+                            Emergency Contact Info
+                        </h4>
+                    </div>
+                    <div ui-if="myAccordion == 3">
+                        <div class="panel-body">
+                            <p>Date of Birth: {{emergencyContactName}}</p>
+                            <p>Height: {{emergencyContactNumber}}</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-block btn-primary" ng-click="viewPersonalEdit()">Edit</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div  ng-hide="editHistory">
+    <div class="scrollable">
+        <div class="scrollable-content">
+            <div class="section">
+                <h1>Personal Info History</h1>
+                <div class="panel-group" ui-state="myAccordion" ui-default="1">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" ui-set="{'myAccordion': 1}">
+                            <h4 class="panel-title">
+                                Basic Info
+                            </h4>
+                        </div>
+                        <div ui-if="myAccordion == 1">
+                            <div class="panel-body">
+                                <form>
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <!--name:-->
+                                                <label for="firstName">First name:</label>
+                                                <input class="form-control" type="text" ng-model="info.first_name" id="firstName" placeholder="First Name" />
+                                                <label for="lastName">Last name:</label>
+                                                <input class="form-control" type="text" ng-model="info.last_name" id="lastName" placeholder="Last Name" />
+                                            <!--phone:-->
+                                                <label for="phoneNumber">Phone number:</label>
+                                                <input class="form-control" type="tel" ng-model="info.phone" id="phoneNumber" />
+                                            <!--email address:-->
+                                                <label for="emailAddress">Email address:</label>
+                                                <input class="form-control" type="email" ng-model="info.email" id="emailAddress" placeholder="Email Address" />
+                                        </div>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" ui-set="{'myAccordion': 2}">
+                        <h4 class="panel-title">
+                            DOB/Height/Weight
+                        </h4>
+                    </div>
+                    <div ui-if="myAccordion == 2">
+                        <div class="panel-body">
+                            <form>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <!--DOB - calendar dropdown-->
+                                            <label>Date of birth:</label>
+                                            <input class="form-control" value="{{dateOfBirth | date}}" />
+                                        <!--height: ft, inches-->
+                                            <label>Height:</label>
+                                            <input class="form-control" ng-model="info.height" />
+                                        <!--weight:-->
+                                            <label for="weight">Weight (pounds):</label>
+                                            <input class="form-control" type="number" ng-model="info.weight" id="weight" />
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" ui-set="{'myAccordion': 3}">
+                        <h4 class="panel-title">
+                            Emergency Contact Info
+                        </h4>
+                    </div>
+                    <div ui-if="myAccordion == 3">
+                        <div class="panel-body">
+                            <form>
+                                <fieldset>
+                                    <p>Emergency Contact:</p>
+                                    <label for="emergencyContactName">Name:</label>
+                                    <input class="form-control" type="text" ng-model="emergency_name" id="emergencyContactName" placeholder="Emergency Contact Name" />
+                                    <label for="emergencyPhoneNumber">Phone number:</label>
+                                    <input class="form-control" type="tel" ng-model="info.emergency_phone" id="emergencyPhoneNumber" />
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-block btn-primary" ng-click="updatePersonalInfo()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

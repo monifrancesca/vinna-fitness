@@ -1,0 +1,232 @@
+<!--Basic Medical Info-->
+<div class="scrollable">
+    <div class="scrollable-content">
+        <div class="section">
+            <h1>Medical History</h1>
+            <div class="panel-group" ui-state="myAccordion" ui-default="1">
+                <div class="panel panel-default">
+                    <div class="panel-heading" ui-set="{'myAccordion': 1}">
+                        <h4 class="panel-title">
+                            Basic Information
+                        </h4>
+                    </div>
+
+                    <div ui-if="myAccordion == 1">
+                        <div class="panel-body">
+                            <form>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="intakeDate">Intake Date</label>
+                                        <input class="form-control" type="date" id="intakeDate" ng-model="intakeDate"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="currentInjuries">Current Injuries</label>
+                                        <input class="form-control" type="textarea" id="currentInjuries" ng-model="currentInjuries"
+                                               placeholder="Current Injuries" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="previousHistory">Previous medical history/surgery history</label>
+                                        <input class="form-control" type="textarea" id="previousHistory" ng-model="previousHistory"
+                                               placeholder="Previous medical history/surgery history" />
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="otherMeds">List any medicines or supplements</label>
+                                        <input class="form-control" type="textarea" id="otherMeds" ng-model="otherMeds"
+                                               placeholder="List any medicines or supplements" />
+                                    </div>
+
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Symptoms from the last 24 hours-->
+            <div class="panel panel-default">
+                <div class="panel-heading" ui-set="{'myAccordion': 2}">
+                    <h4 class="panel-title">
+                        Last 24 Hours
+                    </h4>
+                </div>
+                <div ui-if="myAccordion == 2">
+                    <div class="panel-body">
+                        <form>
+                            <fieldset>
+                                <h4>Check any that apply in the last 24 hours:</h4>
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="infection" />
+                                        Infection
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="inflammation" />
+                                        Inflammation
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="flu" />
+                                        Flu
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="fever" />
+                                        Fever
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="cold" />
+                                        Cold
+                                    </label>
+
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--Long term medical conditions-->
+            <div class="panel panel-default">
+                <div class="panel-heading" ui-set="{'myAccordion': 3}">
+                    <h4 class="panel-title">
+                        Medical Conditions
+                    </h4>
+                </div>
+                <div ui-if="myAccordion == 3">
+                    <div class="panel-body">
+                        <form>
+                            <fieldset>
+                                <h4>Check any of the following that you currently or have ever had:</h4>
+                                <div class="form-group">
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="dislocations" />
+                                        Dislocations
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="phlebitis" />
+                                        Phlebitis
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="neckInjuries" />
+                                        Neck injuries
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="lowBackPain" />
+                                        Low back pain
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="bloodPressure" />
+                                        High blood pressure
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="heartProblems" />
+                                        Heart problems
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="headaches" />
+                                        Headaches
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="arthritis">
+                                        Arthritis
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="nerves" />
+                                        Numbness/tingling/nerve conditions
+                                    </label>
+
+                                    <label class="radio-inline">
+                                        <input type="checkbox" ng-model="fainting" />
+                                        Fainting spells
+                                    </label>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--Physicians Contact Information-->
+            <div class="panel panel-default">
+                <div class="panel-heading" ui-set="{'myAccordion': 4}">
+                    <h4 class="panel-title">
+                        Physician Contact
+                    </h4>
+                </div>
+                <div ui-if="myAccordion == 4">
+                    <div class="panel-body">
+                        <form>
+                            <fieldset>
+                                <div class="form-group">
+                                    <label for="physiciansName"> Physicians Name</label>
+                                    <input class="form-control" type="text" ng-model="physiciansName" id="physiciansName" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="physiciansPhone">Physician's Phone Number</label>
+                                    <input class="form-control" type="number" ng-model="physiciansPhone" id="physiciansPhone" />
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--Signature Fields-->
+            <div class="panel panel-default">
+                <div class="panel-heading" ui-set="{'myAccordion': 5}">
+                    <h4 class="panel-title">
+                        Signature
+                    </h4>
+                </div>
+                <div ui-if="myAccordion == 5">
+                    <div class="panel-body">
+                        <form>
+                            <fieldset>
+                                <p>Disclaimer text goes here. Disclaimer text goes here. Disclaimer text goes here.
+                                    Disclaimer text goes here.</p>
+
+                                <div class="form-group">
+                                    <label for="signature">Signature</label>
+                                    <input class="form-control" type="text" ng-model="signature" id="signature" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="signatureDate">Today's Date</label>
+                                    <input class="form-control" type="date" ng-model="signatureDate" id="signatureDate" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="signatureUnderAge">Parent or Guardian Signature <small>(If Under 18)</small></label>
+                                    <input class="form-control" type="text" ng-model="signatureUnderAge" id="signatureUnderAge" />
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="signatureDateUnderAge">Today's Date</label>
+                                    <input class="form-control" type="date" ng-model="signatureDateUnderAge" id="signatureDateUnderAge" />
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!--Submit!-->
+            <button class="btn btn-block btn-default" id="med_submit" ng-click="saveMedical()" type="button">Submit</button>
+        </div>
+    </div>
+</div>

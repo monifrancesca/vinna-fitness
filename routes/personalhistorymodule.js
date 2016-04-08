@@ -32,44 +32,43 @@ router.get('/:id', function(req, res) { // colon allows accessing params
     });
 });
 
-//router.post('/', function(req, res) {
-//    console.log('in the module', req.body);
-//    var addPersonal = {
-//        first_name: req.body.firstName,
-//        last_name: req.body.lastName,
-//        phone: req.body.phoneNumber,
-//        email: req.body.emailAddress,
-//        dob: req.body.dateOfBirth,
-//        height: req.body.height,
-//        //heightInches: req.body.heightInches,
-//        weight: req.body.weightPounds,
-//        emergency_name: req.body.emergencyContactName,
-//        emergency_phone: req.body.emergencyContactNumber
-//    };
-//    console.log('add personal var', addPersonal);
-//
-//    pg.connect(connection, function (err, client, done) {
-//        client.query('INSERT into client (first_name, last_name, email, phone, dob, height, weight, emergency_name,' +
-//            ' emergency_phone) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) returning id',
-//            [addPersonal.first_name, addPersonal.last_name, addPersonal.email,
-//                addPersonal.phone, addPersonal.dob, addPersonal.height,
-//                addPersonal.weight, addPersonal.emergency_name, addPersonal.emergency_phone],
-//            function (err, result) {
-//                done();
-//                if (err) {
-//                    console.log("Error inserting data: ", err);
-//                    res.send(false);
-//                } else {
-//                    res.send(result);
-//                    //    add second post for medical conditions
-//                }
-//            });
-//    });
-//});
+router.put('/', function(req, res) {
+    console.log('in the module', req.body);
+    var postPersonal = {
+        id : req.body.id,
+        first_name: req.body.firstName,
+        last_name: req.body.lastName,
+        phone: req.body.phoneNumber,
+        email: req.body.emailAddress,
+        dob: req.body.dateOfBirth,
+        height: req.body.height,
+        //heightInches: req.body.heightInches,
+        weight: req.body.weightPounds,
+        emergency_name: req.body.emergencyContactName,
+        emergency_phone: req.body.emergencyContactNumber
+    };
+    console.log('put personal var', postPersonal);
 
-
-
-
+    pg.connect(connection, function (err, client, done) {
+        client.query('UPDATE client SET (first_name, last_name, email, phone, dob, height, weight, emergency_name, emergency_phone)' +
+            '= ($1, $2, $3, $4, $5, $6, $7, $8, $9)' +
+            'WHERE id = $10' +
+            'returning id',
+            [postPersonal.first_name, postPersonal.last_name, postPersonal.email,
+                postPersonal.phone, postPersonal.dob, postPersonal.height,
+                postPersonal.weight, postPersonal.emergency_name, postPersonal.emergency_phone, postPersonal.id],
+            function (err, result) {
+                done();
+                if (err) {
+                    console.log("Error inserting data: ", err);
+                    res.send(false);
+                } else {
+                    res.send(result);
+                    //    add second post for medical conditions
+                }
+            });
+    });
+});
 
 
 

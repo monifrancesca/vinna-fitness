@@ -1,4 +1,4 @@
-myApp.controller('PersonalController', ['$scope', '$http', 'DataFactory', function($scope, $http, DataFactory) {
+myApp.controller('PersonalController', ['$scope', '$location', '$http', 'DataFactory', function($scope, $location, $http, DataFactory) {
 
   $scope.dataFactory = DataFactory;
 
@@ -29,6 +29,7 @@ myApp.controller('PersonalController', ['$scope', '$http', 'DataFactory', functi
     };
     console.log('info in controller', info);
     $scope.dataFactory.sendPersonal(info);
+    $location.path('newmedical')
   };
 
 }]);
