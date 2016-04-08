@@ -1,7 +1,9 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="section">
-            <h1>Personal Info</h1>
+            <div class="list-group-item scrollable-header">
+                <h1>Personal Info</h1>
+            </div>
             <div class="panel-group" ui-state="myAccordion" ui-default="1">
                 <div class="panel panel-default">
                     <div class="panel-heading" ui-set="{'myAccordion': 1}">
@@ -81,7 +83,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-block btn-primary" ng-click="savePersonalInfo()">Submit & Start New Medical</button>
+            <button class="btn btn-block btn-default" ng-click="savePersonalInfo()">Submit & Start New Medical</button>
         </div>
     </div>
 </div>

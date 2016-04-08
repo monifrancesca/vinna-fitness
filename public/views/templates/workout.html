@@ -1,5 +1,9 @@
+<div class="scrollable">
+<div class="scrollable-content">
 <div class="section">
+    <div class="list-group-item scrollable-header">
     <h1> New Workout</h1>
+        </div>
     <div class="panel-group" ui-state="myAccordion" ui-default="1">
         <div class="panel panel-default">
             <div class="panel-heading" ui-set="{'myAccordion': 1}">
@@ -183,26 +187,28 @@
             <div ui-if="myAccordion == 4">
                 <div class="panel-body">
                         <form>
-                            <div class="form-group">
-                                <label>Stretches:</label>
-                                <textarea class="form-control" ng-model="formData.stretches"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Notes:</label>
-                                <textarea  class="form-control" ng-model="formData.notes"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Flag
-                                    <input type="checkbox" name="flag" ng-model="formData.flag" ng-true-value="'yes'" ng-false-value="'no'">
-                                </label>
-                            </div>
+                            <fieldset>
+                                <div class="form-group">
+                                    <label>Stretches:</label>
+                                    <textarea class="form-control" ng-model="formData.stretches"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Notes:</label>
+                                    <textarea  class="form-control" ng-model="formData.notes"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Flag
+                                        <input type="checkbox" name="flag" ng-model="formData.flag" ng-true-value="'yes'" ng-false-value="'no'">
+                                    </label>
+                                </div>
+                            </fieldset>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+    <button class="btn btn-block btn-default" ng-click="sendForm()">Submit Workout</button>
+</div>
     </div>
-    <div>
-        <button class="btn btn-block btn-primary" ng-click="sendForm()">Submit Workout</button>
     </div>
 </div>
