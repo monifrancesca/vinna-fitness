@@ -1,5 +1,14 @@
 <div class="section">
     <h1>Existing Client</h1>
+    <div class="form-group">
+        <label>Client Name: </label>
+        <input class="form-control" type="text" name="clientName" ng-model="searchName.query" ng-change="nameQuery()" placeholder=""/>
+        <div class="resultsBox" ng-hide="searchName.query.length < 1 || searchName.query.length == undefined">
+            <ul ng-show="names.length >= 1" class="searchResults">
+                <li ng-repeat="name in names"><a class="result" ng-click="selectClient(name.id, name.first_name, name.last_name)">{{name.first_name}} {{name.last_name}}</a></li>
+            </ul>
+        </div>
+    </div>
     <div class="panel-group">
         <div class="panel panel-default">
             <div class="panel-heading">
