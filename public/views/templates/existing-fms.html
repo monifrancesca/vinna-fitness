@@ -1,16 +1,24 @@
-<h1>FMS History</h1>
-​
-<h3>{{client.first_name}} {{client.last_name}}</h3>
-
-<table>
-  <tr>
-    <th>Date:</th>
-    <th>Trainer:</th>
-    <th>Location:</th>
-  </tr>
-  <tr ng-repeat="screen in screens" ng-click="funcScreen(screen.id)">
-    <td>{{screen.date | date:'EEEE, MMMM d, y'}}</td>
-    <td>{{screen.first_name}} {{screen.last_name}}</td>
-    <td>{{screen.name}}</td>
-  </tr>
-</table>
+<div class="scrollable">
+  <div class="scrollable-content">
+    <div class="list-group">
+      <div class="list-group-item scrollable-header">
+        <h1>FMS History</h1>
+        <h3>{{client.first_name}} {{client.last_name}}</h3>
+      </div>
+      <div class="list-group-item">
+        <table class="table">
+          <tr>
+            <th>Date:</th>
+            <th>Trainer:</th>
+            <th>Location:</th>
+          </tr>
+          <tr ng-repeat="screen in screens" ng-click="funcScreen(screen.id)">
+            <td>{{screen.date | date:'EEEE, MMMM d, y'}}</td>
+            <td>{{screen.first_name}} {{screen.last_name}}</td>
+            <td>{{screen.name}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
