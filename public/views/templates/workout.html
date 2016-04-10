@@ -31,12 +31,9 @@
                             <div class="form-group">
                                 <label>Location: </label>
                                 <div>
-                                <label class="radio-inline">
-                                    <input type="radio" name="location" value="1" ng-model="formData.location"/>Minneapolis
-                                </label>
-                                <label class="radio-inline">
-                                    <input type="radio" name="location" value="2" ng-model="formData.location"/>St. Louis Park
-                                </label>
+                                    <label ng-repeat="location in locations" class="radio-inline">
+                                        <input type="radio" name="location" value="{{location.id}}" ng-model="formData.location" required/> {{location.name}}
+                                    </label>
                                 </div>
                             </div>
                         </fieldset>
