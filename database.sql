@@ -5,12 +5,13 @@ name varchar(100) NOT NULL
 
 CREATE TABLE users (
 id serial PRIMARY KEY,
-first_name varchar(100) NOT NULL,
-last_name varchar(100) NOT NULL,
-email varchar(100),
+first_name varchar(255) NOT NULL,
+last_name varchar(255) NOT NULL,
+google_email varchar(255) NOT NULL,
+google_name varchar(255),
 admin boolean,
-google_id varchar(100) NOT NULL,
-google_token varchar(100) NOT NULL
+google_id varchar(255),
+google_token varchar(255)
 );
 
 CREATE TABLE exercise (
@@ -276,9 +277,10 @@ swing_dominance VARCHAR(25),
 throw_dominance VARCHAR(25),
 leg_dominance VARCHAR(25),
 shin_length REAL,
-hand_length REAL
+hand_length REAL,
+location_id INTEGER REFERENCES location(id)
 );
 
 ALTER TABLE workout_line_items ADD COLUMN reps INTEGER;
 ALTER TABLE workout_line_items RENAME COLUMN worout_id TO workout_id;
-ALTER TABLE exercise ADD COLUMN active_status BOOLEA
+ALTER TABLE exercise ADD COLUMN active_status BOOLEAN
