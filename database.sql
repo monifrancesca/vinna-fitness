@@ -1,7 +1,7 @@
 --BE VEEEEEEERY SURE YOU'RE IN THE CORRECT DATABASE AND DROP ALL TABLES:>>>>>>>>>>>>>>>>>>>>
-
-DROP SCHEMA public CASCADE;
-CREATE SCHEMA public;
+--
+--DROP SCHEMA public CASCADE;
+--CREATE SCHEMA public;
 
 -- THEN RUN THESE COMMANDS ALL TOGETHER:>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
