@@ -1,39 +1,44 @@
-<div class="section">
-    <div class="panel-group" ui-state="myAccordion" ui-default="1">
-        <div class="panel panel-default">
-            <div class="panel-heading" ui-set="{'myAccordion': 1}">
-                <h4 class="panel-title">
-                    View & Edit Classes
-                </h4>
-            </div>
-            <div ui-if="myAccordion == 1">
-                <div class="panel-body">
-                    <div ng-repeat="class in classes">
-                        <p>{{class.class_type}}</p>
-                        <button ng-click="removeClass(class.id)">Remove Class</button>
+<div class="scrollable">
+    <div class="scrollable-content">
+        <div class="section">
+            <h1>Manage Classes</h1>
+            <div class="panel-group" ui-state="myAccordion" ui-default="1">
+                <div class="panel panel-default">
+                    <div class="panel-heading" ui-set="{'myAccordion': 1}">
+                        <h4 class="panel-title">
+                            View & Edit Classes
+                        </h4>
                     </div>
-                </div>
-            </div>
+                    <div ui-if="myAccordion == 1">
+                        <div class="panel-body">
+                            <div ng-repeat="class in classes">
+                                <p>{{class.class_type}}</p>
+                                <button ng-click="removeClass(class.id)">Remove Class</button>
+                            </div>
+                        </div>
+                    </div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading" ui-set="{'myAccordion': 2}">
-                    <h4 class="panel-title">
-                        Add New Class
-                    </h4>
-                </div>
-                <div ui-if="myAccordion == 2">
-                    <div class="panel-body">
-                        <form>
-                            <fieldset>
-                                <div class="form-group">
-                                    <label for="className">Class Name:</label>
-                                    <input type="text" id="className" ng-model="className" />
-                                </div>
-                                    <button id="new_class_submit" ng-click="saveNewClass()" type="button">Submit</button>
-                            </fieldset>
-                        </form>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" ui-set="{'myAccordion': 2}">
+                            <h4 class="panel-title">
+                                Add New Class
+                            </h4>
+                        </div>
+                        <div ui-if="myAccordion == 2">
+                            <div class="panel-body">
+                                <form>
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <label for="className">Class Name:</label>
+                                            <input type="text" id="className" ng-model="className" />
+                                        </div>
+                                        <button id="new_class_submit" ng-click="saveNewClass()" type="button">Submit</button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
-</div>
-</div>
+            </div>
     </div>
+</div>
