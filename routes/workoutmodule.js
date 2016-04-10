@@ -13,7 +13,7 @@ router.post('/', function(req, res) {
   console.log(req.body);
 
   var newWorkout = {
-    user_id: 2,
+    user_id: 1,
     client_id: req.body.client_id,
     date: req.body.date,
     location_id: req.body.location,

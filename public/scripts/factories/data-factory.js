@@ -20,7 +20,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var workout = {};
   var exercises = [];
   var location = undefined;
-  var selectedClient = {first_name: "Test", last_name: "Person", id: 2};
+  var selectedClient = {first_name: "Jane", last_name: "Doe", id: 4};
   var facTrainerList = [];
   var facFMScreens = [];
   var facFMScreen = {};
