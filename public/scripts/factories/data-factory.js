@@ -6,8 +6,8 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var selectedName;
   var exerciseQuery = [];
   var selectedExercise;
-  var fakeIdentifier = 3;
-  var fakeIdPersonal = 13;
+  var fakeIdentifier = 1;
+  var fakeIdPersonal = 1;
   var clientMedical = undefined;
   var facUserIdNumber = '1';
   var facFmsData = null;
@@ -20,7 +20,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var workout = {};
   var exercises = [];
   var location = undefined;
-  var selectedClient = {first_name: "Test", last_name: "Person", id: 2};
+  var selectedClient = {first_name: "Homer", last_name: "Simpson", id: 1};
   var facTrainerList = [];
   var facFMScreens = [];
   var facFMScreen = {};
