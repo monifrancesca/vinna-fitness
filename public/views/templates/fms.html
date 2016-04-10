@@ -85,13 +85,13 @@
                     <label>Hand Length: </label>
                     <div>
                       <label>
-                        <input type="number" name="handLength" ng-model="fmsData.handLength" min="1" max="12" style="width: 7em"required/>
+                        <input class="form-control" type="number" name="handLength" ng-model="fmsData.handLength" min="1" max="12" style="width: 7em"required/>
                       </label>
                     </div>
                     <label>Shinbone Length: </label>
                     <div>
                       <label>
-                        <input type="number" name="shinLength" ng-model="fmsData.shinLength" min="1" max="36" style="width: 7em"required/>
+                        <input class="form-control" type="number" name="shinLength" ng-model="fmsData.shinLength" min="1" max="36" style="width: 7em"required/>
                       </label>
                     </div>
                   </div>
@@ -111,7 +111,7 @@
               <form class="fmsForm">
                 <fieldset>
                   <div class="form-group">
-                    <div>
+                    <div style="padding-bottom:10px">
                       <label>Toe Touch Test: </label>
                         <label class="radio-inline">
                           <input type="radio" name="toeT" ng-model="fmsData.toeTouch" value="true"/> Able
@@ -120,7 +120,7 @@
                           <input type="radio" name="toeT" ng-model="fmsData.toeTouch" value="false"/> Not Able
                         </label>
                     </div>
-                    <div>
+                    <div style="padding-bottom:10px">
                       <label>Deep Squat: </label>
                         <label class="radio-inline">
                           <input type="radio" name="dSquat" ng-model="fmsData.deepSquat" value="3" required/> 3
@@ -137,7 +137,7 @@
                     </div>
                     <label>Dysfunction: </label>
                       <label>
-                        <input type="text" ng-model="fmsData.deepSquatDF">
+                        <input class="form-control" type="text" ng-model="fmsData.deepSquatDF">
                       </label>
                     <p>Grading Criteria 3:
                       <br>-Upper torso is parallel with tibia or toward vertical
@@ -172,7 +172,9 @@
               <form class="fmsForm">
                 <fieldset>
                   <div class="form-group">
-                    <label style="display:block">Shinbone Length: {{fmsData.shinLength}}</label>
+                    <div style="padding-bottom:10px">
+                      <label>Shinbone Length: {{fmsData.shinLength}}</label>
+                    </div>
                     <div style="display:inline-block">
                       <label>Left Leg Up: </label>
                         <label class="radio-inline">
@@ -203,10 +205,12 @@
                           <input type="radio" name="rlUp" ng-change="hurdleTotal()" ng-model="fmsData.rightLegUp" value="0" required/> 0
                         </label>
                     </div>
-                    <label style="display:block">Hurdle Step: {{fmsData.hurdleStep}}</label>
+                    <div style="padding:10px 0 10px 0">
+                      <label>Hurdle Step: {{fmsData.hurdleStep}}</label>
+                    </div>
                     <label>Dysfunction: </label>
                       <label>
-                        <input type="text" ng-model="fmsData.hurdleDF">
+                        <input class="form-control" type="text" ng-model="fmsData.hurdleDF">
                       </label>
                     <p>Grading Criteria 3:
                       <br>-The hips, knees & ankles remain aligned in the sagital plane
@@ -237,7 +241,9 @@
               <form class="fmsForm">
                 <fieldset>
                   <div class="form-group">
-                    <label style="display:block">Shinbone Length: {{fmsData.shinLength}}</label>
+                    <div style="padding-bottom:10px">
+                      <label>Shinbone Length: {{fmsData.shinLength}}</label>
+                    </div>
                     <div style="display:inline-block">
                       <label>Left Leg Forward: </label>
                         <label class="radio-inline">
@@ -268,10 +274,12 @@
                           <input type="radio" name="rlForward" ng-change="lungeTotal()" ng-model="fmsData.rightLegForward" value="0" required/> 0
                         </label>
                     </div>
-                    <label style="display:block">In-line Lunge: {{fmsData.inLineLunge}}</label>
+                    <div style="padding:10px 0 10px 0">
+                      <label>In-line Lunge: {{fmsData.inLineLunge}}</label>
+                    </div>
                     <label>Dysfunction: </label>
                       <label>
-                        <input type="text" ng-model="fmsData.lungeDF">
+                        <input class="form-control" type="text" ng-model="fmsData.lungeDF">
                       </label>
                     <p>Grading Criteria 3:
                       <br>-Minimal to no torso movement
@@ -301,7 +309,9 @@
               <form class="fmsForm">
                 <fieldset>
                   <div class="form-group">
-                    <label style="display:block">Hand Length: {{fmsData.handLength}} &nbsp;&nbsp;||&nbsp;&nbsp; Length times 1.5 = {{handMultiplyer}}</label>
+                    <div style="padding-bottom:10px">
+                      <label>Hand Length: {{fmsData.handLength}} &nbsp;&nbsp;||&nbsp;&nbsp; Length times 1.5 = {{handMultiplyer}}</label>
+                    </div>
                     <div style="display:inline-block">
                       <label>Left Top: </label>
                         <label class="radio-inline">
@@ -332,7 +342,9 @@
                           <input type="radio" name="rTop" ng-change="shoulderTotal()" ng-model="fmsData.rightTop" value="0" required/> 0
                         </label>
                     </div>
-                    <label style="display:block">Shoulder Mobility: {{fmsData.shoulderMobility}}</label>
+                    <div style="padding:10px 0 10px 0">
+                      <label>Shoulder Mobility: {{fmsData.shoulderMobility}}</label>
+                    </div>
                     <div style="display:inline-block">
                       <label>Left Impingement Test: </label>
                       <div>
@@ -355,10 +367,12 @@
                         </label>
                       </div>
                     </div>
-                    <label style="display:block">Dysfunction: </label>
+                    <div style="padding-top:10px">
+                    <label>Dysfunction: </label>
                       <label>
-                        <input type="text" ng-model="fmsData.shoulderDF">
+                        <input class="form-control" type="text" ng-model="fmsData.shoulderDF">
                       </label>
+                    </div>
                     <p>Grading Criteria 3:
                       <br>-Fists should be within one hand length</p>
                     <p>Grading Criteria 2:
@@ -413,10 +427,12 @@
                           <input type="radio" name="rStraight" ng-change="legRaiseTotal()" ng-model="fmsData.rightLegRaise" value="0" required/> 0
                         </label>
                     </div>
-                    <label style="display:block">Active Straight Leg Raise: {{fmsData.activeStraightLeg}}</label>
+                    <div style="padding:10px 0 10px 0">
+                      <label>Active Straight Leg Raise: {{fmsData.activeStraightLeg}}</label>
+                    </div>
                     <label>Dysfunction: </label>
                       <label>
-                        <input type="text" ng-model="fmsData.legRaiseDF">
+                        <input class="form-control" type="text" ng-model="fmsData.legRaiseDF">
                       </label>
                     <p>Grading Criteria 3:
                       <br>-Malleoi resides between mid-thigh and ASIS</p>
@@ -442,7 +458,7 @@
               <form class="fmsForm">
                 <fieldset>
                   <div class="form-group">
-                    <div style="display:block">
+                    <div style="padding-bottom:10px">
                       <label>Trunk Stability Push Up: </label>
                         <label class="radio-inline">
                           <input type="radio" name="trunkPush" ng-model="fmsData.trunkPushUp" value="3" required/> 3
@@ -464,10 +480,12 @@
                       <label class="radio-inline">
                         <input type="radio" name="pronePress"ng-model="fmsData.pronePressUpTest" value="false"/> Negative
                       </label>
-                    <label style="display:block">Dysfunction: </label>
-                      <label>
-                        <input type="text" ng-model="fmsData.trunkDF">
-                      </label>
+                    <div style="padding-top:10px">
+                      <label>Dysfunction: </label>
+                        <label>
+                          <input class="form-control" type="text" ng-model="fmsData.trunkDF">
+                        </label>
+                    </div>
                     <p>Grading Criteria 3:
                       <br>-Males perform 1 rep with the thumbs at center of forehead
                       <br>-Females perform 1 rep with thumbs in line with the chin</p>
@@ -521,7 +539,9 @@
                       <label class="radio-inline">
                         <input type="radio" name="rRotary" ng-change="rotaryTotal()" ng-model="fmsData.rotaryRightUp" value="0" required/> 0
                       </label>
-                    <label style="display:block">Rotary Stability Quadruped: {{fmsData.rotaryStability}}</label>
+                    <div style="padding:10px 0 10px 0">
+                      <label>Rotary Stability Quadruped: {{fmsData.rotaryStability}}</label>
+                    </div>
                     <label>Kneeling Lumbar Flexion Test: </label>
                       <div>
                         <label class="radio-inline">
@@ -531,10 +551,12 @@
                           <input type="radio" ng-model="fmsData.kneelingLumbar" value="false"/> Negative
                         </label>
                       </div>
-                    <label>Dysfunction: </label>
-                      <label>
-                        <input type="text" ng-model="fmsData.rotaryDF">
-                      </label>
+                    <div style="padding-top:10px">
+                      <label>Dysfunction: </label>
+                        <label>
+                          <input class="form-control" type="text" ng-model="fmsData.rotaryDF">
+                        </label>
+                    </div>
                     <p>Grading Criteria 3:
                       <br>-Performs 1 unilateral rep while keeping torso to board
                       <br>-Knee & Elbow touch in line with the board</p>
