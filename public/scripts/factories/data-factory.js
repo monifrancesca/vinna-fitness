@@ -338,6 +338,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
       return selectedExercise;
     },
     sendMedical: function(history) {
+        console.log(history);
       return postMedical(history);
     },
     retrieveMedical: function() {

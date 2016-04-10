@@ -17,23 +17,24 @@
                                 <fieldset>
                                     <div class="form-group">
                                         <label for="intakeDate">Intake Date</label>
-                                        <input class="form-control" type="date" id="intakeDate" ng-model="intakeDate"/>
+                                        <input class="form-control" type="date" id="intakeDate"
+                                               ng-model="info.intakeDate"/>
                                     </div>
                                     <div class="form-group">
                                         <label for="currentInjuries">Current Injuries</label>
-                                        <input class="form-control" type="textarea" id="currentInjuries" ng-model="currentInjuries"
-                                               placeholder="Current Injuries" />
+                                        <input class="form-control" type="textarea" id="currentInjuries"
+                                               ng-model="info.currentInjuries" placeholder="Current Injuries" />
                                     </div>
                                     <div class="form-group">
                                         <label for="previousHistory">Previous medical history/surgery history</label>
-                                        <input class="form-control" type="textarea" id="previousHistory" ng-model="previousHistory"
-                                               placeholder="Previous medical history/surgery history" />
+                                        <input class="form-control" type="textarea" id="previousHistory"
+                                               ng-model="info.previousHistory" placeholder="Previous medical history/surgery history" />
 
                                     </div>
                                     <div class="form-group">
                                         <label for="otherMeds">List any medicines or supplements</label>
-                                        <input class="form-control" type="textarea" id="otherMeds" ng-model="otherMeds"
-                                               placeholder="List any medicines or supplements" />
+                                        <input class="form-control" type="textarea"
+                                               id="otherMeds" ng-model="info.otherMeds" placeholder="List any medicines or supplements" />
                                     </div>
 
                                 </fieldset>
@@ -58,27 +59,27 @@
                                 <h4>Check any that apply in the last 24 hours:</h4>
                                 <div class="form-group">
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="infection" />
+                                        <input type="checkbox" ng-model="info.infection" />
                                         Infection
                                     </label>
 
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="inflammation" />
+                                        <input type="checkbox" ng-model="info.inflammation" />
                                         Inflammation
                                     </label>
 
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="flu" />
+                                        <input type="checkbox" ng-model="info.flu" />
                                         Flu
                                     </label>
 
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="fever" />
+                                        <input type="checkbox" ng-model="info.fever" />
                                         Fever
                                     </label>
 
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="cold" />
+                                        <input type="checkbox" ng-model="info.cold" />
                                         Cold
                                     </label>
 
@@ -103,52 +104,52 @@
                                 <h4>Check any of the following that you currently or have ever had:</h4>
                                 <div class="form-group">
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="dislocations" />
+                                        <input type="checkbox" ng-model="info.dislocations" />
                                         Dislocations
                                     </label>
 
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="phlebitis" />
+                                        <input type="checkbox" ng-model="info.phlebitis" />
                                         Phlebitis
                                     </label>
 
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="neckInjuries" />
+                                        <input type="checkbox" ng-model="info.neckInjuries" />
                                         Neck injuries
                                     </label>
 
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="lowBackPain" />
+                                        <input type="checkbox" ng-model="info.lowBackPain" />
                                         Low back pain
                                     </label>
 
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="bloodPressure" />
+                                        <input type="checkbox" ng-model="info.bloodPressure" />
                                         High blood pressure
                                     </label>
 
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="heartProblems" />
+                                        <input type="checkbox" ng-model="info.heartProblems" />
                                         Heart problems
                                     </label>
 
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="headaches" />
+                                        <input type="checkbox" ng-model="info.headaches" />
                                         Headaches
                                     </label>
 
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="arthritis">
+                                        <input type="checkbox" ng-model="info.arthritis">
                                         Arthritis
                                     </label>
 
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="nerves" />
+                                        <input type="checkbox" ng-model="info.nerves" />
                                         Numbness/tingling/nerve conditions
                                     </label>
 
                                     <label class="radio-inline">
-                                        <input type="checkbox" ng-model="fainting" />
+                                        <input type="checkbox" ng-model="info.fainting" />
                                         Fainting spells
                                     </label>
                                 </div>
@@ -172,12 +173,14 @@
                             <fieldset>
                                 <div class="form-group">
                                     <label for="physiciansName"> Physicians Name</label>
-                                    <input class="form-control" type="text" ng-model="physiciansName" id="physiciansName" />
+                                    <input class="form-control" type="text" ng-model="info.physiciansName"
+                                           id="physiciansName" />
                                 </div>
 
                                 <div class="form-group">
                                     <label for="physiciansPhone">Physician's Phone Number</label>
-                                    <input class="form-control" type="number" ng-model="physiciansPhone" id="physiciansPhone" />
+                                    <input class="form-control" type="tel" ng-model="info.physiciansPhone"
+                                           id="physiciansPhone" />
                                 </div>
                             </fieldset>
                         </form>
@@ -201,22 +204,22 @@
 
                                 <div class="form-group">
                                     <label for="signature">Signature</label>
-                                    <input class="form-control" type="text" ng-model="signature" id="signature" />
+                                    <input class="form-control" type="text" ng-model="info.signature" id="signature" />
                                 </div>
 
                                 <div class="form-group">
                                     <label for="signatureDate">Today's Date</label>
-                                    <input class="form-control" type="date" ng-model="signatureDate" id="signatureDate" />
+                                    <input class="form-control" type="date" ng-model="info.signatureDate" id="signatureDate" />
                                 </div>
 
                                 <div class="form-group">
                                     <label for="signatureUnderAge">Parent or Guardian Signature <small>(If Under 18)</small></label>
-                                    <input class="form-control" type="text" ng-model="signatureUnderAge" id="signatureUnderAge" />
+                                    <input class="form-control" type="text" ng-model="info.signatureUnderAge" id="signatureUnderAge" />
                                 </div>
 
                                 <div class="form-group">
                                     <label for="signatureDateUnderAge">Today's Date</label>
-                                    <input class="form-control" type="date" ng-model="signatureDateUnderAge" id="signatureDateUnderAge" />
+                                    <input class="form-control" type="date" ng-model="info.signatureDateUnderAge" id="signatureDateUnderAge" />
                                 </div>
 
                             </fieldset>
