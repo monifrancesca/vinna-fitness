@@ -83,7 +83,7 @@ router.get('/history/:id', function(req, res) {
 
   pg.connect(connection, function(err, client, done) {
     console.log('getting screens');
-    var query = client.query('SELECT fms.date, fms.id, users.first_name, users.last_name, location.name ' +
+    var query = client.query('SELECT fms.date, fms.id, fms.total, users.first_name, users.last_name, location.name ' +
     'FROM fms JOIN users on (fms.user_id = users.id) JOIN location on (fms.location_id ' +
     '= location.id) WHERE fms.client_id = $1', [req.params.id]);
 
