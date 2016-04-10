@@ -2,7 +2,7 @@
 <div class="scrollable">
     <div class="scrollable-content">
         <div class="section">
-                <h1>Medical History</h1>
+            <h1>Medical History</h1>
             <div class="panel-group" ui-state="myAccordion" ui-default="1">
                 <div class="panel panel-default">
                     <div class="panel-heading" ui-set="{'myAccordion': 1}">
@@ -10,7 +10,6 @@
                             Basic Information
                         </h4>
                     </div>
-
                     <div ui-if="myAccordion == 1">
                         <div class="panel-body">
                             <p>Last medical screening: {{lastMedical | date}}</p>
@@ -20,79 +19,78 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!--Symptoms from the last 24 hours-->
-            <div class="panel panel-default">
-                <div class="panel-heading" ui-set="{'myAccordion': 2}">
-                    <h4 class="panel-title">
-                        Last 24 Hours
-                    </h4>
-                </div>
-                <div ui-if="myAccordion == 2">
-                    <div class="panel-body">
-                        <p>Symptoms from last 24-hours: </p>
-                        <div ng-repeat="symptom in symptoms">
-                            {{symptom}}
+                <!--Symptoms from the last 24 hours-->
+                <div class="panel panel-default">
+                    <div class="panel-heading" ui-set="{'myAccordion': 2}">
+                        <h4 class="panel-title">
+                            Last 24 Hours
+                        </h4>
+                    </div>
+                    <div ui-if="myAccordion == 2">
+                        <div class="panel-body">
+                            <p>Symptoms from last 24-hours: </p>
+                            <div ng-repeat="symptom in symptoms">
+                                {{symptom}}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!--Long term medical conditions-->
-            <div class="panel panel-default">
-                <div class="panel-heading" ui-set="{'myAccordion': 3}">
-                    <h4 class="panel-title">
-                        Medical Conditions
-                    </h4>
-                </div>
-                <div ui-if="myAccordion == 3">
-                    <div class="panel-body">
-                        <p>Conditions Already Noted: </p>
-                        <div ng-repeat="condition in conditions">
-                            <p>{{condition}}</p>
+                <!--Long term medical conditions-->
+                <div class="panel panel-default">
+                    <div class="panel-heading" ui-set="{'myAccordion': 3}">
+                        <h4 class="panel-title">
+                            Medical Conditions
+                        </h4>
+                    </div>
+                    <div ui-if="myAccordion == 3">
+                        <div class="panel-body">
+                            <p>Conditions Already Noted: </p>
+                            <div ng-repeat="condition in conditions">
+                                <p>{{condition}}</p>
+                            </div>
+
                         </div>
-
                     </div>
                 </div>
-            </div>
 
-            <!--Physicians Contact Information-->
-            <div class="panel panel-default">
-                <div class="panel-heading" ui-set="{'myAccordion': 4}">
-                    <h4 class="panel-title">
-                        Physician Contact
-                    </h4>
-                </div>
-                <div ui-if="myAccordion == 4">
-                    <div class="panel-body">
-                        <p>Physicians Name: {{physiciansName}}</p>
-                        <p>Physician's Phone Number: {{physiciansPhone}}</p>
+                <!--Physicians Contact Information-->
+                <div class="panel panel-default">
+                    <div class="panel-heading" ui-set="{'myAccordion': 4}">
+                        <h4 class="panel-title">
+                            Physician Contact
+                        </h4>
+                    </div>
+                    <div ui-if="myAccordion == 4">
+                        <div class="panel-body">
+                            <p>Physicians Name: {{physiciansName}}</p>
+                            <p>Physician's Phone Number: {{physiciansPhone}}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!--Signature Fields-->
-            <div class="panel panel-default">
-                <div class="panel-heading" ui-set="{'myAccordion': 5}">
-                    <h4 class="panel-title">
-                        Signature
-                    </h4>
-                </div>
-                <div ui-if="myAccordion == 5">
-                    <div class="panel-body">
-                        <p>Last signature: {{lastSig}}</p>
-                        <p>Date: {{lastSigDate | date}}</p>
+                <!--Signature Fields-->
+                <div class="panel panel-default">
+                    <div class="panel-heading" ui-set="{'myAccordion': 5}">
+                        <h4 class="panel-title">
+                            Signature
+                        </h4>
+                    </div>
+                    <div ui-if="myAccordion == 5">
+                        <div class="panel-body">
+                            <p>Last signature: {{lastSig}}</p>
+                            <p>Date: {{lastSigDate | date}}</p>
 
-                        <p>Parent or Guardian Signature <small>(If Under 18)</small></p>
-                        <p>Last signature: {{lastSigUnderAge}}</p>
-                        <p>Date: {{lastSigDateUnderAge | date}}</p>
+                            <p>Parent or Guardian Signature <small>(If Under 18)</small></p>
+                            <p>Last signature: {{lastSigUnderAge}}</p>
+                            <p>Date: {{lastSigDateUnderAge | date}}</p>
+                        </div>
                     </div>
                 </div>
+                <!--Submit!-->
+                <button class="btn btn-block btn-default" id="med_submit" ng-click="newMedicalWindow()" type="button">Complete New Medical History</button>
             </div>
-
-            <!--Submit!-->
-            <button class="btn btn-block btn-default" id="med_submit" ng-click="newMedicalWindow()" type="button">Complete New Medical History</button>
         </div>
     </div>
 </div>
