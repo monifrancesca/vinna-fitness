@@ -6,7 +6,7 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
   $scope.formData = {};
   $scope.formData.exercises = [];
   $scope.formData.class_type = $scope.dataFactory.factoryCurrentClass();
-
+  $scope.locations = [];
   $scope.searchName = {};
   $scope.names = [];
   $scope.exerciseResults = [];
@@ -16,6 +16,10 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
   $scope.showDistance = false;
   $scope.showKg = false;
   $scope.showLb = false;
+
+  $scope.dataFactory.getLocation().then(function(){
+    $scope.locations = $scope.dataFactory.getLocationVariable();
+  });
 
   $scope.nameQuery = function() {
     var query = $scope.searchName.query;

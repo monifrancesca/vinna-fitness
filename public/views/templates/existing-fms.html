@@ -8,11 +8,13 @@
         <table class="table">
           <tr>
             <th>Date:</th>
+            <th>Total:</th>
             <th>Trainer:</th>
             <th>Location:</th>
           </tr>
           <tr ng-repeat="screen in screens" ng-click="funcScreen(screen.id)">
             <td>{{screen.date | date:'EEEE, MMMM d, y'}}</td>
+            <td>{{screen.total}}</td>
             <td>{{screen.first_name}} {{screen.last_name}}</td>
             <td>{{screen.name}}</td>
           </tr>
