@@ -6,13 +6,11 @@
           <div class="panel panel-default">
             <div class="panel-heading" ui-set="{'myAccordion': 1}">
               <h4 class="panel-title">
-                Basic Info
+                Add New Trainer
               </h4>
             </div>
             <div ui-if="myAccordion == 1">
               <div class="panel-body">
-                <button ng-click="showHide()">Add New Trainer</button>
-                  <div ng-hide="showHideStatus">
                     <form>
                       <fieldset>
                         <div class="form-group">
@@ -28,12 +26,11 @@
                         </div>
                       </fieldset>
                     </form>
-                  </div>
                   <div class="panel-group" ui-state="myAccordion" ui-default="2">
                     <div class="panel panel-default">
                       <div class="panel-heading" ui-set="{'myAccordion': 2}">
                         <h4 class="panel-title">
-                          Trainers:
+                          View & Edit Trainers:
                         </h4>
                       </div>
                       <div ui-if="myAccordion == 2">
