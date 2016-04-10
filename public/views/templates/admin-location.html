@@ -1,17 +1,42 @@
-<!-- get all locations and show them on the DOM -->
-<h1>Current Locations</h1>
-<div ng-repeat="location in locations">
-    <p>{{location.name}}</p>
-
-<!-- remove a location -->
-    <button ng-click="removeLocation(location.id)">Remove Location</button>
+<div class="scrollable">
+    <div class="scrollable-content">
+        <div class="section">
+            <div class="panel-group" ui-state="myAccordion" ui-default="1">
+                <div class="panel panel-default">
+                    <div class="panel-heading" ui-set="{'myAccordion': 1}">
+                        <h4 class="panel-title">
+                            Current Locations
+                        </h4>
+                    </div>
+                    <div ui-if="myAccordion == 1">
+                        <div class="panel-body">
+                            <!-- get all locations and show them on the DOM -->
+                            <div ng-repeat="location in locations">
+                                <p>{{location.name}}</p>
+                                <!-- remove a location -->
+                                <button ng-click="removeLocation(location.id)">Remove Location</button>
+                            </div>
+                        </div>
+                    </div>
+            <!-- add a location name -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading" ui-set="{'myAccordion': 2}">
+                            <h4 class="panel-title">
+                                Add New Location
+                            </h4>
+                        </div>
+                        <div ui-if="myAccordion == 2">
+                            <div class="panel-body">
+                                <form>
+                                    <h1></h1>
+                                    <label for="locationName">Location name:</label>
+                                    <input type="text" id="locationName" ng-model="locationName" placeholder="Location Name" />
+                                    <!--submit button-->
+                                    <button id="location_submit" ng-click="saveLocation()" type="button">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
 </div>
-
-<!-- add a location name -->
-<form>
-    <h1>Location</h1>
-    <label for="locationName">Location name:</label>
-    <input type="text" id="locationName" ng-model="locationName" placeholder="Location Name" />
-<!--submit button-->
-    <button id="location_submit" ng-click="saveLocation()" type="button">Submit</button>
-</form>

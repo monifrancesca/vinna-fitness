@@ -2,6 +2,9 @@ myApp.controller('PersonalController', ['$scope', '$location', '$http', 'DataFac
 
   $scope.dataFactory = DataFactory;
 
+  $scope.height = {};
+  $scope.info = {};
+
   //$scope.dataFactory.retrievePersonal().then(function() {
   //  $scope.clientPersonal = $scope.dataFactory.clientInfo();
   //  console.log($scope.clientPersonal);
@@ -10,22 +13,23 @@ myApp.controller('PersonalController', ['$scope', '$location', '$http', 'DataFac
   //  console.log($scope.info);
   //});
 
-
   $scope.savePersonalInfo = function() {
-    var feet = $scope.heightFeet.toString();
-    var inches = $scope.heightInches.toString();
+    //console.log('feet', $scope.height.feet);
+    //console.log('inches', $scope.height.inches);
+    var feet = $scope.height.feet.toString();
+    var inches = $scope.height.inches.toString();
     var height = feet + '\'' + inches + '\"';
     console.log(height);
     var info = {
-      firstName: $scope.firstName,
-      lastName: $scope.lastName,
-      phoneNumber: $scope.phoneNumber,
-      emailAddress: $scope.emailAddress,
-      dateOfBirth: $scope.dateOfBirth,
+      firstName: $scope.info.firstName,
+      lastName: $scope.info.lastName,
+      phoneNumber: $scope.info.phoneNumber,
+      emailAddress: $scope.info.emailAddress,
+      dateOfBirth: $scope.info.dateOfBirth,
       height: height,
-      weightPounds: $scope.weightPounds,
-      emergencyContactName: $scope.emergencyContactName,
-      emergencyContactNumber: $scope.emergencyContactNumber
+      weightPounds: $scope.info.weightPounds,
+      emergencyContactName: $scope.info.emergencyContactName,
+      emergencyContactNumber: $scope.info.emergencyContactNumber
     };
     console.log('info in controller', info);
     $scope.dataFactory.sendPersonal(info);
