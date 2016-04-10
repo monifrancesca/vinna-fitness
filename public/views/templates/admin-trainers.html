@@ -22,7 +22,7 @@
                           <input  class="form-control" type="text" ng-model="$scope.trainerInfo.googleEmail">
                           <label>Make Admin</label>
                           <input  class="form-control" type="checkbox" ng-model="$scope.trainerInfo.adminStatus">
-                          <button ng-click="addTrainer($scope.trainerInfo)">Submit</button>
+                          <button ng-click="addTrainer($scope.trainerInfo)" type="button">Submit</button>
                         </div>
                       </fieldset>
                     </form>
@@ -30,7 +30,7 @@
                     <div class="panel panel-default">
                       <div class="panel-heading" ui-set="{'myAccordion': 2}">
                         <h4 class="panel-title">
-                          View & Edit Trainers:
+                          View & Edit Trainers
                         </h4>
                       </div>
                       <div ui-if="myAccordion == 2">
