@@ -1,45 +1,107 @@
 <div class="scrollable">
     <div class="scrollable-content">
-        <div class="section">
-            <h1>Manage Locations</h1>
-            <div class="panel-group" ui-state="myAccordion" ui-default="1">
-                <div class="panel panel-default">
-                    <div class="panel-heading" ui-set="{'myAccordion': 1}">
-                        <h4 class="panel-title">
-                            Current Locations
-                        </h4>
-                    </div>
-                    <div ui-if="myAccordion == 1">
-                        <div class="panel-body">
-                            <!-- get all locations and show them on the DOM -->
-                            <div ng-repeat="location in locations">
-                                <p>{{location.name}}</p>
-                                <!-- remove a location -->
-                                <button ng-click="removeLocation(location.id)">Remove Location</button>
+        <div class="list-group">
+            <div class="list-group-item scrollable-header">
+                <h1 class="manageexhead">Manage Locations</h1>
+                <a href ui-turn-on="modal1" class="btn btn-default modal-popup-btn">Add New Location</a>
+            </div>
+            <div class="list-group-item">
+                <table class="table">
+                    <tr>
+                        <th>Current Locations</th>
+                        <th>Current Status</th>
+                        <th>Change Status</th>
+                    </tr>
+                    <tr ng-repeat="location in locations" class="tableRow">
+
+                        <td>{{location.name}}</td>
+                        <td>
+                            <span ng-if="location.active_status == true">Active</span>
+                            <span ng-if="location.active_status == false">Inactive</span>
+                        </td>
+                        <td>
+                            <button class="btn" ng-if="location.active_status == true" ng-click="makeLocationInactive(location.id)">Set As Inactive</button>
+                            <button class="btn" ng-if="location.active_status == false" ng-click="makeLocationActive(location.id)">Set As Active</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal" ui-if="modal1" ui-state='modal1'>
+        <div class="modal-backdrop in"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" ui-turn-off="modal1">&times;</button>
+                    <h4 class="modal-title">New Location</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <fieldset>
+                            <div class="form-group">
+                                <label>Location Name: </label>
+                                <input class="form-control" type="text" name="locationName" ng-model="saveLocation.locationName" placeholder=""/>
                             </div>
-                        </div>
-                    </div>
-                    <!-- add a location name -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading" ui-set="{'myAccordion': 2}">
-                            <h4 class="panel-title">
-                                Add New Location
-                            </h4>
-                        </div>
-                        <div ui-if="myAccordion == 2">
-                            <div class="panel-body">
-                                <form>
-                                    <h1></h1>
-                                    <label for="locationName">Location name:</label>
-                                    <input type="text" id="locationName" ng-model="locationName" placeholder="Location Name" />
-                                    <!--submit button-->
-                                    <button id="location_submit" ng-click="saveLocation()" type="button">Submit</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="saveLocation()">Add Location</button>
+                    <button ui-turn-off="modal1" class="btn btn-default">Close</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!--<div class="scrollable">-->
+    <!--<div class="scrollable-content">-->
+        <!--<div class="section">-->
+            <!--<h1>Manage Locations</h1>-->
+            <!--<div class="panel-group" ui-state="myAccordion" ui-default="1">-->
+                <!--<div class="panel panel-default">-->
+                    <!--<div class="panel-heading" ui-set="{'myAccordion': 1}">-->
+                        <!--<h4 class="panel-title">-->
+                            <!--Current Locations-->
+                        <!--</h4>-->
+                    <!--</div>-->
+                    <!--<div ui-if="myAccordion == 1">-->
+                        <!--<div class="panel-body">-->
+                            <!--&lt;!&ndash; get all locations and show them on the DOM &ndash;&gt;-->
+                            <!--<div ng-repeat="location in locations">-->
+                                <!--<p>{{location.name}}</p>-->
+                                <!--&lt;!&ndash; remove a location &ndash;&gt;-->
+                                <!--<button ng-click="removeLocation(location.id)">Remove Location</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                    <!--&lt;!&ndash; add a location name &ndash;&gt;-->
+                    <!--<div class="panel panel-default">-->
+                        <!--<div class="panel-heading" ui-set="{'myAccordion': 2}">-->
+                            <!--<h4 class="panel-title">-->
+                                <!--Add New Location-->
+                            <!--</h4>-->
+                        <!--</div>-->
+                        <!--<div ui-if="myAccordion == 2">-->
+                            <!--<div class="panel-body">-->
+                                <!--<form>-->
+                                    <!--<h1></h1>-->
+                                    <!--<label for="locationName">Location name:</label>-->
+                                    <!--<input type="text" id="locationName" ng-model="locationName" placeholder="Location Name" />-->
+                                    <!--&lt;!&ndash;submit button&ndash;&gt;-->
+                                    <!--<button id="location_submit" ng-click="saveLocation()" type="button">Submit</button>-->
+                                <!--</form>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+
