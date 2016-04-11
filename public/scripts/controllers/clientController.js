@@ -4,6 +4,7 @@ myApp.controller('ClientController', ['$scope', '$http', '$location', 'DataFacto
   $scope.names = [];
   $scope.searchName = {};
   $scope.client = {};
+  $scope.clientSelected = false;
 
 
   $scope.nameQuery = function() {
@@ -23,6 +24,8 @@ myApp.controller('ClientController', ['$scope', '$http', '$location', 'DataFacto
     $scope.searchName.query = $scope.client.name;
     $scope.client.id = id;
     $scope.names = [];
+    $scope.clientSelected = true;
+
   };
 
   $scope.loadPersonal = function() {

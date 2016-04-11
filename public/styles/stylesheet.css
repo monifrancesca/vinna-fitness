@@ -7,6 +7,11 @@
     margin-right: 5%;
 }
 
+.sets {
+    display: inline-block;
+    margin-right: 5%;
+}
+
 .exercise-btn {
     float: right;
 }

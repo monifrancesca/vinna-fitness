@@ -16,7 +16,8 @@
                             <div class="form-group">
                                 <label>Client Name(s): </label>
                                 <tags-input ng-model="searchName.query" display-property="fullName" replace-spaces-with-dashes="false"
-                                            key-property="id" on-tag-added="addName($tag)" on-tag-removed="removeName($tag)">
+                                            key-property="id" on-tag-added="addName($tag)" on-tag-removed="removeName($tag)"
+                                            placeholder="Add a Client">
                                     <auto-complete source="loadNames($query)" max-results-to-show="15"></auto-complete>
                                 </tags-input>
                             </div>
@@ -33,6 +34,10 @@
                                     </label>
                                 </div>
                             </div>
+                            <!--<div class="form-group">-->
+                                <!--<label>Class Type: </label>-->
+                                <!--<input class="dropdown" type="" name="" ng-model=""/>-->
+                            <!--</div>-->
                         </fieldset>
                     </form>
                 </div>
@@ -116,47 +121,47 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Sets:</label>
-                                <select name="sets" ng-model="newExercise.sets">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
+                                <div class="sets">
+                                    <label>Sets:</label>
+                                    <select name="sets" ng-model="newExercise.sets" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </div>
                                 <div class="rep-units">
                                     <label>Rep Units:</label>
-                                    <select name="measurement" ng-model="newExercise.measurement" ng-change="showUnits()">
+                                    <select name="measurement" ng-model="newExercise.measurement" ng-change="showUnits()" class="form-control">
                                         <option value="#">Number</option>
                                         <option value="time">Time</option>
                                         <option value="distance">Distance</option>
                                     </select>
                                 </div>
 
-                                <div class="rep-type">
-                                    <div ng-show="showReps">
+                                <!--<div>-->
+                                    <div ng-show="showReps" class="rep-type">
                                         <label>Number of Reps:</label>
-                                        <input type="number" name="number" ng-model="newExercise.number"/>
+                                        <input type="number" name="number" ng-model="newExercise.number" class="form-control"/>
                                     </div>
-                                    <div ng-show="showTime">
+                                    <div ng-show="showTime" class="rep-type">
                                         <label>Time per Rep:</label>
-                                        <label>M</label>
-                                        <input type="number" name="minutes" ng-model="newExercise.minutes"/>
-                                        <label>S</label>
-                                        <input name="seconds" type="number" ng-model="newExercise.seconds"/>
+                                        <input type="number" name="minutes" ng-model="newExercise.minutes" class="form-control"/>
+                                        <p>Minutes</p>
+                                        <input name="seconds" type="number" ng-model="newExercise.seconds" class="form-control"/>
+                                        <p>Seconds</p>
                                     </div>
-                                    <div ng-show="showDistance">
+                                    <div ng-show="showDistance" class="rep-type">
                                         <label>Distance per rep (in meters):</label>
-                                        <input type="number" name="distance" ng-model="newExercise.distance"/>
+                                        <input type="number" name="distance" ng-model="newExercise.distance" class="form-control"/>
                                     </div>
-                                </div>
+                                <!--</div>-->
                             </div>
                             <div class="form-group">
                                 <label>Intensity:</label>

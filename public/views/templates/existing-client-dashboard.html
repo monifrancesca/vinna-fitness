@@ -2,9 +2,10 @@
     <div class="scrollable-content">
         <div class="section">
             <h1>Existing Client</h1>
-            <div class="form-group">
+            <div class="form-group" ng-hide="clientSelected">
+                <p>To begin, select a client:</p>
                 <label>Client Name: </label>
-                <input class="form-control" type="text" name="clientName" ng-model="searchName.query" ng-change="nameQuery()" placeholder=""/>
+                <input class="form-control" type="text" name="clientName" ng-model="searchName.query" ng-change="nameQuery()" placeholder="Search Clients"/>
                 <div class="resultsBox" ng-hide="searchName.query.length < 1 || searchName.query.length == undefined
                  || names.length < 1 || names.length == undefined">
                     <ul ng-show="names.length >= 1" class="searchResults">
@@ -12,7 +13,8 @@
                     </ul>
                 </div>
             </div>
-            <div class="panel-group">
+            <div class="panel-group" ng-show="clientSelected">
+                <h3>{{client.name}}</h3>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="panel-body">
