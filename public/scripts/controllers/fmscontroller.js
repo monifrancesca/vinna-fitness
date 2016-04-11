@@ -2,6 +2,8 @@ myApp.controller('FMSController', ['$scope', '$location', '$http', 'DataFactory'
 
   $scope.dataFactory = DataFactory;
 
+  $scope.searchName = {};
+
   $scope.fmsData = {
     deepSquat: null,
     toeTouch: null,
@@ -33,9 +35,9 @@ myApp.controller('FMSController', ['$scope', '$location', '$http', 'DataFactory'
     rotaryRightUp: null,
     rotaryDF: null,
     total: null,
-    client_id: 1,
+    client_id: null,
     user_id: 1,
-    date: null,
+    date: new Date(),
     handDominance: null,
     swingDominance: null,
     throwDominance: null,
@@ -44,6 +46,18 @@ myApp.controller('FMSController', ['$scope', '$location', '$http', 'DataFactory'
     handLength: null,
     location: null
   };
+
+  $scope.client = $scope.dataFactory.factoryReturnSelectedClient();
+  console.log($scope.client.name);
+
+  if ($scope.client == 'undefined') {
+    $scope.fmsData.client_id = null;
+    $scope.searchName.query = null;
+  } else {
+    $scope.fmsData.client_id = $scope.client.id;
+    $scope.searchName.query = $scope.client.name;
+    console.log('This is the searchName', $scope.searchName.query);
+  }
 
   $scope.locations = [];
   $scope.handMultiplyer = null;
@@ -72,7 +86,7 @@ myApp.controller('FMSController', ['$scope', '$location', '$http', 'DataFactory'
   $scope.selectName = function(id, firstName, lastName){
     $scope.searchName.query = firstName + ' ' + lastName;
     $scope.names = [];
-    $scope.formData.client_id = $scope.dataFactory.factoryGetClientId(id);
+    $scope.fmsData.client_id = id;
   };
 
 
