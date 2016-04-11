@@ -19,3 +19,24 @@
     background-color: #f7f7f7;
     cursor: pointer;
 }
+
+
+tags-input .tags {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/*.tags {*/
+    /*border: 1px solid #ccc;*/
+    /*border-radius: 4px;*/
+    /*box-shadow: none;*/
+/*}*/
+
+/*tags-input {*/
+    /*!*border: 1px solid #ccc;*!*/
+    /*box-shadow: none;*/
+    /*border-radius: 4px;*/
+/*}*/
+
+

@@ -16,40 +16,45 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
   $scope.showDistance = false;
   $scope.showKg = false;
   $scope.showLb = false;
+  $scope.formData.date = new Date();
+  //var myEl = angular.element(document.querySelector( '#divID' ) );
+
 
   $scope.dataFactory.getLocation().then(function(){
     $scope.locations = $scope.dataFactory.getLocationVariable();
+     if ($scope.locations.length == 1) {
+       var loc = angular.element(document.querySelector( '.location' ) );
+       loc.attr('checked',"checked");
+     }
   });
 
-  $scope.nameQuery = function() {
-    var query = $scope.searchName.query;
-    console.log('name query', query);
-    if (query.length >= 1) {
-      console.log('This is the query', query);
-      $scope.dataFactory.factorySearchClient(query).then(function() {
-        $scope.names = $scope.dataFactory.factoryNameQuery();
-        console.log('These are the results', $scope.names);
+  $scope.loadNames = function($query) {
+    var query = $query;
+    return $http.get('/workout/searchname/' + query).then(function(response) {
+      var names = response.data;
+      return names.filter(function(name) {
+        name.fullName = name.first_name + ' ' + name.last_name;
+        return name.fullName.toLowerCase().indexOf($query.toLowerCase()) != -1;
       });
-    }
-    else {
-      $scope.names = [];
-    }
+    });
   };
 
-  $scope.selectName = function(id, firstName, lastName){
-    $scope.searchName.query = firstName + ' ' + lastName;
-    $scope.names = [];
-    $scope.formData.client_id = $scope.dataFactory.factoryGetClientId(id);
+  $scope.addName = function(name) {
+    $scope.names.push(name.id);
+  };
+
+  $scope.removeName = function(name) {
+    var index = $scope.names.indexOf(name.id);
+    if (index > -1) {
+      $scope.names.splice(index, 1);
+    }
   };
 
   $scope.exerciseQuery = function() {
     var query = $scope.newExercise.exercisename;
-    console.log('exercise query', query);
     if (query.length >= 1) {
-      console.log('This is the query', query);
       $scope.dataFactory.factorySearchExercise(query).then(function() {
         $scope.exerciseResults = $scope.dataFactory.factoryExerciseQuery();
-        console.log('These are the results', $scope.exerciseResults);
       });
     }
     else {
@@ -70,16 +75,19 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
       }
       $scope.newExercise.seconds += ($scope.newExercise.minutes * 60);
       $scope.newExercise.minutes = null;
-      console.log('Seconds: ', $scope.newExercise.seconds);
     }
     $scope.formData.exercises.push($scope.newExercise);
     resetNewExercise();
-    console.log('These are the exercises', $scope.formData.exercises);
   };
 
   $scope.sendForm = function() {
-    console.log($scope.formData);
-    $scope.dataFactory.factorySaveNewWorkout($scope.formData);
+    for (var i = 0; i < $scope.names.length; i++) {
+      $scope.dataFactory.factorySaveNewWorkout($scope.formData, $scope.names[i]);
+    }
+    $scope.searchName.query = '';
+    $scope.exercises = [];
+    $scope.formData = {};
+    $scope.myAccordion = 1;
   };
 
   $scope.makeBasicInfoActive = function() {
