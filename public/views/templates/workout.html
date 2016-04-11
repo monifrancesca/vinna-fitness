@@ -15,16 +15,10 @@
                         <fieldset>
                             <div class="form-group">
                                 <label>Client Name(s): </label>
-                                <!--<input class="form-control" type="text" name="clientName" ng-model="searchName.query" ng-change="nameQuery()" placeholder=""/>-->
                                 <tags-input ng-model="searchName.query" display-property="fullName" replace-spaces-with-dashes="false"
                                             key-property="id" on-tag-added="addName($tag)" on-tag-removed="removeName($tag)">
                                     <auto-complete source="loadNames($query)" max-results-to-show="15"></auto-complete>
                                 </tags-input>
-                                <!--<div class="resultsBox" ng-hide="searchName.query.length < 1 || searchName.query.length == undefined">-->
-                                    <!--<ul ng-show="names.length >= 1" class="searchResults">-->
-                                        <!--<li ng-repeat="name in names"><a class="result" ng-click="selectName(name.id, name.first_name, name.last_name)">{{name.first_name}} {{name.last_name}}</a></li>-->
-                                    <!--</ul>-->
-                                <!--</div>-->
                             </div>
                             <div class="form-group">
                                 <label>Date of Session: </label>
@@ -108,8 +102,14 @@
                         <fieldset>
                             <div class="form-group">
                                 <label>Exercise Name:</label>
+                                <!--<tags-input ng-model="searchExercise.query" display-property="name" replace-spaces-with-dashes="false"-->
+                                            <!--key-property="id" on-tag-added="selectExercise($tag)" on-tag-removed="removeExercise($tag)" max-tags="1">-->
+                                    <!--<auto-complete source="loadExercises($query)" max-results-to-show="15"></auto-complete>-->
+                                <!--</tags-input>-->
+
                                 <input class="form-control" type="text" name="exercisename" ng-model="newExercise.exercisename" ng-change="exerciseQuery(text)" placeholder=""/>
-                                <div class="resultsBox" ng-hide="newExercise.exercisename.length < 1 || newExercise.exercisename.length == undefined">
+                                <div class="resultsBox" ng-hide="newExercise.exercisename.length < 1 ||
+                                newExercise.exercisename.length == undefined || exerciseResults.length < 1 || exerciseResults.length == undefined">
                                     <ul ng-show="newExercise.exercisename.length >= 1" class="searchResults">
                                         <li ng-repeat="exercise in exerciseResults"><a class="result" ng-click="selectExercise(exercise.id, exercise.name)">{{exercise.name}}</a></li>
                                     </ul>

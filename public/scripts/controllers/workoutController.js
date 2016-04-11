@@ -8,6 +8,7 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
   $scope.formData.class_type = $scope.dataFactory.factoryCurrentClass();
   $scope.locations = [];
   $scope.searchName = {};
+  $scope.searchExercise = {};
   $scope.names = [];
   $scope.exerciseResults = [];
   $scope.showBasic = true;
@@ -44,6 +45,31 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
       $scope.names.splice(index, 1);
     }
   };
+
+  //$scope.loadExercises = function($query) {
+  //  var query = $query;
+  //  return $http.get('/workout/searchexercise/' + query).then(function(response) {
+  //    var exercises = response.data;
+  //    console.log(exercises);
+  //    return exercises.filter(function(exercise) {
+  //      //name.fullName = name.first_name + ' ' + name.last_name;
+  //      return exercise.name.toLowerCase().indexOf($query.toLowerCase()) != -1;
+  //    });
+  //  });
+  //};
+  //
+  //$scope.selectExercise = function(exercise) {
+  //  $scope.newExercise.exercisename = exercise.name;
+  //  $scope.newExercise.exercise_id = exercise.id;
+  //  console.log ('This is the new exercise', $scope.newExercise);
+  //};
+  //
+  //$scope.removeExercise = function(exercise) {
+  //  $scope.newExercise.exercisename = undefined;
+  //  $scope.newExercise.exercise_id = undefined;
+  //  console.log ('This is the new exercise', $scope.newExercise);
+  //
+  //};
 
   $scope.exerciseQuery = function() {
     var query = $scope.newExercise.exercisename;
