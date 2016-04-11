@@ -19,3 +19,20 @@
     background-color: #f7f7f7;
     cursor: pointer;
 }
+
+.logo {
+    width: 30%;
+    display: block;
+    margin: 2% auto;
+}
+
+.googleLogo {
+    width: 20%;
+    display: block;
+    margin: 2% auto;
+}
+
+.welcome {
+    padding: 3%;
+    text-align: center;
+}
