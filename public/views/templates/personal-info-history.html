@@ -36,58 +36,57 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" ui-set="{'myAccordion': 3}">
-                        <h4 class="panel-title">
-                            Emergency Contact Info
-                        </h4>
-                    </div>
-                    <div ui-if="myAccordion == 3">
-                        <div class="panel-body">
-                            <p>Emergency contact: {{emergencyContactName}}</p>
-                            <p>Emergency Phone: {{emergencyContactNumber}}</p>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" ui-set="{'myAccordion': 3}">
+                            <h4 class="panel-title">
+                                Emergency Contact Info
+                            </h4>
                         </div>
+                        <div ui-if="myAccordion == 3">
+                            <div class="panel-body">
+                                <p>Emergency contact: {{emergencyContactName}}</p>
+                                <p>Emergency Phone: {{emergencyContactNumber}}</p>
+                            </div>
+                        </div>
+                        <button class="btn btn-block btn-default" ng-click="viewPersonalEdit()">Edit</button>
                     </div>
-                    <button class="btn btn-block btn-default" ng-click="viewPersonalEdit()">Edit</button>
                 </div>
             </div>
         </div>
     </div>
-    <div  ng-hide="editHistory">
-        <div class="scrollable">
-            <div class="scrollable-content">
-                <div class="section">
-                    <div class="list-group-item scrollable-header">
-                        <h1>Edit Personal Info</h1>
+</div>
+
+<div ng-hide="editHistory">
+    <div class="scrollable">
+        <div class="scrollable-content">
+            <div class="section">
+                <h1>Edit Personal Info</h1>
+                <div class="panel-group" ui-state="myAccordion" ui-default="1">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" ui-set="{'myAccordion': 1}">
+                            <h4 class="panel-title">
+                                Basic Info
+                            </h4>
                         </div>
-                    <div class="panel-group" ui-state="myAccordion" ui-default="1">
-                        <div class="panel panel-default">
-                            <div class="panel-heading" ui-set="{'myAccordion': 1}">
-                                <h4 class="panel-title">
-                                    Basic Info
-                                </h4>
-                            </div>
-                            <div ui-if="myAccordion == 1">
-                                <div class="panel-body">
-                                    <form>
-                                        <fieldset>
-                                            <div class="form-group">
-                                                <!--name:-->
-                                                    <label for="firstName">First name:</label>
-                                                    <input class="form-control" type="text" ng-model="info.first_name" id="firstName" placeholder="First Name" />
-                                                    <label for="lastName">Last name:</label>
-                                                    <input class="form-control" type="text" ng-model="info.last_name" id="lastName" placeholder="Last Name" />
-                                                <!--phone:-->
-                                                    <label for="phoneNumber">Phone number:</label>
-                                                    <input class="form-control" type="tel" ng-model="info.phone" id="phoneNumber" />
-                                                <!--email address:-->
-                                                    <label for="emailAddress">Email address:</label>
-                                                    <input class="form-control" type="email" ng-model="info.email" id="emailAddress" placeholder="Email Address" />
-                                            </div>
-                                        </fieldset>
-                                    </form>
-                                </div>
+                        <div ui-if="myAccordion == 1">
+                            <div class="panel-body">
+                                <form>
+                                    <fieldset>
+                                        <div class="form-group">
+                                            <!--name:-->
+                                                <label for="firstName">First name:</label>
+                                                <input class="form-control" type="text" ng-model="info.first_name" id="firstName" placeholder="First Name" />
+                                                <label for="lastName">Last name:</label>
+                                                <input class="form-control" type="text" ng-model="info.last_name" id="lastName" placeholder="Last Name" />
+                                            <!--phone:-->
+                                                <label for="phoneNumber">Phone number:</label>
+                                                <input class="form-control" type="tel" ng-model="info.phone" id="phoneNumber" />
+                                            <!--email address:-->
+                                                <label for="emailAddress">Email address:</label>
+                                                <input class="form-control" type="email" ng-model="info.email" id="emailAddress" placeholder="Email Address" />
+                                        </div>
+                                    </fieldset>
+                                </form>
                             </div>
                         </div>
                     </div>

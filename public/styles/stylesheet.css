@@ -20,7 +20,6 @@
     cursor: pointer;
 }
 
-
 tags-input .tags {
     box-shadow: none;
     border: 1px solid #ccc;
@@ -47,5 +46,20 @@ tags-input .tags {
     z-index: 200;
 }
 
+.logo {
+    width: 30%;
+    display: block;
+    margin: 2% auto;
+}
 
+.googleLogo {
+    width: 20%;
+    display: block;
+    margin: 2% auto;
+}
+
+.welcome {
+    padding: 3%;
+    text-align: center;
+}
 
