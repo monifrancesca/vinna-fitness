@@ -17,15 +17,10 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
   $scope.showKg = false;
   $scope.showLb = false;
   $scope.formData.date = new Date();
-  //var myEl = angular.element(document.querySelector( '#divID' ) );
 
 
   $scope.dataFactory.getLocation().then(function(){
     $scope.locations = $scope.dataFactory.getLocationVariable();
-     if ($scope.locations.length == 1) {
-       var loc = angular.element(document.querySelector( '.location' ) );
-       loc.attr('checked',"checked");
-     }
   });
 
   $scope.loadNames = function($query) {
