@@ -38,4 +38,8 @@ myApp.controller('NavController', function (AuthFactory, $window) {
       });
   };
 
+  this.back = function() {
+    $window.history.back();
+  };
+
 });

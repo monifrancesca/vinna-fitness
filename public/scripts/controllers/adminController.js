@@ -65,7 +65,7 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', function(
   };
 
   $scope.showHide = function(){
-    $scope.showHideStatus ^= true;
+    $scope.showHideStatus = true;
   };
 
 }]);
