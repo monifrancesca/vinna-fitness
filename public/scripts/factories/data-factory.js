@@ -25,6 +25,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var facSelectedFMS = undefined;
   var clients = [];
   var allExercises = [];
+  var flags = undefined;
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
 //the workout table and workout_line_items table.
@@ -296,6 +297,23 @@ myApp.factory('DataFactory', ['$http', function($http) {
     $http.post('/admin/newexercise', data).then(function(response) {
     });
   };
+
+  var getAllFlags = function() {
+    var promise = $http.get('/admin/flags').then(function(response) {
+      flags = response.data;
+    });
+    return promise;
+  };
+
+  var updateFlag = function(id) {
+    var data = {
+      flag: false
+    };
+
+    $http.put('/admin/flags/' + id, data).then(function(response) {
+    });
+  };
+
   //PUBLIC
 
   var dataFactoryOutput = {
@@ -488,6 +506,15 @@ myApp.factory('DataFactory', ['$http', function($http) {
     },
     factoryAddExercise: function(exercise) {
       return exerciseAdd(exercise);
+    },
+    retrieveFlags: function() {
+      return getAllFlags();
+    },
+    getFlags: function() {
+      return flags;
+    },
+    updateFlags: function(id) {
+      return updateFlag(id);
     }
   };
   return dataFactoryOutput;

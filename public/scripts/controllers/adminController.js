@@ -68,4 +68,15 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', function(
     $scope.showHideStatus = true;
   };
 
+  $scope.dataFactory.retrieveFlags().then(function() {
+    $scope.flags = $scope.dataFactory.getFlags();
+  });
+
+  $scope.removeFlag = function(id) {
+    $scope.dataFactory.updateFlags(id);
+      $scope.dataFactory.retrieveFlags().then(function () {
+        $scope.flags = $scope.dataFactory.getFlags();
+      });
+  };
+
 }]);
