@@ -14,6 +14,12 @@
                             <form>
                                 <fieldset>
                                     <div class="form-group">
+                                        <label>Class Type: </label>
+                                        <select id="class_dropdown" ng-model="classList" class="form-control" ng-options="class.class_type for class in classes">
+                                            <option value="">--Select A Class--</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
                                         <label>Client Name(s): </label>
                                         <tags-input ng-model="searchName.query" display-property="fullName" replace-spaces-with-dashes="false"
                                                     key-property="id" on-tag-added="addName($tag)" on-tag-removed="removeName($tag)"
@@ -21,14 +27,6 @@
                                             <auto-complete source="loadNames($query)" max-results-to-show="15"></auto-complete>
                                         </tags-input>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Class Type: </label>
-                                        <select id="class_dropdown" ng-model="classList" ng-options="class.class_type for class in classes">
-                                            <option value="">---Select---</option>
-                                        </select>
-
-                                    </div>
-
                                     <div class="form-group">
                                         <label>Date of Session: </label>
                                         <input class="form-control" type="date" name="date" ng-model="formData.date"/>
