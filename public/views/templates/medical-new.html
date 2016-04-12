@@ -54,27 +54,27 @@
                                 <fieldset>
                                     <h4>Check any that apply in the last 24 hours:</h4>
                                     <div class="form-group">
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.infection" />
                                             Infection
                                         </label>
 
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.inflammation" />
                                             Inflammation
                                         </label>
 
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.flu" />
                                             Flu
                                         </label>
 
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.fever" />
                                             Fever
                                         </label>
 
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.cold" />
                                             Cold
                                         </label>
@@ -100,52 +100,52 @@
                                 <fieldset>
                                     <h4>Check any of the following that you currently or have ever had:</h4>
                                     <div class="form-group">
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.dislocations" />
                                             Dislocations
                                         </label>
 
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.phlebitis" />
                                             Phlebitis
                                         </label>
 
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.neckInjuries" />
                                             Neck injuries
                                         </label>
 
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.lowBackPain" />
                                             Low back pain
                                         </label>
 
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.bloodPressure" />
                                             High blood pressure
                                         </label>
 
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.heartProblems" />
                                             Heart problems
                                         </label>
 
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.headaches" />
                                             Headaches
                                         </label>
 
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.arthritis">
                                             Arthritis
                                         </label>
 
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.nerves" />
                                             Numbness/tingling/nerve conditions
                                         </label>
 
-                                        <label class="radio-inline">
+                                        <label class="checkbox-inline">
                                             <input type="checkbox" ng-model="info.fainting" />
                                             Fainting spells
                                         </label>
@@ -155,75 +155,75 @@
                             </form>
                         </div>
                     </div>
+                </div>
 
-                    <!--Physicians Contact Information-->
-                    <div class="panel panel-default">
-                        <div class="panel-heading" ui-set="{'myAccordion': 4}">
-                            <h4 class="panel-title">
-                                Physician Contact
-                            </h4>
-                        </div>
-                        <div ui-if="myAccordion == 4">
-                            <div class="panel-body">
-                                <form>
-                                    <fieldset>
-                                        <div class="form-group">
-                                            <label for="physiciansName"> Physicians Name</label>
-                                            <input class="form-control" type="text" ng-model="info.physiciansName"
-                                                   id="physiciansName" />
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="physiciansPhone">Physician's Phone Number</label>
-                                            <input class="form-control" type="tel" ng-model="info.physiciansPhone"
-                                                   id="physiciansPhone" />
-                                        </div>
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </div>
+                <!--Physicians Contact Information-->
+                <div class="panel panel-default">
+                    <div class="panel-heading" ui-set="{'myAccordion': 4}">
+                        <h4 class="panel-title">
+                            Physician Contact
+                        </h4>
                     </div>
+                    <div ui-if="myAccordion == 4">
+                        <div class="panel-body">
+                            <form>
+                                <fieldset>
+                                    <div class="form-group">
+                                        <label for="physiciansName"> Physicians Name</label>
+                                        <input class="form-control" type="text" ng-model="info.physiciansName"
+                                               id="physiciansName" />
+                                    </div>
 
-                    <!--Signature Fields-->
-                    <div class="panel panel-default">
-                        <div class="panel-heading" ui-set="{'myAccordion': 5}">
-                            <h4 class="panel-title">
-                                Signature
-                            </h4>
-                        </div>
-                        <div ui-if="myAccordion == 5">
-                            <div class="panel-body">
-                                <form>
-                                    <fieldset>
-                                        <p>The above information is accurate and true to the best of my knowledge. I hereby release Corrective Exercise Specialists, LLC from liability for accidental injury or illness, which I may incur as a result of participating in the CES fitness program and in the testing and/or screening procedure. All data collected is strictly confidential and only for use by CES. I take responsibility for alerting my therapist to any physical conditions, which would affect this work. I hereby assume all risks connected therewith and consent to participate in the CES program and assessment.</p>
-
-                                        <div class="form-group">
-                                            <label for="signature">Signature</label>
-                                            <input class="form-control" type="text" ng-model="info.signature" id="signature" />
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="signatureDate">Today's Date</label>
-                                            <input class="form-control" type="date" ng-model="info.signatureDate" id="signatureDate" />
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="signatureUnderAge">Parent or Guardian Signature <small>(If Under 18)</small></label>
-                                            <input class="form-control" type="text" ng-model="info.signatureUnderAge" id="signatureUnderAge" />
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="signatureDateUnderAge">Today's Date</label>
-                                            <input class="form-control" type="date" ng-model="info.signatureDateUnderAge" id="signatureDateUnderAge" />
-                                        </div>
-                                    </fieldset>
-                                </form>
-                            </div>
+                                    <div class="form-group">
+                                        <label for="physiciansPhone">Physician's Phone Number</label>
+                                        <input class="form-control" type="tel" ng-model="info.physiciansPhone"
+                                               id="physiciansPhone" />
+                                    </div>
+                                </fieldset>
+                            </form>
                         </div>
                     </div>
                 </div>
+
+                <!--Signature Fields-->
+                <div class="panel panel-default">
+                    <div class="panel-heading" ui-set="{'myAccordion': 5}">
+                        <h4 class="panel-title">
+                            Signature
+                        </h4>
+                    </div>
+                    <div ui-if="myAccordion == 5">
+                        <div class="panel-body">
+                            <form>
+                                <fieldset>
+                                    <p>The above information is accurate and true to the best of my knowledge. I hereby release Corrective Exercise Specialists, LLC from liability for accidental injury or illness, which I may incur as a result of participating in the CES fitness program and in the testing and/or screening procedure. All data collected is strictly confidential and only for use by CES. I take responsibility for alerting my therapist to any physical conditions, which would affect this work. I hereby assume all risks connected therewith and consent to participate in the CES program and assessment.</p>
+
+                                    <div class="form-group">
+                                        <label for="signature">Signature</label>
+                                        <input class="form-control" type="text" ng-model="info.signature" id="signature" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="signatureDate">Today's Date</label>
+                                        <input class="form-control" type="date" ng-model="info.signatureDate" id="signatureDate" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="signatureUnderAge">Parent or Guardian Signature <small>(If Under 18)</small></label>
+                                        <input class="form-control" type="text" ng-model="info.signatureUnderAge" id="signatureUnderAge" />
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="signatureDateUnderAge">Today's Date</label>
+                                        <input class="form-control" type="date" ng-model="info.signatureDateUnderAge" id="signatureDateUnderAge" />
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!--Submit!-->
             </div>
-            <!--Submit!-->
             <button class="btn btn-block btn-default" id="med_submit" ng-click="saveMedical()" type="button">Submit</button>
         </div>
     </div>
