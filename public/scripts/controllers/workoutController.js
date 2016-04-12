@@ -191,6 +191,11 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
     $scope.showKg = false;
     $scope.showLb = false;
     $scope.newExercise.measurement;
-  }
+  };
+
+  $scope.dataFactory.factoryGetClassList().then(function() {
+    $scope.classes = $scope.dataFactory.factoryClasses();
+    console.log($scope.classes);
+  });
 
 }]);
