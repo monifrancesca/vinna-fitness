@@ -31,6 +31,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
 //the workout table and workout_line_items table.
 
   var saveNewWorkout = function(workout, client) {
+    console.log(workout);
     $http.post('/workout/' + client, workout).then(function(response) {
     });
   };
