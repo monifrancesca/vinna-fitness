@@ -7,6 +7,11 @@
     margin-right: 5%;
 }
 
+.sets {
+    display: inline-block;
+    margin-right: 5%;
+}
+
 .exercise-btn {
     float: right;
 }
@@ -62,4 +67,8 @@ tags-input .tags {
     padding: 3%;
     text-align: center;
 }
+
+/*.timeinput {*/
+    /*display: block;*/
+/*}*/
 
