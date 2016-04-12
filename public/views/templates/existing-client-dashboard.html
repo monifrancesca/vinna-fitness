@@ -1,26 +1,31 @@
 <div class="scrollable">
     <div class="scrollable-content">
-<div class="section">
-    <h1>Existing Client</h1>
-    <div class="form-group">
-        <label>Client Name: </label>
-        <input class="form-control" type="text" name="clientName" ng-model="searchName.query" ng-change="nameQuery()" placeholder=""/>
-        <div class="resultsBox" ng-hide="searchName.query.length < 1 || searchName.query.length == undefined">
-            <ul ng-show="names.length >= 1" class="searchResults">
-                <li ng-repeat="name in names"><a class="result" ng-click="selectClient(name.id, name.first_name, name.last_name)">{{name.first_name}} {{name.last_name}}</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="panel-group">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="panel-body">
-                    <a href="#personalhistory" class="btn btn-block btn-default">Personal Info</a>
-                    <a href="#medical" class="btn btn-block btn-default">Medical History</a>
-                    <a href="#fms" class="btn btn-block btn-default">New FMS</a>
-                    <a href="#existingFms" class="btn btn-block btn-default">FMS History</a>
-                    <a href="#workouthistory" class="btn btn-block btn-default">Workout History</a>
-                    <a href="#workout" class="btn btn-block btn-default">Start New Workout</a>
+        <div class="section">
+            <h1>Existing Client</h1>
+            <div class="form-group" ng-hide="clientSelected">
+                <p>To begin, select a client:</p>
+                <label>Client Name: </label>
+                <input class="form-control" type="text" name="clientName" ng-model="searchName.query" ng-change="nameQuery()" placeholder="Search Clients"/>
+                <div class="resultsBox" ng-hide="searchName.query.length < 1 || searchName.query.length == undefined
+                 || names.length < 1 || names.length == undefined">
+                    <ul ng-show="names.length >= 1" class="searchResults">
+                        <li ng-repeat="name in names"><a class="result" ng-click="selectClient(name.id, name.first_name, name.last_name)">{{name.first_name}} {{name.last_name}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-group" ng-show="clientSelected">
+                <h3>{{client.name}}</h3>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-body">
+                            <a ng-click="loadPersonal()" class="btn btn-block btn-default">Personal Info</a>
+                            <a ng-click="loadMedical()" class="btn btn-block btn-default">Medical History</a>
+                            <a ng-click="loadNewFMS()" class="btn btn-block btn-default">New FMS</a>
+                            <a ng-click="loadFMSHistory()" class="btn btn-block btn-default">FMS History</a>
+                            <a ng-click="loadWorkoutHistory()" class="btn btn-block btn-default">Workout History</a>
+                            <a ng-click="loadNewWorkout()" class="btn btn-block btn-default">Start New Workout</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

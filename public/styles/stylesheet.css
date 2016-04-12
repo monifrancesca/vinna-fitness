@@ -7,7 +7,12 @@
     margin-right: 5%;
 }
 
-.modal-popup-btn {
+.sets {
+    display: inline-block;
+    margin-right: 5%;
+}
+
+.exercise-btn {
     float: right;
 }
 
@@ -19,3 +24,51 @@
     background-color: #f7f7f7;
     cursor: pointer;
 }
+
+tags-input .tags {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.searchResults {
+    margin: 0;
+    padding: 8px;
+    vertical-align: top;
+    list-style-type: none;
+}
+
+.searchResults li {
+    margin-bottom: 5px;
+}
+
+.resultsBox {
+    position: absolute;
+    margin-top: 4px;
+    width: 100%;
+    background: white;
+    border: solid #d7d7d7 1px;
+    z-index: 200;
+}
+
+.logo {
+    width: 30%;
+    display: block;
+    margin: 2% auto;
+}
+
+.googleLogo {
+    width: 20%;
+    display: block;
+    margin: 2% auto;
+}
+
+.welcome {
+    padding: 3%;
+    text-align: center;
+}
+
+/*.timeinput {*/
+    /*display: block;*/
+/*}*/
+

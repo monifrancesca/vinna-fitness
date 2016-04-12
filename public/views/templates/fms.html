@@ -17,7 +17,8 @@
                   <div class="form-group">
                     <label>Client Name: </label>
                     <input class="form-control" type="text" name="clientName" ng-model="searchName.query" ng-change="nameQuery()" placeholder=""/>
-                    <div class="resultsBox" ng-hide="searchName.query.length < 1 || searchName.query.length == undefined">
+                    <div class="resultsBox" ng-hide="searchName.query.length < 1 || searchName.query.length == undefined
+                 || names.length < 1 || names.length == undefined">
                       <ul ng-show="names.length >= 1" class="searchResults">
                         <li ng-repeat="name in names"><a class="result" ng-click="selectName(name.id, name.first_name, name.last_name)">{{name.first_name}} {{name.last_name}}</a></li>
                       </ul>

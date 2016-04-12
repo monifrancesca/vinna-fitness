@@ -9,12 +9,12 @@ var connection = require('../modules/connection');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-router.post('/:fakeIdentifier', function(req, res) {
+router.post('/:id', function(req, res) {
     //console.log('in the module', req.body);
     var conditions = req.body.conditions;
 
     var addMedical = {
-        id: req.params.fakeIdentifier,
+        id: req.params.id,
         intakeDate: req.body.intakeDate,
         currentInjuries: req.body.currentInjuries,
         previousHistory: req.body.previousHistory,
@@ -76,15 +76,15 @@ router.post('/:fakeIdentifier', function(req, res) {
     });
 });
 
-router.get('/:fakeIdentifier', function(req, res) {
-    var fakeId = req.params.fakeIdentifier;
+router.get('/:id', function(req, res) {
+    var id = req.params.id;
     var results = [];
     pg.connect(connection, function(err, client, done) {
         var query = client.query('SELECT * FROM client ' +
-            'JOIN client_conditions ON (client.id = client_conditions.client_id)' +
-            'JOIN medical_conditions ON (client_conditions.condition_id = medical_conditions.id)' +
+            'LEFT OUTER JOIN client_conditions ON (client.id = client_conditions.client_id)' +
+            'LEFT OUTER JOIN medical_conditions ON (client_conditions.condition_id = medical_conditions.id)' +
             'WHERE client.id = $1;',
-        [fakeId]);
+        [id]);
 
         query.on('row', function(row) {
             results.push(row);

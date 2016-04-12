@@ -1,15 +1,24 @@
 <!-- Consider this the main view -->
-<h2>Login Page</h2>
-<!-- Shown for users that are NOT logged in -->
-<section ng-hide="auth.loggedIn">
-  <!-- I got this button image from Googles sign-in button brand guidelines page -->
-  <a href= "/auth/google"><img src="/assets/images/btn_google_signin_dark_normal_web.png" /></a>
-</section>
-<!-- Shown for users that are logged in -->
-<section ng-show="auth.loggedIn">
-  <p>
-    You are logged in!
-    <a href="#client">Clients</a>
-    <a href="#workout">Workouts</a>
-  </p>
-</section>
+<div class="scrollable">
+  <div class="scrollable-content">
+    <div class="section">
+      <!-- Shown for users that are NOT logged in -->
+      <section ng-hide="auth.loggedIn">
+        <img class="logo" src="../assets/images/vinna_fitness_logo.png">
+        <h4 class="welcome">Welcome to Vald, a client management application for Vinna Fitness.</h4>
+        <!--<h4>Vald Login</h4>-->
+        <!-- I got this button image from Googles sign-in button brand guidelines page -->
+        <a href= "/auth/google"><img class="googleLogo" src="/assets/images/btn_google_signin_dark_normal_web.png" /></a>
+      </section>
+      <!-- Shown for users that are logged in -->
+      <section ng-show="auth.loggedIn">
+        <h1>
+          Welcome!
+        </h1>
+        <p>Welcome to Vinna Vald. Use the menu options at left to start a new workout,
+          view client history or set up a new client.</p>
+      </section>
+    </div>
+
+  </div>
+  </div>

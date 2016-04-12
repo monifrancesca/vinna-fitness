@@ -4,7 +4,6 @@ myApp.controller('ExistingFMSController', ['$scope', '$location', '$http', 'Data
 
   $scope.client = $scope.dataFactory.factoryReturnSelectedClient();
   $scope.screens = [];
-  console.log('scope.client: '+$scope.client.first_name);
 
   if ($scope.client == 'undefined') {
     $location.path('existingclient');

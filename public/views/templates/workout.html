@@ -4,7 +4,7 @@
     <h1> New Workout</h1>
     <div class="panel-group" ui-state="myAccordion" ui-default="1">
         <div class="panel panel-default">
-            <div class="panel-heading" ui-set="{'myAccordion': 1}">
+            <div class="panel-heading" ui-set="{'myAccordion': 1}" >
                 <h4 class="panel-title">
                     Basic Info
                 </h4>
@@ -15,12 +15,11 @@
                         <fieldset>
                             <div class="form-group">
                                 <label>Client Name(s): </label>
-                                <input class="form-control" type="text" name="clientName" ng-model="searchName.query" ng-change="nameQuery()" placeholder=""/>
-                                <div class="resultsBox" ng-hide="searchName.query.length < 1 || searchName.query.length == undefined">
-                                    <ul ng-show="names.length >= 1" class="searchResults">
-                                        <li ng-repeat="name in names"><a class="result" ng-click="selectName(name.id, name.first_name, name.last_name)">{{name.first_name}} {{name.last_name}}</a></li>
-                                    </ul>
-                                </div>
+                                <tags-input ng-model="searchName.query" display-property="fullName" replace-spaces-with-dashes="false"
+                                            key-property="id" on-tag-added="addName($tag)" on-tag-removed="removeName($tag)"
+                                            placeholder="Add a Client">
+                                    <auto-complete source="loadNames($query)" max-results-to-show="15"></auto-complete>
+                                </tags-input>
                             </div>
                             <div class="form-group">
                                 <label>Date of Session: </label>
@@ -30,10 +29,15 @@
                                 <label>Location: </label>
                                 <div>
                                     <label ng-repeat="location in locations" class="radio-inline">
-                                        <input type="radio" name="location" value="{{location.id}}" ng-model="formData.location" required/> {{location.name}}
+                                        <input type="radio" name="location" value="{{location.id}}"
+                                               ng-model="formData.location" class="location" ng-value=""/> {{location.name}}
                                     </label>
                                 </div>
                             </div>
+                            <!--<div class="form-group">-->
+                                <!--<label>Class Type: </label>-->
+                                <!--<input class="dropdown" type="" name="" ng-model=""/>-->
+                            <!--</div>-->
                         </fieldset>
                     </form>
                 </div>
@@ -103,55 +107,61 @@
                         <fieldset>
                             <div class="form-group">
                                 <label>Exercise Name:</label>
+                                <!--<tags-input ng-model="searchExercise.query" display-property="name" replace-spaces-with-dashes="false"-->
+                                            <!--key-property="id" on-tag-added="selectExercise($tag)" on-tag-removed="removeExercise($tag)" max-tags="1">-->
+                                    <!--<auto-complete source="loadExercises($query)" max-results-to-show="15"></auto-complete>-->
+                                <!--</tags-input>-->
+
                                 <input class="form-control" type="text" name="exercisename" ng-model="newExercise.exercisename" ng-change="exerciseQuery(text)" placeholder=""/>
-                                <div class="resultsBox" ng-hide="newExercise.exercisename.length < 1 || newExercise.exercisename.length == undefined">
+                                <div class="resultsBox" ng-hide="newExercise.exercisename.length < 1 ||
+                                newExercise.exercisename.length == undefined || exerciseResults.length < 1 || exerciseResults.length == undefined">
                                     <ul ng-show="newExercise.exercisename.length >= 1" class="searchResults">
                                         <li ng-repeat="exercise in exerciseResults"><a class="result" ng-click="selectExercise(exercise.id, exercise.name)">{{exercise.name}}</a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label>Sets:</label>
-                                <select name="sets" ng-model="newExercise.sets">
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
+                                <div class="sets">
+                                    <label>Sets:</label>
+                                    <select name="sets" ng-model="newExercise.sets" class="form-control">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </div>
                                 <div class="rep-units">
                                     <label>Rep Units:</label>
-                                    <select name="measurement" ng-model="newExercise.measurement" ng-change="showUnits()">
+                                    <select name="measurement" ng-model="newExercise.measurement" ng-change="showUnits()" class="form-control">
                                         <option value="#">Number</option>
                                         <option value="time">Time</option>
                                         <option value="distance">Distance</option>
                                     </select>
                                 </div>
 
-                                <div class="rep-type">
-                                    <div ng-show="showReps">
+                                <!--<div>-->
+                                    <div ng-show="showReps" class="rep-type">
                                         <label>Number of Reps:</label>
-                                        <input type="number" name="number" ng-model="newExercise.number"/>
+                                        <input type="number" name="number" ng-model="newExercise.number" class="form-control"/>
                                     </div>
-                                    <div ng-show="showTime">
+                                    <div ng-show="showTime" class="rep-type">
                                         <label>Time per Rep:</label>
-                                        <label>M</label>
-                                        <input type="number" name="minutes" ng-model="newExercise.minutes"/>
-                                        <label>S</label>
-                                        <input name="seconds" type="number" ng-model="newExercise.seconds"/>
+                                        <input type="number" name="minutes" ng-model="newExercise.minutes" class="form-control timeinput"/>
+                                        <p>Minutes</p>
+                                        <input name="seconds" type="number" ng-model="newExercise.seconds" class="form-control timeinput"/>
+                                        <p>Seconds</p>
                                     </div>
-                                    <div ng-show="showDistance">
+                                    <div ng-show="showDistance" class="rep-type">
                                         <label>Distance per rep (in meters):</label>
-                                        <input type="number" name="distance" ng-model="newExercise.distance"/>
+                                        <input type="number" name="distance" ng-model="newExercise.distance" class="form-control"/>
                                     </div>
-                                </div>
+                                <!--</div>-->
                             </div>
                             <div class="form-group">
                                 <label>Intensity:</label>
@@ -202,7 +212,7 @@
                 </div>
             </div>
         </div>
-    <button class="btn btn-block btn-default" ng-click="sendForm()">Submit Workout</button>
+    <button class="btn btn-block btn-default" ng-click="sendForm()" ui-set="{'myAccordion': 1}">Submit Workout</button>
 </div>
     </div>
     </div>
