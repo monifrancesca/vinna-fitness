@@ -1,46 +1,109 @@
 <div class="scrollable">
     <div class="scrollable-content">
-        <div class="section">
-            <h1>Manage Classes</h1>
-            <div class="panel-group" ui-state="myAccordion" ui-default="1">
-                <div class="panel panel-default">
-                    <div class="panel-heading" ui-set="{'myAccordion': 1}">
-                        <h4 class="panel-title">
-                            View & Edit Classes
-                        </h4>
-                    </div>
-                    <div ui-if="myAccordion == 1">
-                        <div class="panel-body">
-                            <div ng-repeat="class in classes">
-                                <p>{{class.class_type}}</p>
-                                <button ng-click="removeClass(class.id)">Remove Class</button>
+        <div class="list-group">
+            <div class="list-group-item scrollable-header">
+                <h1 class="manageexhead">Manage Classes</h1>
+                <a href ui-turn-on="modal1" class="btn btn-default modal-popup-btn">Add New Class</a>
+            </div>
+            <div class="list-group-item">
+                <table class="table">
+                    <tr>
+                        <th>Class Name</th>
+                        <th>Current Status</th>
+                        <th>Change Status</th>
+                    </tr>
+                    <tr ng-repeat="class in classes" class="tableRow">
+                        <td>{{class.class_type}}</td>
+                        <td>
+                            <span ng-if="class.active_status == true">Active</span>
+                            <span ng-if="class.active_status == false">Inactive</span>
+                        </td>
+                        <td>
+                            <button class="btn" ng-if="class.active_status == true" ng-click="makeClassInactive(class.id)">Set As Inactive</button>
+                            <button class="btn" ng-if="class.active_status == false" ng-click="makeClassActive(class.id)">Set As Active</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div ui-content-for="modals">
+    <div class="modal" ui-if="modal1" ui-state='modal1'>
+        <div class="modal-backdrop in"></div>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" ui-turn-off="modal1">&times;</button>
+                    <h4 class="modal-title">New Class</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <fieldset>
+                            <div class="form-group">
+                                <label>Name: </label>
+                                <input class="form-control" type="text" name="className" ng-model="newClass.className" placeholder=""/>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading" ui-set="{'myAccordion': 2}">
-                            <h4 class="panel-title">
-                                Add New Class
-                            </h4>
-                        </div>
-                        <div ui-if="myAccordion == 2">
-                            <div class="panel-body">
-                                <form>
-                                    <fieldset>
-                                        <div class="form-group">
-                                            <label for="className">Class Name:</label>
-                                            <input type="text" id="className" ng-model="className" />
-                                        </div>
-                                        <button id="new_class_submit" ng-click="saveNewClass()" type="button">Submit</button>
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="saveNewClass()">Add Class</button>
+                    <button ui-turn-off="modal1" class="btn btn-default">Close</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+
+
+<!--<div class="scrollable">-->
+    <!--<div class="scrollable-content">-->
+        <!--<div class="section">-->
+            <!--<h1>Manage Classes</h1>-->
+            <!--<div class="panel-group" ui-state="myAccordion" ui-default="1">-->
+                <!--<div class="panel panel-default">-->
+                    <!--<div class="panel-heading" ui-set="{'myAccordion': 1}">-->
+                        <!--<h4 class="panel-title">-->
+                            <!--View & Edit Classes-->
+                        <!--</h4>-->
+                    <!--</div>-->
+                    <!--<div ui-if="myAccordion == 1">-->
+                        <!--<div class="panel-body">-->
+                            <!--<div ng-repeat="class in classes">-->
+                                <!--<p>{{class.class_type}}</p>-->
+                                <!--<button ng-click="removeClass(class.id)">Remove Class</button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="panel panel-default">-->
+                    <!--<div class="panel-heading" ui-set="{'myAccordion': 2}">-->
+                        <!--<h4 class="panel-title">-->
+                            <!--Add New Class-->
+                        <!--</h4>-->
+                    <!--</div>-->
+                    <!--<div ui-if="myAccordion == 2">-->
+                        <!--<div class="panel-body">-->
+                            <!--<form>-->
+                                <!--<fieldset>-->
+                                    <!--<div class="form-group">-->
+                                        <!--<label for="className">Class Name:</label>-->
+                                        <!--<input class="form-control" type="text" id="className" ng-model="className" />-->
+                                    <!--</div>-->
+                                <!--</fieldset>-->
+                            <!--</form>-->
+                            <!--<button class="btn btn-block btn-default" id="new_class_submit" ng-click="saveNewClass()" type="button">Submit</button>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 
