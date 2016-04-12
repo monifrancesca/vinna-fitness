@@ -154,7 +154,7 @@ router.get('/history/:id', function(req, res) {
     var query = client.query("SELECT workout.date, workout.id, users.first_name, users.last_name, location.name, " +
       "class.class_type FROM workout JOIN users on (workout.user_id = users.id) JOIN location on (workout.location_id " +
       "= location.id) JOIN class on (workout.class_type = class.id) WHERE workout.client_id = $1;" ,
-      [thisClient.id]);
+      [1]);
 
     query.on('row', function(row) {
       results.push(row);

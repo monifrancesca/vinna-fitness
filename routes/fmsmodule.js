@@ -57,7 +57,7 @@ router.get('/:id', function(req, res) {
       'LEFT JOIN users ON fms.user_id = users.id '+
       'LEFT JOIN client ON fms.client_id = client.id '+
       'WHERE user_id = $1 '+
-      'ORDER BY fms.date DESC;', [req.params.id]);
+      'ORDER BY fms.date DESC;', [9]);
 
     // Stream results back one row at a time
     query.on('row', function(row) {
@@ -85,7 +85,7 @@ router.get('/history/:id', function(req, res) {
     console.log('getting screens');
     var query = client.query('SELECT fms.date, fms.id, fms.total, users.first_name, users.last_name, location.name ' +
     'FROM fms JOIN users on (fms.user_id = users.id) JOIN location on (fms.location_id ' +
-    '= location.id) WHERE fms.client_id = $1', [req.params.id]);
+    '= location.id) WHERE fms.client_id = $1', [9]);
 
     // Stream results back one row at a time
     query.on('row', function(row) {
@@ -116,7 +116,7 @@ router.get('/detail/:id', function(req, res) {
     'JOIN users on fms.user_id = users.id '+
     'JOIN location on fms.location_id = location.id '+
     'WHERE fms.id = $1' ,
-    [req.params.id]);
+    [9]);
 
     query.on('row', function(row) {
       results.push(row);

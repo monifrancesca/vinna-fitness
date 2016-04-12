@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 router.get('/:id', function(req, res) { // colon allows accessing params
     //console.log(req.params);
-    var id = req.params.id;
+    var id = 9;
     var results = [];
     pg.connect(connection, function(err, client, done) {
         var query = client.query('SELECT * FROM client WHERE id = $1;',

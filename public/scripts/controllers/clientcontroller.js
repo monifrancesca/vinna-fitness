@@ -4,7 +4,7 @@ myApp.controller('ClientController', ['$scope', '$http', '$location', 'DataFacto
   $scope.names = [];
   $scope.searchName = {};
   $scope.client = {};
-  $scope.clientSelected = false;
+  $scope.clientSelected = true;
 
 
   $scope.nameQuery = function() {

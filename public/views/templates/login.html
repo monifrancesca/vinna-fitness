@@ -3,7 +3,7 @@
   <div class="scrollable-content">
     <div class="section">
       <!-- Shown for users that are NOT logged in -->
-      <section ng-hide="auth.loggedIn">
+      <section ng-hide="true">
         <img class="logo" src="../assets/images/vinna_fitness_logo.png">
         <h4 class="welcome">Welcome to Vald, a client management application for Vinna Fitness.</h4>
         <!--<h4>Vald Login</h4>-->
@@ -11,7 +11,7 @@
         <a href= "/auth/google"><img class="googleLogo" src="/assets/images/btn_google_signin_dark_normal_web.png" /></a>
       </section>
       <!-- Shown for users that are logged in -->
-      <section ng-show="auth.loggedIn">
+      <section ng-show="true">
         <h1>
           Welcome!
         </h1>
