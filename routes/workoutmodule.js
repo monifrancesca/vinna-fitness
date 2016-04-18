@@ -9,12 +9,11 @@ var connection = require('../modules/connection');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-router.post('/', function(req, res) {
-  console.log(req.body);
+router.post('/:client', function(req, res) {
 
   var newWorkout = {
     user_id: 1,
-    client_id: req.body.client_id,
+    client_id: req.params.client,
     date: req.body.date,
     location_id: req.body.location,
     flag: req.body.flag,
@@ -23,6 +22,8 @@ router.post('/', function(req, res) {
     warm_up: req.body.warmup,
     class_type: req.body.class_type
   };
+
+  console.log(newWorkout);
 
   var exercises = req.body.exercises;
 

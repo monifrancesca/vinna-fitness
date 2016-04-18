@@ -43,22 +43,13 @@
             <td colspan="5" ng-hide="flags.length >= 1">No Flags to Display</td>
         </tr>
         <tr ng-repeat="flag in flags" class="tableRow">
-            <td>{{flag.date}}</td>
-            <td>{{flag.trainer}}</td>
-            <td>{{flag.client}}</td>
-            <td>{{flag.note}}</td>
-            <td><button class="btn btn-default"><a>Dismiss</a></button></td>
+            <td>{{flag.date | date}}</td>
+            <td>{{flag.trainer_first}} {{flag.trainer_last}}</td>
+            <td>{{flag.client_first}} {{flag.client_last}}</td>
+            <td>{{flag.notes}}</td>
+            <td><button class="btn btn-default" ng-click="removeFlag(flag.id)"><a>Dismiss</a></button></td>
         </tr>
     </table>
- <!--Review Red Flags-->
-    <!--<div class="form-group">-->
-        <!--<label for="delete">Delete</label>-->
-        <!--<input type="checkbox" id="delete" placeholder="Delete" />-->
-    <!--</div>-->
-    <!--<div class="form-group">-->
-        <!--<label for="redFlags">Red Flags:</label>-->
-        <!--<input class="form-control"  type="textarea" id="redFlags" placeholder="Red Flags" />-->
-    <!--</div>-->
 
  </div>
 </div>

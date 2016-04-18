@@ -290,4 +290,54 @@ router.put('/trainers', function(req, res) {
   });
 });
 
+router.get('/flags', function(req, res) {
+  var results = [];
+
+  pg.connect(connection, function (err, client, done) {
+    var query = client.query("SELECT workout.id, date, notes, client.first_name AS client_first, client.last_name AS client_last, " +
+        "users.first_name AS trainer_first, users.last_name AS trainer_last FROM workout " +
+        "LEFT OUTER JOIN client ON (workout.client_id = client.id)" +
+        "LEFT OUTER JOIN users ON (workout.user_id = users.id)" +
+        "WHERE flag = true " +
+        "ORDER BY date DESC");
+
+    query.on('row', function(row) {
+      results.push(row);
+    });
+
+    query.on('end', function() {
+      client.end();
+      return res.json(results);
+    });
+
+    if(err) {
+      done();
+      console.log(err);
+    }
+  });
+});
+
+router.put('/flags/:id', function(req, res){
+
+  var flagStatus = {
+    status: req.body.flag,
+    id: req.params.id
+  };
+
+  pg.connect(connection, function(err, client, done) {
+    client.query('UPDATE workout SET flag = ($1) WHERE id = ($2)',
+        [flagStatus.status, flagStatus.id],
+        function (err, result) {
+          if(err) {
+            console.log("Error inserting data: ", err);
+            res.send(false);
+          } else {
+            res.send(result);
+          }
+        });
+    done();
+  });
+});
+
+
 module.exports = router;

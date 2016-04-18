@@ -15,6 +15,7 @@
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "grunt": "^0.4.5",
+    "ng-tags-input": "^3.0.0",
     "passport": "^0.3.2",
     "passport-google": "^0.3.0",
     "passport-google-oauth": "^1.0.0",

@@ -3,11 +3,9 @@ myApp.factory('DataFactory', ['$http', function($http) {
   //PRIVATE
 
   var nameQuery = [];
-  var selectedName;
   var exerciseQuery = [];
   var selectedExercise;
   var fakeIdentifier = 1;
-  var fakeIdPersonal = 1;
   var clientMedical = undefined;
   var facUserIdNumber = '1';
   var facFmsData = null;
@@ -20,20 +18,21 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var workout = {};
   var exercises = [];
   var location = undefined;
-  var selectedClient = {first_name: "Homer", last_name: "Simpson", id: 1};
+  var selectedClient = {};
   var facTrainerList = [];
   var facFMScreens = [];
   var facFMScreen = {};
   var facSelectedFMS = undefined;
   var clients = [];
   var allExercises = [];
+  var flags = undefined;
 
 //Build a function that sends a new workout instance to database where relevant info can be saved to the
 //the workout table and workout_line_items table.
 
-  var saveNewWorkout = function(workout) {
-    console.log('This is the workout we are sending to the server:', workout);
-    $http.post('/workout', workout).then(function(response) {
+  var saveNewWorkout = function(workout, client) {
+    console.log(workout);
+    $http.post('/workout/' + client, workout).then(function(response) {
     });
   };
 
@@ -79,7 +78,6 @@ myApp.factory('DataFactory', ['$http', function($http) {
 
   var facRetrieveScreens = function() {
     var promise = $http.get('/fms/history/' + selectedClient.id).then(function (response) {
-      console.log('response.data: '+response.data);
       facFMScreens = response.data;
     });
     return promise;
@@ -136,7 +134,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
 
   var getPersonal = function() {
     //console.log('getPersonal in factory fired');
-    var promise = $http.get('/personalhistory/' + fakeIdPersonal).then(function(response) {
+    var promise = $http.get('/personalhistory/' + selectedClient.id).then(function(response) {
       clientPersonal = response.data;
       console.log('clientPersonal', clientPersonal);
     });
@@ -168,8 +166,9 @@ myApp.factory('DataFactory', ['$http', function($http) {
   };
 
   var getMedical = function() {
-    var promise = $http.get('/medical/' + fakeIdentifier).then(function(response) {
+    var promise = $http.get('/medical/' + selectedClient.id).then(function(response) {
       clientMedical = response.data;
+      console.log('Client Medical:', clientMedical);
     });
     return promise;
   };
@@ -299,6 +298,23 @@ myApp.factory('DataFactory', ['$http', function($http) {
     $http.post('/admin/newexercise', data).then(function(response) {
     });
   };
+
+  var getAllFlags = function() {
+    var promise = $http.get('/admin/flags').then(function(response) {
+      flags = response.data;
+    });
+    return promise;
+  };
+
+  var updateFlag = function(id) {
+    var data = {
+      flag: false
+    };
+
+    $http.put('/admin/flags/' + id, data).then(function(response) {
+    });
+  };
+
   //PUBLIC
 
   var dataFactoryOutput = {
@@ -314,8 +330,8 @@ myApp.factory('DataFactory', ['$http', function($http) {
     trainerList: function() {
       return facTrainerList;
     },
-    factorySaveNewWorkout: function(workout) {
-      return saveNewWorkout(workout);
+    factorySaveNewWorkout: function(workout, client) {
+      return saveNewWorkout(workout, client);
     },
     factorySearchClient: function(query) {
       return searchClient(query);
@@ -323,9 +339,9 @@ myApp.factory('DataFactory', ['$http', function($http) {
     factoryNameQuery: function() {
       return nameQuery;
     },
-    factoryGetClientId: function(id){
-      selectedName = id;
-      return selectedName;
+    factoryGetClient: function(client){
+      selectedClient = client;
+      return selectedClient;
     },
     factorySearchExercise: function(query) {
       return searchExercise(query);
@@ -491,6 +507,15 @@ myApp.factory('DataFactory', ['$http', function($http) {
     },
     factoryAddExercise: function(exercise) {
       return exerciseAdd(exercise);
+    },
+    retrieveFlags: function() {
+      return getAllFlags();
+    },
+    getFlags: function() {
+      return flags;
+    },
+    updateFlags: function(id) {
+      return updateFlag(id);
     }
   };
   return dataFactoryOutput;

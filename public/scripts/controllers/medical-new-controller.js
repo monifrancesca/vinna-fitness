@@ -2,6 +2,9 @@ myApp.controller('NewMedicalController', ['$scope', '$location', '$http', 'DataF
 
     $scope.dataFactory = DataFactory;
     $scope.info = {};
+    $scope.info.intakeDate = new Date();
+    $scope.info.signatureDateUnderAge = new Date();
+    $scope.info.signatureDate = new Date();
 
     //variable for medical conditions
     var conditionsArray = [];
