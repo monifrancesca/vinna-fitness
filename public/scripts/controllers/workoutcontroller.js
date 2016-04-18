@@ -158,6 +158,18 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
     $scope.newExercise.intensity_kgs = null;
   };
 
+  $scope.showIntensity = function() {
+    if ($scope.newExercise.weight == "kgs") {
+      $scope.showKg = true;
+      $scope.showLb = false;
+      $scope.newExercise.intensity_lbs = null;
+    } else if ($scope.newExercise.weight == "lbs") {
+      $scope.showKg = false;
+      $scope.showLb = true;
+      $scope.newExercise.intensity_kgs = null;
+    }
+  };
+
   $scope.showUnits = function() {
     console.log('This is the measurement', $scope.newExercise.measurement);
     if ($scope.newExercise.measurement == '#') {

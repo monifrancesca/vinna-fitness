@@ -1,15 +1,23 @@
 .rep-type {
     display: inline-block;
+    margin-right: 3%;
 }
 
 .rep-units {
     display: inline-block;
-    margin-right: 5%;
+    margin-right: 3%;
+    vertical-align: top;
 }
 
 .sets {
     display: inline-block;
-    margin-right: 5%;
+    margin-right: 3%;
+    vertical-align: top;
+}
+
+.intensity {
+    display: inline-block;
+    vertical-align: top;
 }
 
 .exercise-btn {
@@ -68,7 +76,34 @@ tags-input .tags {
     text-align: center;
 }
 
-/*.timeinput {*/
-    /*display: block;*/
-/*}*/
+.timeinput {
+    display: inline-block;
+    vertical-align: top;
 
+    /*width: 25%;*/
+}
+
+.timelabel {
+    display: block;
+}
+
+.time {
+    margin: 0;
+}
+
+.intensityinput {
+    /*width: 50%;*/
+    display: inline-block;
+    vertical-align: top;
+}
+
+.kglbs {
+    margin: 0;
+    display: inline-block;
+    width: 45%;
+}
+
+.kglbstag {
+    margin: 0;
+    display: inline-block;
+}

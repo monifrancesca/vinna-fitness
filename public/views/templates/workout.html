@@ -151,37 +151,54 @@
                                             </select>
                                         </div>
 
-                                        <!--<div>-->
-                                            <div ng-show="showReps" class="rep-type">
-                                                <label>Number of Reps:</label>
-                                                <input type="number" name="number" ng-model="newExercise.number" class="form-control"/>
+                                        <div ng-show="showReps" class="rep-type">
+                                            <label>Number of Reps:</label>
+                                            <input type="number" name="number" ng-model="newExercise.number" class="form-control"/>
+                                        </div>
+                                        <div ng-show="showTime" class="rep-type">
+                                            <label class="timelabel">Time per Rep:</label>
+                                            <div class="timeinput">
+                                                <input type="text" name="minutes" ng-model="newExercise.minutes" class="form-control" size="2"/>
+                                                <p class="time">Min</p>
                                             </div>
-                                            <div ng-show="showTime" class="rep-type">
-                                                <label>Time per Rep:</label>
-                                                <input type="number" name="minutes" ng-model="newExercise.minutes" class="form-control timeinput"/>
-                                                <p>Minutes</p>
-                                                <input name="seconds" type="number" ng-model="newExercise.seconds" class="form-control timeinput"/>
-                                                <p>Seconds</p>
+                                            <div class="timeinput">
+                                                <input name="seconds" type="text" ng-model="newExercise.seconds" class="form-control" size="2"/>
+                                                <p class="time">Sec</p>
                                             </div>
-                                            <div ng-show="showDistance" class="rep-type">
-                                                <label>Distance per rep (in meters):</label>
-                                                <input type="number" name="distance" ng-model="newExercise.distance" class="form-control"/>
+                                        </div>
+                                        <div ng-show="showDistance" class="rep-type">
+                                            <label>Meters per Rep:</label>
+                                            <input type="number" name="distance" ng-model="newExercise.distance" class="form-control" size="2"/>
+                                        </div>
+                                        <div class="intensity">
+                                            <label class="timelabel">Intensity:</label>
+                                            <div class="timeinput">
+                                                <select name="weight" ng-model="newExercise.weight" ng-change="showIntensity()" class="form-control">
+                                                    <option value="body">Body Weight</option>
+                                                    <option value="kgs">Weight(kgs)</option>
+                                                    <option value="lbs">Weight(lbs)</option>
+                                                </select>
                                             </div>
-                                        <!--</div>-->
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Intensity:</label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="weight" value="body" ng-model="newExercise.weight"/>Body Weight
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="weight" value="kgs" ng-model="newExercise.weight" ng-click="showKgIntensity()"/>Weight (kgs)
-                                        </label>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="weight" value="lbs" ng-model="newExercise.weight" ng-click="showLbIntensity()"/>Weight (lbs)
-                                        </label>
-                                        <label ng-show="showKg" ><input type="number" name="kgweight" ng-model="newExercise.intensity_kgs"/> kgs</label>
-                                        <label ng-show="showLb" ><input type="number" name="lbweight" ng-model="newExercise.intensity_lbs"/> lbs</label>
+                                            <div ng-show="showKg" class="timeinput">
+                                                <input type="text" name="kgweight" ng-model="newExercise.intensity_kgs" class="form-control kglbs" size="3"/>
+                                                <p class="kglbstag">kgs</p>
+                                            </div>
+                                            <div ng-show="showLb" class="intensityinput">
+                                                <input type="text" name="lbweight" ng-model="newExercise.intensity_lbs" class="form-control kglbs" size="3"/>
+                                                <p class="kglbstag">lbs</p>
+                                            </div>
+                                        </div>
+                                            <!--<label class="radio-inline">-->
+                                                <!--<input type="radio" name="weight" value="body" ng-model="newExercise.weight"/>Body Weight-->
+                                            <!--</label>-->
+                                            <!--<label class="radio-inline">-->
+                                                <!--<input type="radio" name="weight" value="kgs" ng-model="newExercise.weight" ng-click="showKgIntensity()"/>Weight (kgs)-->
+                                            <!--</label>-->
+                                            <!--<label class="radio-inline">-->
+                                                <!--<input type="radio" name="weight" value="lbs" ng-model="newExercise.weight" ng-click="showLbIntensity()"/>Weight (lbs)-->
+                                            <!--</label>-->
+                                            <!--<label ng-show="showKg" ><input type="number" name="kgweight" ng-model="newExercise.intensity_kgs"/> kgs</label>-->
+                                            <!--<label ng-show="showLb" ><input type="number" name="lbweight" ng-model="newExercise.intensity_lbs"/> lbs</label>-->
                                     </div>
                                     <button class="btn" ng-click="addExercise()">Add Exercise</button>
                                 </fieldset>
