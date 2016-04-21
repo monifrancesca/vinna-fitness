@@ -12,9 +12,6 @@ myApp.controller('ExistingFMSController', ['$scope', '$location', '$http', 'Data
       }
   });
 
-  //Resets "existing client" in database to prevent errors
-  $scope.dataFactory.factoryResetClient();
-
   if ($scope.client == 'undefined') {
     $location.path('existingclient');
   } else {

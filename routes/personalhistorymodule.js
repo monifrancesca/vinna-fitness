@@ -47,13 +47,10 @@ router.put('/', function(req, res) {
         emergency_name: req.body.emergencyContactName,
         emergency_phone: req.body.emergencyContactNumber
     };
-    console.log('put personal var', postPersonal);
 
     pg.connect(connection, function (err, client, done) {
-        client.query('UPDATE client SET (first_name, last_name, email, phone, dob, height, weight, emergency_name, emergency_phone)' +
-            '= ($1, $2, $3, $4, $5, $6, $7, $8, $9)' +
-            'WHERE id = $10' +
-            'returning id',
+        client.query('UPDATE client SET (first_name, last_name, email, phone, dob, height, weight, emergency_name, emergency_phone' +
+          ') = ($1, $2, $3, $4, $5, $6, $7, $8, $9) WHERE id = $10 returning id',
             [postPersonal.first_name, postPersonal.last_name, postPersonal.email,
                 postPersonal.phone, postPersonal.dob, postPersonal.height,
                 postPersonal.weight, postPersonal.emergency_name, postPersonal.emergency_phone, postPersonal.id],
