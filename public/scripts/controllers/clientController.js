@@ -47,6 +47,14 @@ myApp.controller('ClientController', ['$scope', '$http', '$location', 'DataFacto
     $scope.clientSelected = true;
   };
 
+  //Allows user to switch client if they want to view information for a different existing client
+  $scope.switchClient = function() {
+    $scope.client = {};
+    $scope.client.present = false;
+    $scope.clientSelected = false;
+    $scope.searchName.query = "";
+  };
+
   //These functions control what happens when you click on the main buttons in the admin dashboard
   $scope.loadPersonal = function() {
     $scope.dataFactory.factoryGetClient($scope.client);
