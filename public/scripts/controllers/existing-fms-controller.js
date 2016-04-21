@@ -12,7 +12,7 @@ myApp.controller('ExistingFMSController', ['$scope', '$location', '$http', 'Data
       }
   });
 
-  if ($scope.client == 'undefined') {
+  if ($scope.client.present == false) {
     $location.path('existingclient');
   } else {
     $scope.dataFactory.retrieveScreens().then(function() {
