@@ -1,6 +1,11 @@
-myApp.controller('FMSController', ['$scope', '$location', '$http', 'DataFactory', function($scope, $location, $http, DataFactory) {
+myApp.controller('FMSController', ['$scope', '$location', '$http', 'DataFactory', 'AuthFactory','$window', function($scope, $location, $http, DataFactory, AuthFactory, $window) {
 
+  var authFactory = AuthFactory;
   $scope.dataFactory = DataFactory;
+  authFactory.isLoggedIn().then(function (response) {
+    if (!response.data.status) {
+      $window.location.href = '/';
+    }});
 
   $scope.searchName = {};
 

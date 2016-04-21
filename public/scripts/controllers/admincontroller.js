@@ -1,5 +1,10 @@
-myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', function($scope, $http, DataFactory) {
+myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $http, DataFactory, AuthFactory, $window) {
 
+  var authFactory = AuthFactory;
+  authFactory.isLoggedIn().then(function (response) {
+    if (!response.data.status) {
+      $window.location.href = '/';
+    } else {
   $scope.dataFactory = DataFactory;
 
   $scope.flags = [];
@@ -78,5 +83,5 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', function(
         $scope.flags = $scope.dataFactory.getFlags();
       });
   };
-
+    }});
 }]);

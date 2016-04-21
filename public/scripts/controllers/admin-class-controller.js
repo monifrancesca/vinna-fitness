@@ -1,5 +1,10 @@
-myApp.controller('AdminClassController', ['$scope', '$http', 'DataFactory', function($scope, $http, DataFactory) {
+myApp.controller('AdminClassController', ['$scope', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $http, DataFactory, AuthFactory, $window) {
 
+    var authFactory = AuthFactory;
+    authFactory.isLoggedIn().then(function (response) {
+        if (!response.data.status) {
+            $window.location.href = '/';
+        } else {
     $scope.dataFactory = DataFactory;
 
     $scope.dataFactory.factoryGetClassList().then(function() {
@@ -24,5 +29,5 @@ myApp.controller('AdminClassController', ['$scope', '$http', 'DataFactory', func
             });
         });
     };
-
+    }});
 }]);

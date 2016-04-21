@@ -1,7 +1,12 @@
-myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFactory', function($scope, $location, $http, DataFactory) {
+myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $location, $http, DataFactory, AuthFactory, $window) {
+
+  var authFactory = AuthFactory;
+  authFactory.isLoggedIn().then(function (response) {
+    if (!response.data.status) {
+      $window.location.href = '/';
+    } else {
 
   $scope.dataFactory = DataFactory;
-
   $scope.newExercise = {};
   $scope.formData = {};
   $scope.formData.exercises = [];
@@ -209,5 +214,5 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
     $scope.classes = $scope.dataFactory.factoryClasses();
     console.log($scope.classes);
   });
-
+    }});
 }]);
