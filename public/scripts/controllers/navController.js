@@ -1,6 +1,12 @@
-myApp.controller('NavController', function (AuthFactory, $window) {
+myApp.controller('NavController', ['$scope', 'AuthFactory', '$location', '$window', 'DataFactory', function
+  ($scope, AuthFactory, $location, $window, DataFactory) {
+
   var _this = this;
   var authFactory = AuthFactory;
+  $scope.dataFactory = DataFactory;
+  $scope.client = {};
+
+
   _this.displayLogout = false; // should we display the logout option on the DOM?
   _this.message = {
     text: false,
@@ -46,4 +52,4 @@ myApp.controller('NavController', function (AuthFactory, $window) {
     $window.history.back();
   };
 
-});
+}]);

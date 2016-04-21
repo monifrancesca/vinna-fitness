@@ -9,8 +9,10 @@ myApp.controller('ExistingFMSController', ['$scope', '$location', '$http', 'Data
       if (!response.data.status) {
         $window.location.href = '/';
       } else {
+      }
+  });
 
-  if ($scope.client == 'undefined') {
+  if ($scope.client.present == false) {
     $location.path('existingclient');
   } else {
     $scope.dataFactory.retrieveScreens().then(function() {
@@ -24,5 +26,4 @@ myApp.controller('ExistingFMSController', ['$scope', '$location', '$http', 'Data
     $location.path('fmsDetails');
   }
 
-  }});
 }]);

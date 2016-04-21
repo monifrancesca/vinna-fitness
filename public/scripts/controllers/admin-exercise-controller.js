@@ -5,8 +5,10 @@ myApp.controller('AdminExerciseController', ['$scope', '$location', '$http', 'Da
     if (!response.data.status) {
       $window.location.href = '/';
     } else {
-  $scope.dataFactory = DataFactory;
+    }
+  });
 
+  $scope.dataFactory = DataFactory;
   $scope.exercises = [];
 
   $scope.newExercise = {};
@@ -38,5 +40,4 @@ myApp.controller('AdminExerciseController', ['$scope', '$location', '$http', 'Da
       $scope.newExercise.exerciseCategory = '';
     });
   }
-    }});
 }]);

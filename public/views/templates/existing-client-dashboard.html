@@ -14,7 +14,10 @@
                 </div>
             </div>
             <div class="panel-group" ng-show="clientSelected">
-                <h3>{{client.name}}</h3>
+                <div class="clientHeader">
+                    <h4 class="clientHead">{{client.name}}</h4>
+                    <a ng-click="switchClient()" class="btn btn-default switchClient">Switch Client</a>
+                </div>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="panel-body">

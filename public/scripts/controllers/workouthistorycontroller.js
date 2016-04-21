@@ -6,12 +6,11 @@ myApp.controller('WorkoutHistoryController', ['$scope', '$location', '$http', 'D
       $window.location.href = '/';
     } else {
   $scope.dataFactory = DataFactory;
-
   $scope.workouts = [];
-
   $scope.client = $scope.dataFactory.factoryReturnSelectedClient();
+  console.log('scopeClient: '+$scope.dataFactory.factoryReturnSelectedClient().present);
 
-  if ($scope.client == 'undefined') {
+  if ($scope.client.present == false) {
     $location.path('existingclient');
   } else {
     $scope.dataFactory.factoryRetrieveWorkouts().then(function() {

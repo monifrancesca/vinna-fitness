@@ -15,8 +15,8 @@
                                 <fieldset>
                                     <div class="form-group">
                                         <label>Class Type: </label>
-                                        <select id="class_dropdown" ng-model="classList" class="form-control" ng-options="class.class_type for class in classes">
-                                            <option value="">--Select A Class--</option>
+                                        <select id="class_dropdown" ng-model="formData.class" class="form-control" ng-options="class.class_type for class in classes">
+                                            <option value="class.id">--Select A Class--</option>
                                         </select>
                                     </div>
                                     <div class="form-group">
@@ -177,6 +177,7 @@
                                                     <option value="body">Body Weight</option>
                                                     <option value="kgs">Weight(kgs)</option>
                                                     <option value="lbs">Weight(lbs)</option>
+                                                    <option value="">None</option>
                                                 </select>
                                             </div>
                                             <div ng-show="showKg" class="timeinput">
