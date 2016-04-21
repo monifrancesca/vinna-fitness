@@ -344,6 +344,11 @@ myApp.factory('DataFactory', ['$http', function($http) {
       selectedClient.present = true;
       return selectedClient;
     },
+    factoryResetClient: function(){
+      selectedClient = {};
+      selectedClient.present = false;
+      return selectedClient;
+    },
     factorySearchExercise: function(query) {
       return searchExercise(query);
     },

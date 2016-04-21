@@ -49,15 +49,7 @@ myApp.controller('NavController', ['$scope', 'AuthFactory', '$location', '$windo
   };
 
   this.back = function() {
-    var window = $location.path();
-    if (window == '/personalhistory') {
-      $scope.client = $scope.dataFactory.factoryReturnSelectedClient();
-      $scope.dataFactory.factoryGetClient($scope.client);
-      console.log('This is the client', $scope.client);
-      $location.path('existingclient');
-    } else {
-      $window.history.back();
-    }
+    $window.history.back();
   };
 
 }]);
