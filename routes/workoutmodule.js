@@ -152,8 +152,8 @@ router.get('/history/:id', function(req, res) {
 
   pg.connect(connection, function (err, client, done) {
     var query = client.query("SELECT workout.date, workout.id, users.first_name, users.last_name, location.name, " +
-      "class.class_type FROM workout JOIN users on (workout.user_id = users.id) JOIN location on (workout.location_id " +
-      "= location.id) JOIN class on (workout.class_type = class.id) WHERE workout.client_id = $1;" ,
+      "class.class_type FROM workout LEFT OUTER JOIN users on (workout.user_id = users.id) LEFT OUTER JOIN location on (workout.location_id " +
+      "= location.id) LEFT OUTER JOIN class on (workout.class_type = class.id) WHERE workout.client_id = $1;" ,
       [thisClient.id]);
 
     query.on('row', function(row) {
