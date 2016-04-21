@@ -104,6 +104,8 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
   //This function submits the form and saves it to the clients workout history
   $scope.sendForm = function() {
     for (var i = 0; i < $scope.names.length; i++) {
+      console.log('This is the class', $scope.formData.class);
+      $scope.formData.class_type = $scope.formData.class.id;
       $scope.dataFactory.factorySaveNewWorkout($scope.formData, $scope.names[i]);
     }
     $scope.searchName.query = '';
