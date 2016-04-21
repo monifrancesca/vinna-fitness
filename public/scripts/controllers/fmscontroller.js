@@ -41,8 +41,8 @@ myApp.controller('FMSController', ['$scope', '$location', '$http', 'DataFactory'
     rotaryDF: null,
     total: null,
     client_id: null,
-    user_id: 1,
-    date: new Date(),
+    user_id: null,
+    date: null,
     handDominance: null,
     swingDominance: null,
     throwDominance: null,
@@ -168,6 +168,7 @@ myApp.controller('FMSController', ['$scope', '$location', '$http', 'DataFactory'
   //  {$scope.totalFmsHeader = "Edit Total Score";} else {$scope.totalFmsHeader = 'Total Score';}
   //};
   $scope.sendData = function(){
+    $scope.user_id = authFactory.trainerId();
     $scope.dataFactory.postFmsData($scope.fmsData);
     $scope.fmsData = {
       deepSquat: null,
@@ -200,8 +201,8 @@ myApp.controller('FMSController', ['$scope', '$location', '$http', 'DataFactory'
       rotaryRightUp: null,
       rotaryDF: null,
       total: null,
-      client_id: 4,
-      user_id: 1,
+      client_id: null,
+      user_id: null,
       date: null,
       handDominance: null,
       swingDominance: null,
