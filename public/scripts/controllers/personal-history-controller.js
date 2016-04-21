@@ -43,7 +43,8 @@ myApp.controller('PersonalHistoryController', ['$scope', '$location', '$http', '
       height: $scope.info.height,
       weightPounds: $scope.info.weight,
       emergencyContactName: $scope.info.emergency_name,
-      emergencyContactNumber: $scope.info.emergency_phone
+      emergencyContactNumber: $scope.info.emergency_phone,
+      active_status: true
     };
     //console.log('info in controller', info);
     $scope.dataFactory.sendPersonal(info);
