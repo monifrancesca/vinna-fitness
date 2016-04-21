@@ -1,6 +1,12 @@
-myApp.controller('NavController', function (AuthFactory, $window) {
+myApp.controller('NavController', ['$scope', 'AuthFactory', '$location', '$window', 'DataFactory', function
+  ($scope, AuthFactory, $location, $window, DataFactory) {
+
   var _this = this;
   var authFactory = AuthFactory;
+  $scope.dataFactory = DataFactory;
+  $scope.client = {};
+
+
   _this.displayLogout = false; // should we display the logout option on the DOM?
   _this.message = {
     text: false,
@@ -39,7 +45,15 @@ myApp.controller('NavController', function (AuthFactory, $window) {
   };
 
   this.back = function() {
-    $window.history.back();
+    var window = $location.path();
+    if (window == '/personalhistory') {
+      $scope.client = $scope.dataFactory.factoryReturnSelectedClient();
+      $scope.dataFactory.factoryGetClient($scope.client);
+      console.log('This is the client', $scope.client);
+      $location.path('existingclient');
+    } else {
+      $window.history.back();
+    }
   };
 
-});
+}]);

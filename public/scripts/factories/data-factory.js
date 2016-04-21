@@ -18,7 +18,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var workout = {};
   var exercises = [];
   var location = undefined;
-  var selectedClient = {};
+  var selectedClient = {present: false};
   var facTrainerList = [];
   var facFMScreens = [];
   var facFMScreen = {};
@@ -341,6 +341,7 @@ myApp.factory('DataFactory', ['$http', function($http) {
     },
     factoryGetClient: function(client){
       selectedClient = client;
+      selectedClient.present = true;
       return selectedClient;
     },
     factorySearchExercise: function(query) {
