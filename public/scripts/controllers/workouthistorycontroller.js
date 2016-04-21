@@ -5,24 +5,26 @@ myApp.controller('WorkoutHistoryController', ['$scope', '$location', '$http', 'D
     if (!response.data.status) {
       $window.location.href = '/';
     } else {
-  $scope.dataFactory = DataFactory;
+      $scope.dataFactory = DataFactory;
+      $scope.workouts = [];
+      $scope.client = $scope.dataFactory.factoryReturnSelectedClient();
 
-  $scope.workouts = [];
+      console.log($scope.client);
+      console.log($scope.dataFactory.factoryReturnSelectedClient());
 
-  $scope.client = $scope.dataFactory.factoryReturnSelectedClient();
+      if ($scope.client.present == false) {
+        $location.path('existingclient');
+      } else {
+        $scope.dataFactory.factoryRetrieveWorkouts().then(function() {
+          $scope.workouts = $scope.dataFactory.factoryWorkouts();
+          console.log('These are the workouts', $scope.workouts);
+        });
+      }
 
-  if ($scope.client == 'undefined') {
-    $location.path('existingclient');
-  } else {
-    $scope.dataFactory.factoryRetrieveWorkouts().then(function() {
-      $scope.workouts = $scope.dataFactory.factoryWorkouts();
-      console.log('These are the workouts', $scope.workouts);
-    });
-  }
-
-  $scope.getWorkout = function(id) {
-    $scope.dataFactory.factoryGetWorkout(id);
-    $location.path('workoutdetails');
-  }
-    }});
+      $scope.getWorkout = function(id) {
+        $scope.dataFactory.factoryGetWorkout(id);
+        $location.path('workoutdetails');
+      }
+    }
+  });
 }]);
