@@ -1,5 +1,10 @@
-myApp.controller('PersonalController', ['$scope', '$location', '$http', 'DataFactory', function($scope, $location, $http, DataFactory) {
+myApp.controller('PersonalController', ['$scope', '$location', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $location, $http, DataFactory, AuthFactory, $window) {
 
+  var authFactory = AuthFactory;
+  authFactory.isLoggedIn().then(function (response) {
+    if (!response.data.status) {
+      $window.location.href = '/';
+    } else {
   $scope.dataFactory = DataFactory;
 
   $scope.height = {};
@@ -35,5 +40,5 @@ myApp.controller('PersonalController', ['$scope', '$location', '$http', 'DataFac
     $scope.dataFactory.sendPersonal(info);
     $location.path('newmedical')
   };
-
+    }});
 }]);

@@ -1,9 +1,14 @@
-myApp.controller('ExistingFMSController', ['$scope', '$location', '$http', 'DataFactory', function($scope, $location, $http, DataFactory) {
+myApp.controller('ExistingFMSController', ['$scope', '$location', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $location, $http, DataFactory, AuthFactory, $window) {
 
+  var authFactory = AuthFactory;
   $scope.dataFactory = DataFactory;
-
   $scope.client = $scope.dataFactory.factoryReturnSelectedClient();
   $scope.screens = [];
+
+  authFactory.isLoggedIn().then(function (response) {
+      if (!response.data.status) {
+        $window.location.href = '/';
+      } else {
 
   if ($scope.client == 'undefined') {
     $location.path('existingclient');
@@ -19,4 +24,5 @@ myApp.controller('ExistingFMSController', ['$scope', '$location', '$http', 'Data
     $location.path('fmsDetails');
   }
 
+  }});
 }]);

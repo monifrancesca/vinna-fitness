@@ -19,9 +19,12 @@ myApp.controller('NavController', ['$scope', 'AuthFactory', '$location', '$windo
       _this.displayLogout = true;
       authFactory.setLoggedIn(true);
       _this.username = response.data.name;
+      authFactory.setTrainerId(response.data.id);
+      console.log('hopes and dreams: '+authFactory.trainerId());
     } else { // is not logged in on server
       _this.displayLogout = false;
       authFactory.setLoggedIn(false);
+      authFactory.setTrainerId('');
     }
   },
 
@@ -34,6 +37,7 @@ myApp.controller('NavController', ['$scope', 'AuthFactory', '$location', '$windo
     authFactory.logout()
       .then(function (response) { // success
         authFactory.setLoggedIn(false);
+          authFactory.setTrainerId('');
         _this.username = '';
         $window.location.href = '/'; // forces a page reload which will update our NavController
       },

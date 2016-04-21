@@ -1,10 +1,17 @@
-myApp.controller('ClientController', ['$scope', '$http', '$location', 'DataFactory', function($scope, $http, $location, DataFactory) {
+myApp.controller('ClientController', ['$scope', '$http', '$location', 'DataFactory', 'AuthFactory', '$window', function($scope, $http, $location, DataFactory, AuthFactory, $window) {
 
+  var authFactory = AuthFactory;
   $scope.dataFactory = DataFactory;
   $scope.names = [];
   $scope.searchName = {};
   $scope.client = {};
   $scope.clientSelected = false;
+
+  //Checks if user is logged in
+  authFactory.isLoggedIn().then(function (response) {
+    if (!response.data.status) {
+      $window.location.href = '/';
+    }});
 
   //This function grabs the current client from the factory. This is necessary so that if you selected a client,
   // view their history, and then click back, the client is still saved.

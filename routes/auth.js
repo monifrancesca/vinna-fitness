@@ -51,7 +51,8 @@ router.get('/google/callback', passport.authenticate('google',
  */
 router.get('/', function (req, res) {
   if (req.isAuthenticated()) {
-    res.json({ status: true, name: req.user.googleName });
+    res.json({ status: true, id: req.user[0].id});
+    console.log('the iddididid: '+req.user[0].id);
   } else {
     res.json({ status: false });
   }
@@ -68,5 +69,7 @@ router.get('/logout', function (req, res) {
   req.logout();
   res.sendStatus(200); // they made it!
 });
+
+
 
 module.exports = router;
