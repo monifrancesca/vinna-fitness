@@ -1,4 +1,4 @@
-myApp.controller('ClientController', ['$scope', '$http', '$location', 'DataFactory', function($scope, $http, $location, DataFactory) {
+myApp.controller('ClientController', ['$scope', '$http', '$location', 'DataFactory', 'AuthFactory','$window', function($scope, $http, $location, DataFactory, AuthFactory, $window) {
 
 
   var authFactory = AuthFactory;
