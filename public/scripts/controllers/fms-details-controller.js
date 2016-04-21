@@ -16,7 +16,11 @@ myApp.controller('FmsDetailsController', ['$scope', '$location', '$http', 'DataF
     if (!response.data.status) {
       $window.location.href = '/';
     } else {
+    }
+  });
 
+  //Resets "existing client" in database to prevent errors
+  $scope.dataFactory.factoryResetClient();
 
   if ($scope.dataFactory.checkFMS() == undefined) {
     $location.path('existingFms');
@@ -48,5 +52,4 @@ myApp.controller('FmsDetailsController', ['$scope', '$location', '$http', 'DataF
   }
 
 
-    }});
 }]);
