@@ -1,6 +1,5 @@
 myApp.controller('ClientController', ['$scope', '$http', '$location', 'DataFactory', 'AuthFactory','$window', function($scope, $http, $location, DataFactory, AuthFactory, $window) {
 
-
   var authFactory = AuthFactory;
   $scope.dataFactory = DataFactory;
   $scope.names = [];
@@ -86,6 +85,5 @@ myApp.controller('ClientController', ['$scope', '$http', '$location', 'DataFacto
     $scope.dataFactory.factoryGetClient($scope.client);
     $location.path('workout');
   };
-
 
 }]);
