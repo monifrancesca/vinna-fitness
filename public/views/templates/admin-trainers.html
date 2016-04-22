@@ -14,8 +14,10 @@
             <th>Admin</th>
             <th>Current Status</th>
             <th>Change Status</th>
+            <th>Edit</th>
           </tr>
           <tr ng-repeat="trainer in allTrainers" class="tableRow">
+
             <td>{{trainer.first_name}}</td>
             <td>{{trainer.last_name}}</td>
             <td>{{trainer.google_email}}</td>
@@ -28,12 +30,14 @@
               <button class="btn" ng-if="trainer.showHideStatus == true" ng-click="makeTrainerInactive(trainer.id)">Set As Inactive</button>
               <button class="btn" ng-if="trainer.showHideStatus == false" ng-click="makeTrainerActive(trainer.id)">Set As Active</button>
             </td>
+            <td> <a href ui-turn-on="modal2" class="btn btn-default modal-popup-btn">Edit</a></td>
           </tr>
         </table>
       </div>
     </div>
   </div>
 </div>
+
 <div ui-content-for="modals">
   <div class="modal" ui-if="modal1" ui-state='modal1'>
     <div class="modal-backdrop in"></div>
@@ -68,6 +72,52 @@
         <div class="modal-footer">
           <button class="btn btn-primary" ng-click="addTrainer(trainerInfo)">Add Trainer</button>
           <button ui-turn-off="modal1" class="btn btn-default">Close</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" ui-if="modal2" ui-state='modal2'>
+    <div class="modal-backdrop in"></div>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" ui-turn-off="modal2">&times;</button>
+          <h4 class="modal-title">Edit Trainer</h4>
+        </div>
+        <div class="modal-body">
+          <!--<form ng-show="selected == $index" class="trainerEdit">-->
+            <fieldset>
+              <div class="form-group">
+                <label>First Name</label>
+                <input  class="form-control" type="text" ng-model="trainer.first_name"
+                        value="{{trainer.first_name}}">
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input  class="form-control" type="text" ng-model="trainer.last_name"
+                        value="{{trainer.last_name}}">
+              </div>
+              <div class="form-group">
+                <label>Google Email</label>
+                <input  class="form-control" type="text" ng-model="trainer.google_email"
+                        value="{{trainer.google_email}}">
+              </div>
+              <div class="form-group">
+                <label>Admin Status</label>
+                <input  class="form-control" type="checkbox" ng-model="trainer.admin"
+                        value="{{trainer.admin}}">
+              </div>
+
+              <button ng-click="submitUpdate(trainer)">submit changes</button>
+            </fieldset>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <!--======= merge conflict-->
     <!--<div class="section">-->
         <!--<h1>Manage Trainers</h1>-->
@@ -145,11 +195,7 @@
             <!--</div>-->
           <!--</div>-->
 <!--&gt;>>>>>> develop-->
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+
 <!--original code before putting it in tables-->
 <!--<div class="scrollable">-->
   <!--<div class="scrollable-content">-->
@@ -220,4 +266,3 @@
 
     </div>
   </div>
-

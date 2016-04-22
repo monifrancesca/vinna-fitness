@@ -25,6 +25,7 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', 'AuthFact
   //  //$scope.info = $scope.clientPersonal[0];
   //  //console.log($scope.info);
   //});
+
   // GET runs when html file loads via ng-repeat
   $scope.dataFactory.getLocation().then(function() { //go to the data factory and run this function. come back to write the .then when you have the results stored in the data factory.
     $scope.locations = $scope.dataFactory.getLocationVariable(); // get the data from this function in the data factory and assign it to locations (ng-repeat variable) to use in the html ng-repeat
@@ -52,17 +53,22 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', 'AuthFact
     }); // send location variable to this function in the data factory
     $scope.locationName = '';
   };
+
+  // Admin trainers logic
   $scope.dataFactory.getTrainers().then(function(){
     $scope.allTrainers = $scope.dataFactory.trainerList();
   });
+
   $scope.showEdit = function(index){
     $scope.selected = index;
   };
+
   $scope.addTrainer = function(info){
     $scope.dataFactory.newTrainer(info).then(function(){
       $scope.allTrainers = $scope.dataFactory.trainerList();
     })
   };
+
   $scope.submitUpdate = function(trainer){
     $scope.dataFactory.updateTrainer(trainer).then(function(){
       $scope.allTrainers = $scope.dataFactory.trainerList();
