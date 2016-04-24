@@ -107,3 +107,7 @@ tags-input .tags {
     margin: 0;
     display: inline-block;
 }
+
+.modal-popup-btn {
+    float: right;
+}

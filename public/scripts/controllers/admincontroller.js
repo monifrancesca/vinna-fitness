@@ -4,6 +4,8 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', function(
 
   $scope.flags = [];
 
+  $scope.locations = [];
+
   $scope.allTrainers = [];
   $scope.selected = null;
   $scope.trainerInfo = {
@@ -20,6 +22,21 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', function(
   //  //$scope.info = $scope.clientPersonal[0];
   //  //console.log($scope.info);
   //});
+
+  $scope.makeLocationActive = function(id) {
+    $scope.dataFactory.factoryMakeLocationActive(id);
+    $scope.dataFactory.getLocation().then(function() {
+      $scope.locations = $scope.dataFactory.getLocationVariable();
+    });
+  };
+
+  $scope.makeLocationInactive = function(id) {
+    $scope.dataFactory.factoryMakeLocationInactive(id);
+    $scope.dataFactory.getLocation().then(function() {
+      $scope.locations = $scope.dataFactory.getLocationVariable();
+    });
+  };
+
   // GET runs when html file loads via ng-repeat
   $scope.dataFactory.getLocation().then(function() { //go to the data factory and run this function. come back to write the .then when you have the results stored in the data factory.
     $scope.locations = $scope.dataFactory.getLocationVariable(); // get the data from this function in the data factory and assign it to locations (ng-repeat variable) to use in the html ng-repeat
@@ -78,5 +95,4 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', function(
         $scope.flags = $scope.dataFactory.getFlags();
       });
   };
-
 }]);

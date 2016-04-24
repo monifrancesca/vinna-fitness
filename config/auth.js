@@ -8,12 +8,12 @@
  */
 var authConfigs = {
   googleAuth: {
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    callbackUrl: process.env.CALLBACK_URL
+    clientId: '880550247356-fs40kde8rb0sri2pfq5ibss509h1if02.apps.googleusercontent.com',
+    clientSecret: 'vIOqoQBw7RtCa7D3O18SRPwy',
+    callbackUrl: 'http://localhost:5000/auth/google/callback'
   },
   sessionVars: {
-    secret: process.env.SECRET
+    secret: 'XvGVXI66XkjP'
   }
 };
 module.exports = authConfigs;
