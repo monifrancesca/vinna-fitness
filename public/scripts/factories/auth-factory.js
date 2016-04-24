@@ -1,7 +1,7 @@
 myApp.factory('AuthFactory', function ($http) {
   var Status = {
-    loggedIn: false
-
+    loggedIn: false,
+    usersId: undefined
 
 
 
@@ -25,6 +25,12 @@ myApp.factory('AuthFactory', function ($http) {
 
     logout: function () {
       return $http.get('/auth/logout');
+    },
+    trainerId: function () {
+      return Status.usersId
+    },
+    setTrainerId: function (id) {
+      Status.usersId = id;
     }
   };
 

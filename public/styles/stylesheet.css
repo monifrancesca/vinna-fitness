@@ -111,3 +111,16 @@ tags-input .tags {
 .modal-popup-btn {
     float: right;
 }
+
+.switchClient {
+    float: right;
+}
+
+.clientHead {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.clientHeader {
+    margin-bottom: 10px;
+}

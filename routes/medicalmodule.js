@@ -84,7 +84,7 @@ router.get('/:id', function(req, res) {
             'LEFT OUTER JOIN client_conditions ON (client.id = client_conditions.client_id)' +
             'LEFT OUTER JOIN medical_conditions ON (client_conditions.condition_id = medical_conditions.id)' +
             'WHERE client.id = $1;',
-        [id]);
+        [1]);
 
         query.on('row', function(row) {
             results.push(row);

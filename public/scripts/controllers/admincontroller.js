@@ -1,5 +1,10 @@
-myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', function($scope, $http, DataFactory) {
+myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $http, DataFactory, AuthFactory, $window) {
 
+  var authFactory = AuthFactory;
+  authFactory.isLoggedIn().then(function (response) {
+    if (!response.data.status) {
+      $window.location.href = '/';
+    } else {
   $scope.dataFactory = DataFactory;
 
   $scope.flags = [];
@@ -64,17 +69,22 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', function(
     }); // send location variable to this function in the data factory
     $scope.locationName = '';
   };
+
+  // Admin trainers logic
   $scope.dataFactory.getTrainers().then(function(){
     $scope.allTrainers = $scope.dataFactory.trainerList();
   });
+
   $scope.showEdit = function(index){
     $scope.selected = index;
   };
+
   $scope.addTrainer = function(info){
     $scope.dataFactory.newTrainer(info).then(function(){
       $scope.allTrainers = $scope.dataFactory.trainerList();
     })
   };
+
   $scope.submitUpdate = function(trainer){
     $scope.dataFactory.updateTrainer(trainer).then(function(){
       $scope.allTrainers = $scope.dataFactory.trainerList();
@@ -95,4 +105,7 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', function(
         $scope.flags = $scope.dataFactory.getFlags();
       });
   };
+
+    }});
+
 }]);

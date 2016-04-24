@@ -1,5 +1,11 @@
-myApp.controller('PersonalHistoryController', ['$scope', '$location', '$http', 'DataFactory', function($scope, $location, $http, DataFactory) {
+myApp.controller('PersonalHistoryController', ['$scope', '$location', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $location, $http, DataFactory, AuthFactory, $window) {
 
+
+  var authFactory = AuthFactory;
+  authFactory.isLoggedIn().then(function (response) {
+    if (!response.data.status) {
+      $window.location.href = '/';
+    } else {
   $scope.dataFactory = DataFactory;
   $scope.displayHistory = false;
   $scope.editHistory = true;
@@ -37,7 +43,8 @@ myApp.controller('PersonalHistoryController', ['$scope', '$location', '$http', '
       height: $scope.info.height,
       weightPounds: $scope.info.weight,
       emergencyContactName: $scope.info.emergency_name,
-      emergencyContactNumber: $scope.info.emergency_phone
+      emergencyContactNumber: $scope.info.emergency_phone,
+      active_status: true
     };
     //console.log('info in controller', info);
     $scope.dataFactory.sendPersonal(info);
@@ -74,5 +81,5 @@ myApp.controller('PersonalHistoryController', ['$scope', '$location', '$http', '
     $scope.dataFactory.insertPersonal(editedInfo);
     $location.path('existingclient');
   };
-
+    }});
 }]);

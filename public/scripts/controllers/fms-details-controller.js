@@ -1,5 +1,6 @@
-myApp.controller('FmsDetailsController', ['$scope', '$location', '$http', 'DataFactory', function($scope, $location, $http, DataFactory) {
+myApp.controller('FmsDetailsController', ['$scope', '$location', '$http', 'DataFactory', '$window', 'AuthFactory', function($scope, $location, $http, DataFactory, $window, AuthFactory) {
 
+  var authFactory = AuthFactory;
   $scope.dataFactory = DataFactory;
 
   $scope.screen = {};
@@ -9,8 +10,17 @@ myApp.controller('FmsDetailsController', ['$scope', '$location', '$http', 'DataF
   $scope.pronePress = null;
   $scope.flex = null;
   //$scope.exercises = [];
-
   $scope.client = $scope.dataFactory.factoryReturnSelectedClient();
+
+  authFactory.isLoggedIn().then(function (response) {
+    if (!response.data.status) {
+      $window.location.href = '/';
+    } else {
+    }
+  });
+
+  //Resets "existing client" in database to prevent errors
+  $scope.dataFactory.factoryResetClient();
 
   if ($scope.dataFactory.checkFMS() == undefined) {
     $location.path('existingFms');
@@ -40,7 +50,6 @@ myApp.controller('FmsDetailsController', ['$scope', '$location', '$http', 'DataF
     //  console.log('These are the exercises', $scope.exercises);
     //});
   }
-
 
 
 }]);

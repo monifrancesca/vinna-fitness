@@ -1,5 +1,11 @@
-myApp.controller('NewMedicalController', ['$scope', '$location', '$http', 'DataFactory', function($scope, $location, $http, DataFactory) {
+myApp.controller('NewMedicalController', ['$scope', '$location', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $location, $http, DataFactory, AuthFactory, $window) {
 
+
+    var authFactory = AuthFactory;
+    authFactory.isLoggedIn().then(function (response) {
+        if (!response.data.status) {
+            $window.location.href = '/';
+        } else {
     $scope.dataFactory = DataFactory;
     $scope.info = {};
     $scope.info.intakeDate = new Date();
@@ -79,5 +85,5 @@ myApp.controller('NewMedicalController', ['$scope', '$location', '$http', 'DataF
         $scope.dataFactory.sendMedical(history);
         $location.path('existingclient');
     }
-
+    }});
 }]);

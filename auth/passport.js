@@ -22,7 +22,7 @@ var UserService = require('../services/user');
 
 // serialize the user onto the session
 passport.serializeUser(function (user, done) {
-  console.log(user);
+  console.log('user idddd: '+user[0].id);
   done(null, user[0].id);
 });
 
@@ -54,7 +54,6 @@ console.log('token: '+token+  ' profile: ' +profile+ ' profile.email: ' + profil
         UserService.updateUser(profile.id, token, profile.displayName,
           profile.emails[0].value, /* we take first email address */
           function (err, user) {
-            console.log('profile: '+profile);
             console.log('updating user');
             if (err) {
               throw err;

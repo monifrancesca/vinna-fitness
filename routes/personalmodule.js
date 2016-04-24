@@ -22,16 +22,17 @@ router.post('/', function(req, res) {
         //heightInches: req.body.heightInches,
         weight: req.body.weightPounds,
         emergency_name: req.body.emergencyContactName,
-        emergency_phone: req.body.emergencyContactNumber
+        emergency_phone: req.body.emergencyContactNumber,
+        active_status: req.body.active_status
     };
-    console.log('add personal var', addPersonal);
+    console.log('active status', addPersonal.active_status);
 
     pg.connect(connection, function (err, client, done) {
         client.query('INSERT into client (first_name, last_name, email, phone, dob, height, weight, emergency_name,' +
-            ' emergency_phone) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) returning id',
+            ' emergency_phone, active_status) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) returning id',
             [addPersonal.first_name, addPersonal.last_name, addPersonal.email,
                 addPersonal.phone, addPersonal.dob, addPersonal.height,
-                addPersonal.weight, addPersonal.emergency_name, addPersonal.emergency_phone],
+                addPersonal.weight, addPersonal.emergency_name, addPersonal.emergency_phone, addPersonal.active_status ],
             function (err, result) {
                 done();
                 if (err) {

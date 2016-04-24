@@ -1,5 +1,10 @@
-myApp.controller('WorkoutDetailsController', ['$scope', '$location', '$http', 'DataFactory', function($scope, $location, $http, DataFactory) {
+myApp.controller('WorkoutDetailsController', ['$scope', '$location', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $location, $http, DataFactory, AuthFactory, $window) {
 
+  var authFactory = AuthFactory;
+  authFactory.isLoggedIn().then(function (response) {
+    if (!response.data.status) {
+      $window.location.href = '/';
+    } else {
   $scope.dataFactory = DataFactory;
 
   $scope.workout = {};
@@ -20,5 +25,5 @@ myApp.controller('WorkoutDetailsController', ['$scope', '$location', '$http', 'D
       console.log('These are the exercises', $scope.exercises);
     });
   }
-
+    }});
 }]);

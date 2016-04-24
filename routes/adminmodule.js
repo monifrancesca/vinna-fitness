@@ -133,7 +133,8 @@ router.get('/clients', function(req, res) {
   var results = [];
 
   pg.connect(connection, function (err, client, done) {
-    var query = client.query("SELECT client.first_name, client.last_name, client.dob, client.active_status, client.id FROM client;");
+    var query = client.query("SELECT client.first_name, client.last_name, client.dob, " +
+        "client.active_status, client.id FROM client;");
 
     query.on('row', function(row) {
       results.push(row);

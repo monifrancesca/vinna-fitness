@@ -1,5 +1,10 @@
-myApp.controller('PersonalController', ['$scope', '$location', '$http', 'DataFactory', function($scope, $location, $http, DataFactory) {
+myApp.controller('PersonalController', ['$scope', '$location', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $location, $http, DataFactory, AuthFactory, $window) {
 
+  var authFactory = AuthFactory;
+  authFactory.isLoggedIn().then(function (response) {
+    if (!response.data.status) {
+      $window.location.href = '/';
+    } else {
   $scope.dataFactory = DataFactory;
 
   $scope.height = {};
@@ -29,11 +34,12 @@ myApp.controller('PersonalController', ['$scope', '$location', '$http', 'DataFac
       height: height,
       weightPounds: $scope.info.weightPounds,
       emergencyContactName: $scope.info.emergencyContactName,
-      emergencyContactNumber: $scope.info.emergencyContactNumber
+      emergencyContactNumber: $scope.info.emergencyContactNumber,
+      active_status: true
     };
     console.log('info in controller', info);
     $scope.dataFactory.sendPersonal(info);
     $location.path('newmedical')
   };
-
+    }});
 }]);
