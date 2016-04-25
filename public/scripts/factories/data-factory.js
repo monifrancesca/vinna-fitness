@@ -213,6 +213,30 @@ myApp.factory('DataFactory', ['$http', function($http) {
     return promise;
   };
 
+  //var retrieveAllLocations = function() {
+  //  var promise = $http.get('/admin/location').then(function(response) {
+  //    allLocations = response.data;
+  //  });
+  //  return promise;
+  //};
+
+  // functions to toggle active/inactive states
+  var locationActive = function(id) {
+    var data = {
+      active_status: true
+    };
+    $http.put('/admin/location/' + id, data).then(function(response) {
+    });
+  };
+
+  var locationInactive = function(id) {
+    var data = {
+      active_status: false
+    };
+    $http.put('/admin/location/' + id, data).then(function(response) {
+    });
+  };
+
   //var fillLocationList = function () {
   //  var promise = $http.get('/admin/locationList/').then(function(response) {
   //    locationList = response.data;
@@ -404,6 +428,18 @@ myApp.factory('DataFactory', ['$http', function($http) {
     adminRemoveLocation: function(id) {
       return deleteFromLocationList(id);
     },
+    factoryMakeLocationActive: function(id) { // factory functions for location
+      return locationActive(id);
+    },
+    factoryMakeLocationInactive: function(id) {
+      return locationInactive(id);
+    },
+    //factoryRetrieveAllLocations: function(){
+    //  return retrieveAllLocations();
+    //},
+    //factoryAllLocations: function(){
+    //  return allLocations;
+    //},
     //factoryGetLocationList: function() {
     //  return fillLocationList();
     //},
