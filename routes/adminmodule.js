@@ -32,6 +32,7 @@ router.post('/', function(req, res) {
 
 });
 
+// get locations
 router.get('/', function(req, res) {
   var results = [];  // create an empty array for results
   pg.connect(connection, function(err, client, done) {
@@ -52,6 +53,7 @@ router.get('/', function(req, res) {
   })
 });
 
+//delete locations
 router.delete('/locationList:id', function(req, res) {
   var locationId = req.params.id;
   pg.connect(connection, function(err, client, done) {
@@ -69,6 +71,7 @@ router.delete('/locationList:id', function(req, res) {
   });
 });
 
+// set location status active/inactive
 router.put('/location/:id', function(req, res){
   //console.log(req.body);
   var newLocationStatus = {
@@ -127,6 +130,49 @@ router.post('/classlist', function(req, res) {
           }
         });
   });
+});
+
+// set class status as active/inactive
+router.put('/classlist/:id', function(req, res){
+  //console.log(req.body);
+  var newClassStatus = {
+    status: req.body.active_status,
+    id: req.params.id
+  };
+  pg.connect(connection, function(err, client, done) {
+    client.query('UPDATE class SET active_status = ($1) WHERE id = ($2)',
+        [newClassStatus.status, newClassStatus.id],
+        function (err, result) {
+          if(err) {
+            console.log("Error inserting data: ", err);
+            res.send(false);
+          } else {
+            res.send(result);
+          }
+        });
+    done();
+  });
+});
+
+// get classlist
+router.get('/classlist', function(req, res) {
+  var results = [];  // create an empty array for results
+  pg.connect(connection, function(err, client, done) {
+    var query = client.query('SELECT * FROM class;');
+
+    query.on('row', function(row) { // add data to a row each time it repeats
+      results.push(row);
+    });
+
+    query.on('end', function() { // return the results array at the end then go back to the data factory
+      client.end();
+      return res.json(results);
+    });
+
+    if(err) {
+      console.log(err);
+    }
+  })
 });
 
 router.get('/clients', function(req, res) {
