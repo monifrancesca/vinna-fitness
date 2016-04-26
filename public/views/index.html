@@ -12,6 +12,7 @@
     <script type="text/javascript" src="../scripts/factories/data-factory.js"></script>
     <script type="text/javascript" src="../scripts/controllers/navcontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/authcontroller.js"></script>
+    <script type="text/javascript" src="../scripts/controllers/sidebarcontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/admincontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/clientcontroller.js"></script>
     <script type="text/javascript" src="../scripts/controllers/fmscontroller.js"></script>
@@ -39,8 +40,8 @@
 <body ng-app="myApp">
 
 <div ui-yield-to="modals"></div>
-
-    <div class="sidebar sidebar-left">
+<div ng-controller="SidebarController">
+    <div ng-show="showbar == true" class="sidebar sidebar-left">
         <div class="scrollable">
             <h1 class="scrollable-header app-name">Vald</h1>
             <div class="scrollable-content">
@@ -57,7 +58,7 @@
             </div>
         </div>
     </div>
-
+</div>
     <div class="app">
         <div class="navbar navbar-app navbar-absolute-top">
             <div class="navbar-brand navbar-brand-center">
