@@ -1,7 +1,12 @@
 myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $location, $http, DataFactory, AuthFactory, $window) {
 
-  $scope.dataFactory = DataFactory;
+  var authFactory = AuthFactory;
+  authFactory.isLoggedIn().then(function (response) {
+    if (!response.data.status) {
+      $window.location.href = '/';
+    } else {
 
+  $scope.dataFactory = DataFactory;
   $scope.newExercise = {};
   $scope.formData = {};
   $scope.formData.exercises = [];
@@ -19,22 +24,12 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
   $scope.showLb = false;
   $scope.formData.date = new Date();
 
-  //Checks if user is logged in
-  var authFactory = AuthFactory;
-  authFactory.isLoggedIn().then(function (response) {
-    if (!response.data.status) {
-      $window.location.href = '/';
-    } else {
-    }
-  });
-
   //Resets "existing client" in database to prevent errors
   $scope.dataFactory.factoryResetClient();
 
   //gets the class list from the database and populates a list of class types for the user to choose from
   $scope.dataFactory.factoryGetClassList().then(function() {
     $scope.classes = $scope.dataFactory.factoryClasses();
-    console.log($scope.classes);
   });
 
   //checks all locations available in the database and populates a list of radio buttons, one per location.
@@ -70,12 +65,9 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
   //This function controls the exercise search
   $scope.exerciseQuery = function() {
     var query = $scope.newExercise.exercisename;
-    console.log('exercise query', query);
     if (query.length >= 1) {
-      console.log('This is the query', query);
       $scope.dataFactory.factorySearchExercise(query).then(function() {
         $scope.exerciseResults = $scope.dataFactory.factoryExerciseQuery();
-        console.log('These are the results', $scope.exerciseResults);
       });
     }
     else {
@@ -103,11 +95,12 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
     resetNewExercise();
   };
 
-  //This function submits the form and saves it to the clients workout history
+  //This function submits the form and saves it to the client's workout history
   $scope.sendForm = function() {
     for (var i = 0; i < $scope.names.length; i++) {
-      console.log('This is the class', $scope.formData.class);
       $scope.formData.class_type = $scope.formData.class.id;
+      console.log('These is a client in the workout', $scope.names[i]);
+      console.log('These is the workout', $scope.formData);
       $scope.dataFactory.factorySaveNewWorkout($scope.formData, $scope.names[i]);
     }
     $scope.searchName.query = '';
@@ -139,12 +132,6 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
     }
   };
 
-  //Adds a new workout to the database
-  $scope.sendForm = function() {
-    console.log($scope.formData);
-    $scope.dataFactory.factorySaveNewWorkout($scope.formData);
-  };
-
   //Makes kg input active and visible for intensity
   $scope.showKgIntensity = function() {
     $scope.showKg = true;
@@ -161,7 +148,6 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
 
   //Controls which input boxes are shown when a rep unit type is selected
   $scope.showUnits = function() {
-    console.log('This is the measurement', $scope.newExercise.measurement);
     if ($scope.newExercise.measurement == '#') {
       $scope.newExercise.minutes = null;
       $scope.newExercise.seconds = null;
@@ -194,6 +180,8 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
     $scope.showKg = false;
     $scope.showLb = false;
     $scope.newExercise.measurement;
-  }
+  };
 
+
+    }});
 }]);

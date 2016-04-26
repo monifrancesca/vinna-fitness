@@ -158,7 +158,6 @@ myApp.factory('DataFactory', ['$http', function($http) {
   var facPostFmsData = function(data) {
     console.log('posting fms data');
     $http.post('/fms', data).then(function(response) {
-      console.log('match data saved');
       console.log(response);
     });
   };
