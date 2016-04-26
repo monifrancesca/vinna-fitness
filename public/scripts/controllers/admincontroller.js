@@ -20,6 +20,8 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', 'AuthFact
 
       $scope.showHideStatus = true;
 
+      $scope.trainer = {};
+
       //$scope.dataFactory.getLocation().then(function() {
       //  $scope.location = $scope.dataFactory.getLocation();
       //  console.log($scope.location);
@@ -74,7 +76,9 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', 'AuthFact
       $scope.openEditTrainers = function(trainer){
         $location.path('edittrainers');
         $scope.trainer = trainer;
-        console.log($scope.trainer)
+        console.log($scope.trainer);
+        //$scope.first_name = $scope.trainer.first_name;
+        //console.log($scope.first_name);
       };
 
       //this needs to be associated with a call
