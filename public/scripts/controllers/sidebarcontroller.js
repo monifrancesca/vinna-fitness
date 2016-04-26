@@ -1,4 +1,3 @@
-
 myApp.controller('SidebarController', ['$scope', 'AuthFactory', function($scope, AuthFactory) {
 
   var authFactory = AuthFactory;
