@@ -72,10 +72,10 @@
             </div>
 
             <div class="btn-group pull-right">
-                <div class="btn btn-navbar" ng-controller="NavController as nav" ng-click="nav.logout()">
+                <div class="btn btn-navbar" ng-show="logoutHide == true" ng-controller="NavController as nav" ng-click="nav.logout()">
                     Logout
                 </div>
-                <div class="btn btn-navbar" ng-controller="NavController as nav" ng-click="nav.back()">
+                <div class="btn btn-navbar" ng-show="logoutHide == true" ng-controller="NavController as nav" ng-click="nav.back()">
                     Back
                 </div>
             </div>
