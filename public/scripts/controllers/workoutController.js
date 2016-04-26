@@ -1,4 +1,3 @@
-
 myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $location, $http, DataFactory, AuthFactory, $window) {
 
   $scope.dataFactory = DataFactory;
@@ -71,9 +70,12 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
   //This function controls the exercise search
   $scope.exerciseQuery = function() {
     var query = $scope.newExercise.exercisename;
+    console.log('exercise query', query);
     if (query.length >= 1) {
+      console.log('This is the query', query);
       $scope.dataFactory.factorySearchExercise(query).then(function() {
         $scope.exerciseResults = $scope.dataFactory.factoryExerciseQuery();
+        console.log('These are the results', $scope.exerciseResults);
       });
     }
     else {
@@ -135,6 +137,26 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
       $scope.newExercise.intensity_kgs = null;
       $scope.newExercise.intensity_lbs = null;
     }
+  };
+
+  //Adds a new workout to the database
+  $scope.sendForm = function() {
+    console.log($scope.formData);
+    $scope.dataFactory.factorySaveNewWorkout($scope.formData);
+  };
+
+  //Makes kg input active and visible for intensity
+  $scope.showKgIntensity = function() {
+    $scope.showKg = true;
+    $scope.showLb = false;
+    $scope.newExercise.intensity_lbs = null;
+  };
+
+  //Makes lb input active and visible for intensity
+  $scope.showLbIntensity = function() {
+    $scope.showKg = false;
+    $scope.showLb = true;
+    $scope.newExercise.intensity_kgs = null;
   };
 
   //Controls which input boxes are shown when a rep unit type is selected
