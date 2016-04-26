@@ -108,6 +108,10 @@ tags-input .tags {
     display: inline-block;
 }
 
+.modal-popup-btn {
+    float: right;
+}
+
 .switchClient {
     float: right;
 }

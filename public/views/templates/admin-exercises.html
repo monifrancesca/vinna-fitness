@@ -9,13 +9,11 @@
                 <table class="table">
                     <tr>
                         <th>Exercise Name</th>
-                        <th>Exercise Category</th>
                         <th>Current Status</th>
                         <th>Change Status</th>
                     </tr>
-                        <tr ng-repeat="exercise in exercises" class="tableRow">
+                        <tr ng-repeat="exercise in exercises | orderBy: 'name'" class="tableRow">
                             <td>{{exercise.name}}</td>
-                            <td>{{exercise.category}}</td>
                             <td>
                                 <span ng-if="exercise.active_status == true">Active</span>
                                 <span ng-if="exercise.active_status == false">Inactive</span>

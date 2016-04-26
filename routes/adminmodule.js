@@ -67,10 +67,28 @@ router.delete('/locationList:id', function(req, res) {
           }
         });
   });
-
 });
 
-
+router.put('/location/:id', function(req, res){
+  //console.log(req.body);
+  var newLocationStatus = {
+    status: req.body.active_status,
+    id: req.params.id
+  };
+  pg.connect(connection, function(err, client, done) {
+    client.query('UPDATE location SET active_status = ($1) WHERE id = ($2)',
+        [newLocationStatus.status, newLocationStatus.id],
+        function (err, result) {
+          if(err) {
+            console.log("Error inserting data: ", err);
+            res.send(false);
+          } else {
+            res.send(result);
+          }
+        });
+    done();
+  });
+});
 
 router.delete('/classList:id', function(req, res) {
   var classId = req.params.id;
@@ -111,12 +129,12 @@ router.post('/classlist', function(req, res) {
   });
 });
 
-
 router.get('/clients', function(req, res) {
   var results = [];
 
   pg.connect(connection, function (err, client, done) {
-    var query = client.query("SELECT client.first_name, client.last_name, client.dob, client.active_status, client.id FROM client;");
+    var query = client.query("SELECT client.first_name, client.last_name, client.dob, " +
+        "client.active_status, client.id FROM client;");
 
     query.on('row', function(row) {
       results.push(row);
