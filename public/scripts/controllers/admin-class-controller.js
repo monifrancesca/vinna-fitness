@@ -1,14 +1,18 @@
 myApp.controller('AdminClassController', ['$scope', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $http, DataFactory, AuthFactory, $window) {
 
+  $scope.dataFactory = DataFactory;
+
+  $scope.dataFactory.factoryGetClassList().then(function() {
+    $scope.classes = $scope.dataFactory.factoryClasses();
+  });
+
   var authFactory = AuthFactory;
   authFactory.isLoggedIn().then(function (response) {
     if (!response.data.status) {
-        $window.location.href = '/';
+      $window.location.href = '/';
     } else {
     }
   });
-
-  $scope.dataFactory = DataFactory;
 
   //Resets "existing client" in database to prevent errors
   $scope.dataFactory.factoryResetClient();
@@ -34,6 +38,21 @@ myApp.controller('AdminClassController', ['$scope', '$http', 'DataFactory', 'Aut
         $scope.classes = $scope.dataFactory.factoryClasses();
       });
     });
+  };
+
+
+  $scope.makeClassActive = function(id) {
+    $scope.dataFactory.factoryMakeClassActive(id);
+      $scope.dataFactory.factoryGetClassList().then(function() {
+        $scope.classes = $scope.dataFactory.factoryClasses();
+      });
+  };
+
+  $scope.makeClassInactive = function(id) {
+    $scope.dataFactory.factoryMakeClassInactive(id);
+      $scope.dataFactory.factoryGetClassList().then(function() {
+        $scope.classes = $scope.dataFactory.factoryClasses();
+      });
   };
 
 }]);

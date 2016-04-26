@@ -3,11 +3,11 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var path = require('path');
 var pg = require('pg');
-var app = express();
+//var app = express();
 var connection = require('../modules/connection');
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+//app.use(bodyParser.json());
+//app.use(bodyParser.urlencoded({extended: true}));
 
 router.post('/', function(req, res) {
   console.log('Request Body: ', req.body);
@@ -32,9 +32,10 @@ router.post('/', function(req, res) {
         done();
         if(err) {
           console.log(err);
-          res.send(result);
+          res.status(500).send(result);
         } else {
           console.log('result: ' + result);
+          res.send(result);
         }
       }
     )
@@ -106,7 +107,7 @@ router.get('/history/:id', function(req, res) {
 
 router.get('/detail/:id', function(req, res) {
   var results = [];
-  console.log(req.params.id);
+  //console.log(req.params.id);
   pg.connect(connection, function (err, client, done) {
     var query = client.query('SELECT fms.date, fms.deep_squat, fms.toe_touch, fms.deep_squat_df, fms.hurdle_step, fms.left_leg_up, fms.right_leg_up, fms.hurdle_df, fms.in_line_lunge, '+
     'fms.left_leg_forward, fms.right_leg_forward, fms.lunge_df, fms.shoulder_mobility, fms.left_top, fms.right_top, fms.shoulder_df, fms.active_straight_leg, fms.leg_raise_df, '+

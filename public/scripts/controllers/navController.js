@@ -5,7 +5,7 @@ myApp.controller('NavController', ['$scope', 'AuthFactory', '$location', '$windo
   var authFactory = AuthFactory;
   $scope.dataFactory = DataFactory;
   $scope.client = {};
-
+  $scope.logoutHide = authFactory.Status.sidebar;
 
   _this.displayLogout = false; // should we display the logout option on the DOM?
   _this.message = {
@@ -19,9 +19,12 @@ myApp.controller('NavController', ['$scope', 'AuthFactory', '$location', '$windo
       _this.displayLogout = true;
       authFactory.setLoggedIn(true);
       _this.username = response.data.name;
+      authFactory.setTrainerId(response.data.id);
+      console.log('hopes and dreams: '+authFactory.trainerId());
     } else { // is not logged in on server
       _this.displayLogout = false;
       authFactory.setLoggedIn(false);
+      authFactory.setTrainerId('');
     }
   },
 
@@ -34,6 +37,7 @@ myApp.controller('NavController', ['$scope', 'AuthFactory', '$location', '$windo
     authFactory.logout()
       .then(function (response) { // success
         authFactory.setLoggedIn(false);
+          authFactory.setTrainerId('');
         _this.username = '';
         $window.location.href = '/'; // forces a page reload which will update our NavController
       },
@@ -47,5 +51,15 @@ myApp.controller('NavController', ['$scope', 'AuthFactory', '$location', '$windo
   this.back = function() {
     $window.history.back();
   };
+
+  $scope.$watch(
+    function() { return authFactory.Status.sidebar; },
+    function(newVal, oldVal) {
+      if (authFactory.Status.sidebar === true) {
+        $scope.logoutHide = true;
+      } else {$scope.logoutHide = false;}
+    },
+    true
+  );
 
 }]);
