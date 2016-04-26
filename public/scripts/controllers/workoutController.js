@@ -1,7 +1,12 @@
 myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $location, $http, DataFactory, AuthFactory, $window) {
 
-  $scope.dataFactory = DataFactory;
+  var authFactory = AuthFactory;
+  authFactory.isLoggedIn().then(function (response) {
+    if (!response.data.status) {
+      $window.location.href = '/';
+    } else {
 
+  $scope.dataFactory = DataFactory;
   $scope.newExercise = {};
   $scope.formData = {};
   $scope.formData.exercises = [];
@@ -18,15 +23,6 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
   $scope.showKg = false;
   $scope.showLb = false;
   $scope.formData.date = new Date();
-
-  //Checks if user is logged in
-  var authFactory = AuthFactory;
-  authFactory.isLoggedIn().then(function (response) {
-    if (!response.data.status) {
-      $window.location.href = '/';
-    } else {
-    }
-  });
 
   //Resets "existing client" in database to prevent errors
   $scope.dataFactory.factoryResetClient();
@@ -184,6 +180,8 @@ myApp.controller('WorkoutController', ['$scope', '$location', '$http', 'DataFact
     $scope.showKg = false;
     $scope.showLb = false;
     $scope.newExercise.measurement;
-  }
+  };
 
+
+    }});
 }]);

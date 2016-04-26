@@ -1,6 +1,12 @@
-myApp.controller('ClientController', ['$scope', '$http', '$location', 'DataFactory', 'AuthFactory','$window', function($scope, $http, $location, DataFactory, AuthFactory, $window) {
+
+myApp.controller('ClientController', ['$scope', '$http', '$location', 'DataFactory', 'AuthFactory', '$window', function($scope, $http, $location, DataFactory, AuthFactory, $window) {
 
   var authFactory = AuthFactory;
+  authFactory.isLoggedIn().then(function (response) {
+    if (!response.data.status) {
+      $window.location.href = '/';
+    } else {
+
   $scope.dataFactory = DataFactory;
   $scope.names = [];
   $scope.searchName = {};
@@ -85,5 +91,7 @@ myApp.controller('ClientController', ['$scope', '$http', '$location', 'DataFacto
     $scope.dataFactory.factoryGetClient($scope.client);
     $location.path('workout');
   };
+
+    }});
 
 }]);
