@@ -1,4 +1,4 @@
-myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', 'AuthFactory', '$window', function($scope, $http, DataFactory, AuthFactory, $window) {
+myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', 'AuthFactory', '$window', '$location', function($scope, $http, DataFactory, AuthFactory, $window, $location) {
 
   var authFactory = AuthFactory;
   authFactory.isLoggedIn().then(function (response) {
@@ -71,9 +71,16 @@ myApp.controller('AdminController', ['$scope', '$http', 'DataFactory', 'AuthFact
         })
       };
 
-      $scope.dataFactory.updateTrainer(trainer).then(function(){
-        $scope.allTrainers = $scope.dataFactory.trainerList();
-      });
+      $scope.openEditTrainers = function(trainer){
+        $location.path('edittrainers');
+        $scope.trainer = trainer;
+        console.log($scope.trainer)
+      };
+
+      //this needs to be associated with a call
+      //$scope.dataFactory.updateTrainer(trainer).then(function(){
+      //  $scope.allTrainers = $scope.dataFactory.trainerList();
+      //});
 
       $scope.showHide = function(){
         $scope.showHideStatus = true;

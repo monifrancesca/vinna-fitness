@@ -1,0 +1,38 @@
+<div class="scrollable">
+    <div class="scrollable-content">
+        <div class="section">
+            <div class="list-group">
+                <div class="list-group-item scrollable-header">
+                    <h1 class="manageexhead">Edit Trainer</h1>
+                </div>
+                <form>
+                    <fieldset>
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input  class="form-control" type="text" ng-model="trainer.first_name"
+                                    value="{{trainer.first_name}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input  class="form-control" type="text" ng-model="trainer.last_name"
+                                    value="{{trainer.last_name}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Google Email</label>
+                            <input  class="form-control" type="text" ng-model="trainer.google_email"
+                                    value="{{trainer.google_email}}">
+                        </div>
+                        <div class="form-group">
+                            <label>Admin Status</label>
+                            <input  class="form-control" type="checkbox" ng-model="trainer.admin"
+                                    value="{{trainer.admin}}">
+                        </div>
+
+                        <button ng-click="submitUpdate(trainer)">submit changes</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

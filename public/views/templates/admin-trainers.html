@@ -30,7 +30,7 @@
               <button class="btn" ng-if="trainer.showHideStatus == true" ng-click="makeTrainerInactive(trainer.id)">Set As Inactive</button>
               <button class="btn" ng-if="trainer.showHideStatus == false" ng-click="makeTrainerActive(trainer.id)">Set As Active</button>
             </td>
-            <td> <a href ui-turn-on="modal2" class="btn btn-default modal-popup-btn">Edit</a></td>
+            <td> <div class="btn btn-default" ng-click="openEditTrainers(trainer)">Edit</div></td>
           </tr>
         </table>
       </div>
@@ -40,6 +40,8 @@
 
 <div ui-content-for="modals">
   <div class="modal" ui-if="modal1" ui-state='modal1'>
+    <div class="scrollable">
+      <div class="scrollable-content">
     <div class="modal-backdrop in"></div>
     <div class="modal-dialog">
       <div class="modal-content">
@@ -76,10 +78,14 @@
         </div>
       </div>
     </div>
+    </div>
+      </div>
   </div>
 
   <div class="modal" ui-if="modal2" ui-state='modal2'>
-    <div class="modal-backdrop in"></div>
+    <div class="scrollable">
+      <div class="scrollable-content">
+      <div class="modal-backdrop in"></div>
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -114,9 +120,10 @@
             </fieldset>
           </form>
           </div>
-        </div>
       </div>
     </div>
+        </div>
+      </div>
   </div>
 <!--======= merge conflict-->
     <!--<div class="section">-->

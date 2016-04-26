@@ -32,6 +32,10 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: '/views/templates/admin-trainers.html',
       controller: 'AdminController'
     })
+      .when('/edittrainers', {
+        templateUrl: '/views/templates/admin-edit-trainers.html',
+        controller: 'AdminController'
+      })
     .when('/client', {
       templateUrl: '/views/templates/client-dashboard.html',
       controller: 'ClientController'
